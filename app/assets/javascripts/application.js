@@ -8,4 +8,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.js
+//= require moment
+//= require bootstrap-datetimepicker
 

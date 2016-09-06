@@ -1,37 +1,84 @@
 <%= form_for @search_query do |f| %>
-    <% if @search_query.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
+  <% if @search_query.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
 
-          <ul>
-            <% @search_query.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+        <ul>
+          <% @search_query.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="row" style="padding-top: 20px;">
+    <div class="form-inline ">
+      <div class="form-group col-md-6">
+        <div>
+          <label>From Year</label>
         </div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :description %>
-      <%= f.text_field :description %>
+        <div class="col-md-6 " style="padding: 0">
+          <div class='input-group date' id='fromYear'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar">
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :from_date %>
-      <%= f.select :from_date, 2000..2020 %>
+    <div class="form-inline ">
+      <div class="form-group col-md-6">
+        <div>
+          <label>To Year</label>
+        </div>
+        <div class="col-md-6 " style="padding: 0">
+          <div class='input-group date' id='toYear'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar">
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="field">
-      <%= f.label :to_date %>
-      <%= f.select :to_date, 2000..2020 %>
-    </div>
-
+  <!--<div class="row">-->
     <%= f.fields_for :search_lines do |builder| %>
-      <%= render 'search_queries/search_line', f: builder %>
+        <%= render 'search_queries/search_line', f: builder %>
     <% end %>
-    <%= link_to_add_search_line "", f, :search_lines %>
+  <!--</div>-->
 
-    <div class="actions">
-      <%= f.submit %>
+  <div class="row" style="padding-bottom: 10px;">
+    <div class="col-md-2">
+      <%= link_to_add_search_line "", f, :search_lines %>
     </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :'Start Search', {class: 'btn btn-primary'} %>
+  </div>
+
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#fromYear').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY'
+    });
+    $('#toYear').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY'
+    });
+  })
+</script>
