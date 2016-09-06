@@ -12,7 +12,7 @@
     <div class="field">
       <%= f.label :field %>
       <%= f.select :field_id, options_for_select(@search_fields.collect { |search_field|
-        [search_field.name.titleize, search_field.id] }, 0), {prompt: '---Select---'}, { class: 'search_field' } %>
+        [search_field.name.titleize, search_field.id] }, 0), {}, { class: 'search_field' } %>
     </div>
 
     <div class="field">
@@ -23,8 +23,8 @@
 
     <div class="field fixed_value">
       <%= f.label :value %>
-      <%= f.select :value_id, options_for_select(@search_field_values.collect { |search_field_value|
-        [search_field_value.name.titleize, search_field_value.id] }, 0), {}, {class: 'search_field_value'} %>
+      <%= f.select :value_id, options_for_select(@field_values.collect { |field_value|
+        [field_value.name.titleize, field_value.id] }, 0), {}, {class: 'search_field_value'} %>
     </div>
 
     <div class="field text_value">
@@ -34,7 +34,7 @@
 
     <div class="field number_value">
       <%= f.label :value %>
-      <%= f.number_field :value_number %>
+      <%= f.number_field :value_number, min: 1 %>
     </div>
 
     <%= f.hidden_field :_destroy %>
