@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'search_queries/update_values' => 'search_queries#update_values'
+
+  resources :search_queries
   resources :methodologies
   resources :dev_methods
   resources :research_methods

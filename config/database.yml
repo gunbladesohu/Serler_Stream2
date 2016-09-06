@@ -32,7 +32,7 @@ default: &default
 
 development:
   adapter: postgresql
-  database: SERLER_Backup
+  database: SERLER_Stream2
   host: localhost
   pool: 5
   timeout: 5000

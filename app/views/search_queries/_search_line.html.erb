@@ -1,0 +1,119 @@
+<fieldset>
+  <div class="search_line">
+
+    <div class="field join_condition">
+      <%= f.label :condition %>
+      <%= f.select :join_condition, options_for_select(@join_conditions.collect { |join_condition|
+        [join_condition.name.titleize, join_condition.id] }, 0), {prompt: '---Select---'}, {} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :field %>
+      <%= f.select :field_id, options_for_select(@search_fields.collect { |search_field|
+        [search_field.name.titleize, search_field.id] }, 0), {prompt: '---Select---'}, { class: 'search_field' } %>
+    </div>
+
+    <div class="field">
+      <%= f.label :operator %>
+      <%= f.select :operator, options_for_select(@operators.collect { |operator|
+        [operator.name.titleize, operator.id] }, 0), {prompt: '---Select---'}, { class: 'operator' } %>
+    </div>
+
+    <div class="field fixed_value">
+      <%= f.label :value %>
+      <%= f.select :id, options_for_select(@search_field_values.collect { |search_field_value|
+        [search_field_value.name.titleize, search_field_value.id] }, 0), {}, {class: 'search_field_value'} %>
+    </div>
+
+    <div class="field text_value">
+      <%= f.label :value %>
+      <%= f.text_field :value %>
+    </div>
+
+    <div class="field number_value">
+      <%= f.label :value %>
+      <%= f.number_field :value %>
+    </div>
+
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "", class: "btn btn-default remove_fields" do %>
+      <span><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+    <% end %>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".join_condition").each(function(index) {
+      if(index == 0){
+        $(this).toggle(false);
+      }
+    });
+    $(".remove_fields").each(function(index) {
+      if(index == 0){
+        $(this).toggle(false);
+      }
+    });
+    $(".fixed_value").each(function(index) {
+      var search_field_select = $(this).find(".field").find(".search_field_value");
+      var length = search_field_select.children('option').length;
+      if(length == 0){
+        $(this).toggle(false);
+      }
+    });
+    $(".number_value").each(function(index) {
+      $(this).toggle(false);
+    });
+    $(".search_field").change(function () {
+      var search_line = $(this).parents(".search_line");
+
+      var select_value = search_line.find(".fixed_value");
+      var text_value = search_line.find(".text_value");
+      var number_value = search_line.find(".number_value");
+
+
+      var search_field_value = search_line.find(".field").find(".search_field_value");
+      var operator_field_value = search_line.find(".field").find(".operator");
+
+      var index = Number($(this).val());
+      $.getJSON('/search_queries/update_values', { field_id: $(this).val() }, function (data, textStatus, jqXHR) {
+        console.log("Load value OK: " + jqXHR.responseText);
+        search_field_value.empty();
+        operator_field_value.empty();
+        $.each(data.values, function (i, object) {
+          search_field_value.append($('<option>').attr('value', object.id).text(object.name));
+        });
+        $.each(data.operators, function (i, object) {
+          operator_field_value.append($('<option>').attr('value', object.id).text(object.name));
+        });
+      }). error(function (jqXHR, textStatus, errorThrown) {
+        console.log("AJAX Error: " + jqXHR.responseText);
+      });
+      switch (index) {
+        case 0:
+          search_field_value.empty();
+          operator_field_value.empty();
+          break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+          select_value.toggle(true);
+          text_value.toggle(false);
+          number_value.toggle(false);
+          break;
+        case 10:
+        case 11:
+          select_value.toggle(false);
+          text_value.toggle(false);
+          number_value.toggle(true);
+          break;
+        default:
+          select_value.toggle(false);
+          text_value.toggle(true);
+          number_value.toggle(false);
+          break;
+      }
+    });
+  })
+</script>
