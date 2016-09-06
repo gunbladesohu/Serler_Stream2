@@ -16,6 +16,16 @@
       <%= f.text_field :description %>
     </div>
 
+    <div class="field">
+      <%= f.label :from_date %>
+      <%= f.select :from_date, 2000..2020 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :to_date %>
+      <%= f.select :to_date, 2000..2020 %>
+    </div>
+
     <%= f.fields_for :search_lines do |builder| %>
       <%= render 'search_queries/search_line', f: builder %>
     <% end %>

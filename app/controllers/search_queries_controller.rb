@@ -33,8 +33,8 @@ class SearchQueriesController < BaseController
   def create
     search_lines_attrs = params[:search_query][:search_lines_attributes]
     @articles = nil
-    from_y = 2014
-    to_y = 2015
+    from_date = params[:search_query][:from_date]
+    to_date = params[:search_query][:to_date]
     search_lines_attrs.each do |key, array|
       if array[:_destroy] == "false"
         if @articles.nil?
@@ -52,6 +52,9 @@ class SearchQueriesController < BaseController
         end
       end
     end
+
+    # search articles by years
+    @articles = @articles & Article.where(:year => from_date..to_date)
 
     respond_to do |format|
       format.html { render :index }
