@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2d782f3-bca8-46b6-ba32-82ea091c648c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/search_queries_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/search_queries_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/search_queries/_search_line.html.erb" afterPath="$PROJECT_DIR$/app/views/search_queries/_search_line.html.erb" />
-    </list>
+    <list default="true" id="e2d782f3-bca8-46b6-ba32-82ea091c648c" name="Default" comment="" />
     <ignored path="SERLER.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -28,8 +24,8 @@
       <file leaf-file-name="_search_line.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/search_queries/_search_line.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+            <state relative-caret-position="256">
+              <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -800,12 +796,12 @@
       <workItem from="1472890170201" duration="2450000" />
       <workItem from="1473117474727" duration="25712000" />
       <workItem from="1473157847359" duration="3264000" />
-      <workItem from="1473198327244" duration="4076000" />
+      <workItem from="1473198327244" duration="4644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73133000" />
+    <option name="totallyTimeSpent" value="73701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="838" extended-state="6" />
@@ -1191,8 +1187,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/search_queries/_search_line.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+        <state relative-caret-position="256">
+          <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
           <folding />
         </state>
       </provider>
