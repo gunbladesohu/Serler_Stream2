@@ -1,10 +1,12 @@
 <fieldset>
   <div class="search_line">
 
+    <hr />
+
     <div class="field join_condition">
       <%= f.label :condition %>
       <%= f.select :join_condition, options_for_select(@join_conditions.collect { |join_condition|
-        [join_condition.name.titleize, join_condition.id] }, 0), {prompt: '---Select---'}, {} %>
+        [join_condition.name.titleize, join_condition.id] }, 0) %>
     </div>
 
     <div class="field">
@@ -16,23 +18,23 @@
     <div class="field">
       <%= f.label :operator %>
       <%= f.select :operator, options_for_select(@operators.collect { |operator|
-        [operator.name.titleize, operator.id] }, 0), {prompt: '---Select---'}, { class: 'operator' } %>
+        [operator.name.titleize, operator.value] }, 0), {}, { class: 'operator' } %>
     </div>
 
     <div class="field fixed_value">
       <%= f.label :value %>
-      <%= f.select :id, options_for_select(@search_field_values.collect { |search_field_value|
+      <%= f.select :value_id, options_for_select(@search_field_values.collect { |search_field_value|
         [search_field_value.name.titleize, search_field_value.id] }, 0), {}, {class: 'search_field_value'} %>
     </div>
 
     <div class="field text_value">
-      <%= f.label :value %>
-      <%= f.text_field :value %>
+      <%= f.label :value_text %>
+      <%= f.text_field :value_text %>
     </div>
 
     <div class="field number_value">
       <%= f.label :value %>
-      <%= f.number_field :value %>
+      <%= f.number_field :value_number %>
     </div>
 
     <%= f.hidden_field :_destroy %>
@@ -55,7 +57,7 @@
       }
     });
     $(".fixed_value").each(function(index) {
-      var search_field_select = $(this).find(".field").find(".search_field_value");
+      var search_field_select = $(this).find(".search_field_value");
       var length = search_field_select.children('option').length;
       if(length == 0){
         $(this).toggle(false);

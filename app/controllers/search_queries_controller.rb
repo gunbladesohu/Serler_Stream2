@@ -4,8 +4,8 @@ class SearchQueriesController < BaseController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    if @search_queries.nil?
-      @articles = Article.all
+    if @articles.nil?
+      @articles = Array.new
     end
   end
 
@@ -21,7 +21,7 @@ class SearchQueriesController < BaseController
     @search_fields = FieldTable.all
     @search_field_values = Array.new
     @join_conditions = JoinCondition.all
-    @operators = Operator.all
+    @operators = Array.new
   end
 
   # GET /search_queries/1/edit
@@ -33,11 +33,23 @@ class SearchQueriesController < BaseController
   def create
     search_lines_attrs = params[:search_query][:search_lines_attributes]
     @articles = nil
+    from_y = 2014
+    to_y = 2015
     search_lines_attrs.each do |key, array|
-      if @articles.nil?
-        @articles = line_condition array
-      else
-        @articles = @articles & (line_condition array)
+      if array[:_destroy] == "false"
+        if @articles.nil?
+          @articles = line_condition array
+        else
+          join_condition = array[:join_condition].to_i
+          case join_condition
+            when 1
+              @articles = @articles | (line_condition array)
+            when 2
+              @articles = @articles & (line_condition array)
+            when 3
+              @articles = @articles - (line_condition array)
+          end
+        end
       end
     end
 
@@ -88,11 +100,11 @@ class SearchQueriesController < BaseController
 
     case params[:field_id].to_i
       when 1,2,3,4
-        @operators = Operator.where(value: 4)
+        @operators = Operator.where(value: 5)
       when 5,6,7,8,9,12,13,14
-        @operators = Operator.where(value: [0,1,2,3])
+        @operators = Operator.where(value: [1,2,3,4])
       when 10,11
-        @operators = Operator.where(value: [4,5,6,7,8])
+        @operators = Operator.where(value: [5,6,7,8,9])
     end
 
     model_name = field.model
@@ -116,18 +128,38 @@ class SearchQueriesController < BaseController
 
   # Create single search line condition
   def line_condition(array)
-    tables = Array.new
-    field_id = array[:field_id] # field_table row id
-    field = FieldTable.find(field_id) # get field_table row in FieldTable
-    tables.push(field.table)
-    search_field = field.field # field to search for
-    operator = 4
-    search_value = array[:id] # value to search for - fix value
+    # field_table row id
+    field_id = array[:field_id]
+    # get field_table row in FieldTable
+    field = FieldTable.find(field_id)
+    # field to search for
+    search_field = field.field
+    # get operator
+    operator = array[:operator].to_i
+    # value to search for
+    search_value = ""
+    case array[:field_id].to_i
+      when 1,2,3,4
+        search_value = array[:value_id]
+      when 5,6,7,8,9,12,13,14
+        search_value = array[:value_text]
+      when 10,11
+        search_value = array[:value_number]
+    end
     model_name = field.model
     model = Object.const_get model_name
 
     con = model.search_by search_field, operator, search_value
 
+    if field.table == "authors"
+      con = model.search_by("first_name", operator, search_value).or model.search_by("middle_name", operator, search_value).or model.search_by("last_name", operator, search_value)
+    end
+
+    if field.table == "articles"
+      return Article.where con
+    end
+
+    tables = [field.table]
     return (Article.joins(*tables.map(&:to_sym)).where con).uniq
   end
 end

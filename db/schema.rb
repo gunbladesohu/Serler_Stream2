@@ -187,7 +187,9 @@ ActiveRecord::Schema.define(version: 20160906020304) do
     t.integer  "join_condition"
     t.integer  "field_id"
     t.integer  "operator"
-    t.string   "value"
+    t.integer  "value_id"
+    t.string   "value_text"
+    t.integer  "value_number"
     t.integer  "search_query_id"
     t.boolean  "isActive"
     t.datetime "created_at",      null: false

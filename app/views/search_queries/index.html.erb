@@ -8,6 +8,7 @@
       <th>ID</th>
       <th>Title</th>
       <th>Authors</th>
+      <th>Year</th>
     </tr>
   </thead>
 
@@ -20,7 +21,12 @@
         <td>
           <%= article.title %>
         </td>
-        <td></td>
+        <td>
+          <%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %>
+        </td>
+        <td>
+          <%= article.year %>
+        </td>
       </tr>
     <% end %>
   </tbody>
