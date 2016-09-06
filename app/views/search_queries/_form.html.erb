@@ -16,12 +16,77 @@
       <%= f.text_field :description %>
     </div>
 
-    <%= f.fields_for :search_lines do |builder| %>
-      <%= render 'search_queries/search_line', f: builder %>
-    <% end %>
-    <%= link_to_add_search_line "", f, :search_lines %>
+    <div class="row" style="padding-top: 20px;">
+      <div class="form-inline ">
+        <div class="form-group col-md-6">
+          <div>
+            <label>From Year</label>
+          </div>
+      <div class="col-md-6 " style="padding: 0">
+          <div class='input-group date' id='fromYear'>
+            <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+          </div>
+      </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(function () {
+          $('#fromYear').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+          });
+        });
+      </script>
 
-    <div class="actions">
-      <%= f.submit %>
+
+
+      <div class="form-inline ">
+        <div class="form-group col-md-6">
+          <div>
+            <label>From Year</label>
+          </div>
+          <div class="col-md-6 " style="padding: 0">
+            <div class='input-group date' id='toYear'>
+              <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(function () {
+          $('#toYear').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+          });
+        });
+      </script>
+
     </div>
+
+    <!--<div class="row">-->
+      <%= f.fields_for :search_lines do |builder| %>
+          <%= render 'search_queries/search_line', f: builder %>
+      <% end %>
+    <!--</div>-->
+
+
+    <div class="row" style="padding-bottom: 10px;">
+      <div class="col-md-2">
+        <%= link_to_add_search_line "", f, :search_lines %>
+      </div>
+    </div>
+
+
+      <div class="actions">
+        <%= f.submit :'Start Search', {class: 'btn btn-primary'} %>
+      </div>
+
 <% end %>
