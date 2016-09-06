@@ -19,9 +19,11 @@ class SearchQueriesController < BaseController
     @search_query = SearchQuery.new
     @search_query.search_lines << SearchLine.new
     @search_fields = FieldTable.all
-    @search_field_values = Array.new
     @join_conditions = JoinCondition.all
-    @operators = Array.new
+
+    # Set default view options
+    field = 1 # Default field selected
+    operator_field_value field
   end
 
   # GET /search_queries/1/edit
@@ -99,20 +101,8 @@ class SearchQueriesController < BaseController
 
   # Update value fields
   def update_values
-    field = FieldTable.find(params[:field_id])
+    operator_field_value params[:field_id].to_i
 
-    case params[:field_id].to_i
-      when 1,2,3,4
-        @operators = Operator.where(value: 5)
-      when 5,6,7,8,9,12,13,14
-        @operators = Operator.where(value: [1,2,3,4])
-      when 10,11
-        @operators = Operator.where(value: [5,6,7,8,9])
-    end
-
-    model_name = field.model
-    model = Object.const_get model_name
-    @field_values = model.all
     respond_to do |format|
       format.json { render json: {values: @field_values, operators: @operators} }
     end
@@ -129,40 +119,60 @@ class SearchQueriesController < BaseController
       params.fetch(:search_query, {})
     end
 
-  # Create single search line condition
-  def line_condition(array)
-    # field_table row id
-    field_id = array[:field_id]
-    # get field_table row in FieldTable
-    field = FieldTable.find(field_id)
-    # field to search for
-    search_field = field.field
-    # get operator
-    operator = array[:operator].to_i
-    # value to search for
-    search_value = ""
-    case array[:field_id].to_i
-      when 1,2,3,4
-        search_value = array[:value_id]
-      when 5,6,7,8,9,12,13,14
-        search_value = array[:value_text]
-      when 10,11
-        search_value = array[:value_number]
+    # Create single search line condition
+    def line_condition(array)
+      # field_table row id
+      field_id = array[:field_id]
+      # get field_table row in FieldTable
+      field = FieldTable.find(field_id)
+      # field to search for
+      search_field = field.field
+      # get operator
+      operator = array[:operator].to_i
+      # value to search for
+      search_value = ""
+      case array[:field_id].to_i
+        when 1,2,3,4
+          search_value = array[:value_id]
+        when 5,6,7,8,9,12,13,14
+          search_value = array[:value_text]
+        when 10,11
+          search_value = array[:value_number]
+      end
+      model_name = field.model
+      model = Object.const_get model_name
+
+      con = model.search_by search_field, operator, search_value
+
+      if field.table == "authors"
+        con = model.search_by("first_name", operator, search_value).or model.search_by("middle_name", operator, search_value).or model.search_by("last_name", operator, search_value)
+      end
+
+      if field.table == "articles"
+        return Article.where con
+      end
+
+      tables = [field.table]
+      return (Article.joins(*tables.map(&:to_sym)).where con).uniq
     end
-    model_name = field.model
-    model = Object.const_get model_name
 
-    con = model.search_by search_field, operator, search_value
+    # Get operator & field value
+    def operator_field_value(field_id)
+      field = FieldTable.find field_id
 
-    if field.table == "authors"
-      con = model.search_by("first_name", operator, search_value).or model.search_by("middle_name", operator, search_value).or model.search_by("last_name", operator, search_value)
+      # Operator value
+      case field_id
+        when 1,2,3,4
+          @operators = Operator.where(value: 5)
+        when 5,6,7,8,9,12,13,14
+          @operators = Operator.where(value: [1,2,3,4])
+        when 10,11
+          @operators = Operator.where(value: [5,6,7,8,9])
+      end
+
+      # Field value
+      model_name = field.model
+      model = Object.const_get model_name
+      @field_values = model.all
     end
-
-    if field.table == "articles"
-      return Article.where con
-    end
-
-    tables = [field.table]
-    return (Article.joins(*tables.map(&:to_sym)).where con).uniq
-  end
 end
