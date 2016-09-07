@@ -20,6 +20,10 @@ body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+th {
+  outline: none;
+}
+
 .hero-spacer {
   margin-top: 50px;
 }
@@ -38,3 +42,5 @@ footer {
 .column-view{float: right;background: #f3f3f4;padding: 8px;}
 .search-form a{padding: 5px;float: right;margin-top: 10px;}
 .table_box{padding: 26px;background: #e4e4e4;}
+.mandatory{color:red;
+  display: none;}
