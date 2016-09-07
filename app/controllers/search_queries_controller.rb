@@ -4,11 +4,11 @@ class SearchQueriesController < BaseController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    # if @articles.nil?
-    #   @articles = Array.new
-    # end
-
-    @articles = Article.search(params[:search])
+    if params[:search].nil? || params[:search].blank?
+      @articles = Array.new
+    else
+      @articles = Article.search(params[:search])
+    end
   end
 
   # GET /search_queries/1

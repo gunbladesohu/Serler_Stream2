@@ -10,4 +10,5 @@
 //= require bootstrap.js
 //= require moment
 //= require bootstrap-datetimepicker
+//= require dataTables/datatables.min
 
