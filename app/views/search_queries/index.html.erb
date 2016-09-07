@@ -11,7 +11,7 @@
         <form action="/search_queries" class="search-form" method="get">
           <div class="input-group">
             <input type="text" placeholder="Quick search by title" name="search" class="form-control"> <span class="input-group-btn" required>
-                <button type="submit" class="btn btn-primary"> Go!</button> </span>
+              <button type="submit" class="btn btn-primary"> Go!</button> </span>
           </div>
           <%= link_to 'Advance Search', new_search_query_path, {class: 'btn btn-success'} %>
         </form>
@@ -19,40 +19,51 @@
       <div class="col-md-6">
         <div class="column-view">
           <label style="font-weight:bold;">Filter: </label>
-          <label><input type="checkbox" class="check-head" value="1" name="title" checked="checked"><span>Title</span></label>
-          <label><input type="checkbox" class="check-head" value="1" name="journal" checked="checked"><span>Journal</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="author" checked="checked"><span>Author</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="year" checked="checked"><span>Year</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="journal"><span>Journal</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="volume"><span>Volume</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="issues"><span>Issues</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="pages"><span>Pages</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="doi"><span>DOI</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="url"><span>URL</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="keywords"><span>Keywords</span></label>
         </div>
       </div>
     </div>
     <div class="table-responsive">
       <table class="table table-striped" id="result-table">
         <thead>
-        <tr>
-          <!--<th></th>-->
-          <th class="title">Title </th>
-          <th class="journal">Journal </th>
-          <th class="author">Author</th>
-          <th class="year">Year</th>
-          <th class="volume">Volume</th>
-          <th class="pages">Pages</th>
-        </tr>
+          <tr>
+            <th></th>
+            <th class="title">Title </th>
+            <th class="author">Author</th>
+            <th class="year">Year</th>
+            <th class="journal">Journal </th>
+            <th class="volume">Volume</th>
+            <th class="issues">Issues</th>
+            <th class="pages">Pages</th>
+            <th class="doi">DOI</th>
+            <th class="url">URL</th>
+            <th class="keywords">Keywords</th>
+          </tr>
         </thead>
         <tbody>
-        <% @articles.each do |article| %>
+          <% @articles.each do |article| %>
             <tr>
-              <!--<td><div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" checked="" class="i-checks" name="input[]" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td>-->
+              <td><div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" checked="" class="i-checks" name="input[]" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td>
               <td class="title"><b><%= link_to article.title, article %></b></td>
-              <td class="journal"><%= article.journal %></td>
               <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
               <td class="year"><%= article.year %></td>
-              <td class="volume">2</td>
+              <td class="journal"><%= article.journal %></td>
+              <td class="volume"><%= article.volume %></td>
+              <td class="issues"><%= article.number %></td>
               <td class="pages"><%= article.pages %></td>
+              <td class="doi"><%= article.doi %></td>
+              <td class="url"><%= article.url %></td>
+              <td class="keywords"><%= article.keyword %></td>
             </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>

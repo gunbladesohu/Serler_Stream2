@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
     end
   }
 
-  # pavan simple search
+  # pavan primary search in the search page
   def self.search(search)
     if search
       where(["title LIKE ?","%#{search}%"])
