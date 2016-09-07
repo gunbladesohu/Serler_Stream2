@@ -12,8 +12,8 @@
               <div class="input-group">
                 <input id="quick_search" type="text" placeholder="Search" name="search" class="input-sm form-control"> <span class="input-group-btn">
                   <button id="quick_go" type="submit" class="btn btn-sm btn-primary"> Go!</button> </span>
-
               </div>
+              <p class="mandatory">This field is required</p>
               <%= link_to 'Advance Search query', new_search_query_path, { class: 'btn btn-success' } %>
             </form>
           </div>
@@ -89,10 +89,12 @@
       $(col).toggle();
     });
 
-    $("#quick_go").click(function(){
+    $(".search-form").submit(function(e) {
       if($.trim($('#quick_search').val()) == ''){
         $("#quick_search").css("border", "2px solid red");
-        alert("wwww");
+        $(".mandatory").css("display", "block");
+        e.preventDefault();
+        return false;
       }
     });
 
