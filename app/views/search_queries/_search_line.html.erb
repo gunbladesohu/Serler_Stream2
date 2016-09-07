@@ -1,6 +1,6 @@
 <fieldset>
   <hr>
-  <div class="container" style=" padding: 10px 0 10px;">
+  <div class="container" style="padding: 10px 0 10px;">
 
     <div class="field join_condition row">
       <div class="col-md-3">
@@ -30,13 +30,13 @@
       </div>
 
       <div class="field text_value col-md-3">
-        <%= f.label :value_text %>
+        <%= f.label :value %>
         <%= f.text_field :value_text, {class: 'form-control'} %>
       </div>
 
       <div class="field number_value col-md-3">
-        <%= f.label :value_number %>
-        <%= f.number_field :value_number, {class: 'form-control'} %>
+        <%= f.label :value %>
+        <%= f.number_field :value_number, {value: 1, min: 1, class: 'form-control'} %>
       </div>
 
       <div class="col-md-3">
@@ -63,6 +63,11 @@
         $(this).toggle(false);
       }
     });
+    $(".search_field").each(function(index) {
+      if(index == $(".search_field").length - 1){
+        $(this).val(1);
+      }
+    });
     $(".fixed_value").each(function(index) {
       var search_field_select = $(this).find(".search_field_value");
       var length = search_field_select.children('option').length;
@@ -70,8 +75,15 @@
         $(this).toggle(false);
       }
     });
+    $(".text_value").each(function(index) {
+      if(index == $(".number_value").length - 1){
+        $(this).toggle(false);
+      }
+    });
     $(".number_value").each(function(index) {
-      $(this).toggle(false);
+      if(index == $(".number_value").length - 1){
+        $(this).toggle(false);
+      }
     });
     $(".search_field").change(function () {
       var search_line = $(this).parents(".search_line");
@@ -98,6 +110,8 @@
       }). error(function (jqXHR, textStatus, errorThrown) {
         console.log("AJAX Error: " + jqXHR.responseText);
       });
+      number_value.find('.form-control').val(1);
+      text_value.find('.form-control').val('a');
       switch (index) {
         case 0:
           search_field_value.empty();
@@ -121,6 +135,7 @@
           select_value.toggle(false);
           text_value.toggle(true);
           number_value.toggle(false);
+          text_value.find('.form-control').val('');
           break;
       }
     });

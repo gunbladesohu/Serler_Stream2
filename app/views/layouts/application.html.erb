@@ -23,7 +23,6 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-
 </head>
 <body class="top-navigation">
 
@@ -35,8 +34,10 @@
     <%= content_for?(:login_content) ? yield(:login_content) : yield %>
 
     <!-- Footer -->
-    <hr />
-    <%= render 'layouts/footer' %>
+    <div class="container">
+      <hr />
+      <%= render 'layouts/footer' %>
+    </div>
   </div>
 
   <!-- Include javascript per-controller - vendor plugins -->

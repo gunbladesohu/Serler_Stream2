@@ -34,9 +34,22 @@ class SearchQueriesController < BaseController
   # POST /search_queries.json
   def create
     search_lines_attrs = params[:search_query][:search_lines_attributes]
-    @articles = nil
     from_date = params[:search_query][:from_date]
     to_date = params[:search_query][:to_date]
+
+    # Check year
+    if to_date.blank?
+      to_date = Time.now.year
+    end
+
+    if from_date.blank?
+      from_date = 0
+    end
+
+    puts from_date
+    puts to_date
+
+    @articles = nil
     search_lines_attrs.each do |key, array|
       if array[:_destroy] == "false"
         if @articles.nil?
@@ -116,7 +129,8 @@ class SearchQueriesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_query_params
-      params.fetch(:search_query, {})
+      # params.fetch(:search_query, {})
+      params.require(:search_query).permit(:from_date, :to_date, :descrtiption)
     end
 
     # Create single search line condition

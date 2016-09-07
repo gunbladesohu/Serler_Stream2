@@ -1,84 +1,91 @@
-<%= form_for @search_query do |f| %>
+<%= form_for @search_query, :html => { :id => "search_form" } do |f| %>
   <% if @search_query.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
 
-        <ul>
-          <% @search_query.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+      <ul>
+        <% @search_query.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+  <div class="row" style="padding-top: 10px;">
+    <div class="field col-md-12">
+      <%= f.label :description %>
+      <%= f.text_field :description, {class: 'form-control'} %>
+    </div>
   </div>
 
   <div class="row" style="padding-top: 20px;">
-    <div class="form-inline ">
-      <div class="form-group col-md-6">
+    <div class="form-inline col-md-12">
+      <div class="form-group" style="margin-right: 10px;">
         <div>
           <label>From Year</label>
         </div>
-        <div class="col-md-6 " style="padding: 0">
+        <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='fromYear'>
-            <input type='text' class="form-control" />
+            <!--<input type='text' class="form-control" />-->
+            <%= f.text_field :from_date, {class: 'form-control'} %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
             </span>
           </div>
-        </div>
+        <!--</div>-->
       </div>
-    </div>
-
-    <div class="form-inline ">
-      <div class="form-group col-md-6">
+      <div class="form-group">
         <div>
           <label>To Year</label>
         </div>
-        <div class="col-md-6 " style="padding: 0">
+        <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='toYear'>
-            <input type='text' class="form-control" />
+            <!--<input type='text' class="form-control" />-->
+            <%= f.text_field :to_date, {class: 'form-control'} %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
             </span>
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>
   </div>
 
-  <!--<div class="row">-->
-    <%= f.fields_for :search_lines do |builder| %>
-        <%= render 'search_queries/search_line', f: builder %>
-    <% end %>
-  <!--</div>-->
+  <%= f.fields_for :search_lines do |builder| %>
+      <%= render 'search_queries/search_line', f: builder %>
+  <% end %>
 
   <div class="row" style="padding-bottom: 10px;">
-    <div class="col-md-2">
+    <div class="col-md-12">
       <%= link_to_add_search_line "", f, :search_lines %>
+      <%= f.submit :'Start Search', {class: 'btn btn-primary'} %>
     </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit :'Start Search', {class: 'btn btn-primary'} %>
   </div>
 
 <% end %>
 
 <script type="text/javascript">
   $(document).ready(function () {
+    // Date picker
     $('#fromYear').datetimepicker({
+      defaultDate: "1/1/1990",
       viewMode: 'years',
       format: 'YYYY'
     });
     $('#toYear').datetimepicker({
+      defaultDate: new Date(),
       viewMode: 'years',
       format: 'YYYY'
+    });
+    $('#fromYear').keydown(function(e) {
+      e.preventDefault();
+      return false;
+    });
+    $('#toYear').keydown(function(e) {
+      e.preventDefault();
+      return false;
     });
   })
 </script>

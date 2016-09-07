@@ -36,8 +36,8 @@ development:
   host: localhost
   pool: 5
   timeout: 5000
-  username: postgres
-  port: 5433
+  username: trungtang
+#  port: 5433
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
