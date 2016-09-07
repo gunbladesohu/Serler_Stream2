@@ -2,33 +2,6 @@
 
 <h1>Listing Search Queries</h1>
 
-<!--<table class="table table-condensed">-->
-  <!--<thead>-->
-    <!--<tr>-->
-      <!--<th>ID</th>-->
-      <!--<th>Title</th>-->
-      <!--<th>Authors</th>-->
-    <!--</tr>-->
-  <!--</thead>-->
-
-  <!--<tbody>-->
-    <!--<% @articles.each do |article| %>-->
-      <!--<tr>-->
-        <!--<td>-->
-          <!--<%= article.id %>-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<%= article.title %>-->
-        <!--</td>-->
-        <!--<td></td>-->
-      <!--</tr>-->
-    <!--<% end %>-->
-  <!--</tbody>-->
-<!--</table>-->
-
-<br>
-
-
 <div class="row">
   <div class="col-lg-12">
     <div class="ibox float-e-margins">
@@ -37,21 +10,25 @@
           <div class="col-md-6">
             <form action="/search_queries" class="search-form" method="get">
               <div class="input-group">
-                <input type="text" placeholder="Search" name="search" class="input-sm form-control"> <span class="input-group-btn">
-                  <button type="submit" class="btn btn-sm btn-primary"> Go!</button> </span>
+                <input id="quick_search" type="text" placeholder="Search" name="search" class="input-sm form-control"> <span class="input-group-btn">
+                  <button id="quick_go" type="submit" class="btn btn-sm btn-primary"> Go!</button> </span>
+
               </div>
-              <%= link_to 'Advance Search query', new_search_query_path %>
+              <%= link_to 'Advance Search query', new_search_query_path, { class: 'btn btn-success' } %>
             </form>
           </div>
           <div class="col-md-6">
             <div class="column-view">
               <label style="font-weight:bold;">Filter: </label>
-              <label><input type="checkbox" class="check-head" value="1" name="title" checked="checked"><span>Title</span></label>
-              <label><input type="checkbox" class="check-head" value="1" name="journal" checked="checked"><span>Journal</span></label>
               <label><input type="checkbox" class="check-head" value="1" name="author" checked="checked"><span>Author</span></label>
               <label><input type="checkbox" class="check-head" value="1" name="year" checked="checked"><span>Year</span></label>
+              <label><input type="checkbox" class="check-head" value="1" name="journal"><span>Journal</span></label>
               <label><input type="checkbox" class="check-head" value="1" name="volume"><span>Volume</span></label>
+              <label><input type="checkbox" class="check-head" value="1" name="issues"><span>Issues</span></label>
               <label><input type="checkbox" class="check-head" value="1" name="pages"><span>Pages</span></label>
+              <label><input type="checkbox" class="check-head" value="1" name="doi"><span>DOI</span></label>
+              <label><input type="checkbox" class="check-head" value="1" name="url"><span>URL</span></label>
+              <label><input type="checkbox" class="check-head" value="1" name="keywords"><span>Keywords</span></label>
             </div>
           </div>
         </div>
@@ -62,23 +39,31 @@
             <tr>
               <th></th>
               <th class="title">Title </th>
-              <th class="journal">Journal </th>
               <th class="author">Author</th>
               <th class="year">Year</th>
+              <th class="journal">Journal </th>
               <th class="volume">Volume</th>
+              <th class="issues">Issues</th>
               <th class="pages">Pages</th>
+              <th class="doi">DOI</th>
+              <th class="url">URL</th>
+              <th class="keywords">Keywords</th>
             </tr>
             </thead>
             <tbody>
             <% @articles.each do |article| %>
                 <tr>
                   <td><div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" checked="" class="i-checks" name="input[]" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td>
-                  <td class="title"><b><%= link_to article.title, article %></b> <p><small><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>, <%= link_to 'Edit', edit_article_path(article) %></small></p></td>
-                  <td class="journal"><%= article.journal %></td>
-                  <td class="author">author</td>
+                  <td class="title"><b><%= link_to article.title, article %></b></td>
+                  <td class="author">Authors</td>
                   <td class="year"><%= article.year %></td>
+                  <td class="journal"><%= article.journal %></td>
                   <td class="volume">2</td>
+                  <td class="issues"></td>
                   <td class="pages"><%= article.pages %></td>
+                  <td class="doi"></td>
+                  <td class="url"></td>
+                  <td class="keywords"></td>
                 </tr>
             <% end %>
             </tbody>
@@ -102,6 +87,13 @@
     $(".check-head:checkbox").click(function(){
       var col = "table ." + $(this).attr("name");
       $(col).toggle();
+    });
+
+    $("#quick_go").click(function(){
+      if($.trim($('#quick_search').val()) == ''){
+        $("#quick_search").css("border", "2px solid red");
+        alert("wwww");
+      }
     });
 
   });
