@@ -51,7 +51,7 @@
         <tbody>
         <% @articles.each do |article| %>
             <tr>
-              <td class="title"><b><%= link_to article.title, article %></b></td>
+              <td class="title"><b><%= article.title %></b></td>
               <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
               <td class="year"><%= article.year %></td>
               <td class="journal"><%= article.journal %></td>
