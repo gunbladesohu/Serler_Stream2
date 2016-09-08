@@ -10,8 +10,11 @@
       <div class="col-md-6">
         <form action="/search_queries" class="search-form" method="get">
           <div class="input-group">
-            <input id="quick_search" type="text" placeholder="Quick search by title" name="search" class="form-control"> <span class="input-group-btn" required>
-              <button id="quick_go" type="submit" class="btn btn-primary"> Go!</button> </span>
+            <%= text_field_tag 'quick_search', params[:quick_search], placeholder: 'Quick search by title...', class: 'form-control' %>
+            <!--<input id="quick_search" type="text" placeholder="Quick search by title" name="search" class="form-control">-->
+            <span class="input-group-btn" required>
+              <button id="quick_go" type="submit" class="btn btn-primary"> Go!</button>
+            </span>
           </div>
           <p class="mandatory">This field is required</p>
           <%= link_to 'Advance Search', new_search_query_path, {class: 'btn btn-success'} %>

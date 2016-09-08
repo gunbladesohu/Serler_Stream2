@@ -4,10 +4,10 @@ class SearchQueriesController < BaseController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    if params[:search].nil? || params[:search].blank?
+    if params[:quick_search].nil? || params[:quick_search].blank?
       @articles = Array.new
     else
-      @articles = Article.search(params[:search])
+      @articles = Article.search(params[:quick_search])
     end
   end
 
@@ -55,16 +55,18 @@ class SearchQueriesController < BaseController
     search_lines_attrs.each do |key, array|
       if array[:_destroy] == "false"
         if @articles.nil?
-          @articles = line_condition array
+          @articles = line_condition array, false
         else
           join_condition = array[:join_condition].to_i
           case join_condition
             when 1
-              @articles = @articles | (line_condition array)
+              @articles = @articles | (line_condition array, false)
             when 2
-              @articles = @articles & (line_condition array)
+              @articles = @articles & (line_condition array, false)
             when 3
-              @articles = @articles - (line_condition array)
+              @articles = @articles - (line_condition array, false)
+            when 4
+              @articles = @articles | (line_condition array, true)
           end
         end
       end
@@ -136,7 +138,7 @@ class SearchQueriesController < BaseController
     end
 
     # Create single search line condition
-    def line_condition(array)
+    def line_condition(array, or_not)
       # field_table row id
       field_id = array[:field_id]
       # get field_table row in FieldTable
@@ -162,6 +164,16 @@ class SearchQueriesController < BaseController
 
       if field.table == "authors"
         con = model.search_by("first_name", operator, search_value).or model.search_by("middle_name", operator, search_value).or model.search_by("last_name", operator, search_value)
+      end
+
+      # Or not search
+      if or_not
+        if field.table == "articles"
+          return Article.where.not con
+        end
+
+        tables = [field.table]
+        return (Article.joins(*tables.map(&:to_sym)).where.not con).uniq
       end
 
       if field.table == "articles"
