@@ -1,0 +1,3 @@
+# Logfile created on 2016-09-09 00:07:37 +1200 by logger.rb/53141
+D, [2016-09-09T00:07:37.480179 #30030] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T00:08:08.879241 #30040] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
