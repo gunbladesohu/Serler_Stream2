@@ -5,6 +5,6 @@ module SearchQueriesHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render("search_queries/search_line", f: builder)
     end
-    link_to(name, '#', class: "btn btn-success fa fa-plus-circle add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(name, '#', class: "btn btn-success fa fa-plus-circle add_fields", id: "add_condition", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end

@@ -6,7 +6,7 @@
 
 require 'cucumber/rails'
 require 'webrat'
-require 'cucumber/rails/capybara'
+require 'rspec'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -58,11 +58,19 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-# Webrat.configure do |config|
-#   config.mode = :rails
-# end
-
 Webrat.configure do |config|
   config.mode = :rails
 end
+
+# Webrat.configure do |config|
+#   # config.mode = :rack
+#   config.mode = :rack
+#   config.open_error_files = false
+# end
+
+# World Webrat::Matchers
+# World Rack::Test::Methods
+
+
+
 
