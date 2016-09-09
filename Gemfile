@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
 
+
+
+# datetime picker gem
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 gem 'bootstrap-sass', '~> 3.3.6'

@@ -4,10 +4,11 @@ class SearchQueriesController < BaseController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    # if @search_queries.nil?
-    #   @articles = Article.all
-    # end
-    @articles = Article.search(params[:search])
+    if params[:quick_search].nil? || params[:quick_search].blank?
+      @articles = Array.new
+    else
+      @articles = Article.search(params[:quick_search])
+    end
   end
 
   # GET /search_queries/1
@@ -20,9 +21,11 @@ class SearchQueriesController < BaseController
     @search_query = SearchQuery.new
     @search_query.search_lines << SearchLine.new
     @search_fields = FieldTable.all
-    @search_field_values = Array.new
     @join_conditions = JoinCondition.all
-    @operators = Operator.all
+
+    # Set default view options
+    field = 1 # Default field selected
+    operator_field_value field
   end
 
   # GET /search_queries/1/edit
@@ -33,14 +36,44 @@ class SearchQueriesController < BaseController
   # POST /search_queries.json
   def create
     search_lines_attrs = params[:search_query][:search_lines_attributes]
+    from_date = params[:search_query][:from_date]
+    to_date = params[:search_query][:to_date]
+
+    # Check year
+    if to_date.blank?
+      to_date = Time.now.year
+    end
+
+    if from_date.blank?
+      from_date = 0
+    end
+
+    puts from_date
+    puts to_date
+
     @articles = nil
     search_lines_attrs.each do |key, array|
-      if @articles.nil?
-        @articles = line_condition array
-      else
-        @articles = @articles & (line_condition array)
+      if array[:_destroy] == "false"
+        if @articles.nil?
+          @articles = line_condition array, false
+        else
+          join_condition = array[:join_condition].to_i
+          case join_condition
+            when 1
+              @articles = @articles | (line_condition array, false)
+            when 2
+              @articles = @articles & (line_condition array, false)
+            when 3
+              @articles = @articles - (line_condition array, false)
+            when 4
+              @articles = @articles | (line_condition array, true)
+          end
+        end
       end
     end
+
+    # search articles by years
+    @articles = @articles & Article.where(:year => from_date..to_date)
 
     respond_to do |format|
       format.html { render :index }
@@ -85,20 +118,8 @@ class SearchQueriesController < BaseController
 
   # Update value fields
   def update_values
-    field = FieldTable.find(params[:field_id])
+    operator_field_value params[:field_id].to_i
 
-    case params[:field_id].to_i
-      when 1,2,3,4
-        @operators = Operator.where(value: 4)
-      when 5,6,7,8,9,12,13,14
-        @operators = Operator.where(value: [0,1,2,3])
-      when 10,11
-        @operators = Operator.where(value: [4,5,6,7,8])
-    end
-
-    model_name = field.model
-    model = Object.const_get model_name
-    @field_values = model.all
     respond_to do |format|
       format.json { render json: {values: @field_values, operators: @operators} }
     end
@@ -112,23 +133,74 @@ class SearchQueriesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_query_params
-      params.fetch(:search_query, {})
+      # params.fetch(:search_query, {})
+      params.require(:search_query).permit(:from_date, :to_date, :descrtiption)
     end
 
-  # Create single search line condition
-  def line_condition(array)
-    tables = Array.new
-    field_id = array[:field_id] # field_table row id
-    field = FieldTable.find(field_id) # get field_table row in FieldTable
-    tables.push(field.table)
-    search_field = field.field # field to search for
-    operator = 4
-    search_value = array[:id] # value to search for - fix value
-    model_name = field.model
-    model = Object.const_get model_name
+    # Create single search line condition
+    def line_condition(array, or_not)
+      # field_table row id
+      field_id = array[:field_id]
+      # get field_table row in FieldTable
+      field = FieldTable.find(field_id)
+      # field to search for
+      search_field = field.field
+      # get operator
+      operator = array[:operator].to_i
+      # value to search for
+      search_value = ""
+      case array[:field_id].to_i
+        when 1,2,3,4
+          search_value = array[:value_id]
+        when 5,6,7,8,9,12,13,14
+          search_value = array[:value_text]
+        when 10,11
+          search_value = array[:value_number]
+      end
+      model_name = field.model
+      model = Object.const_get model_name
 
-    con = model.search_by search_field, operator, search_value
+      con = model.search_by search_field, operator, search_value
 
-    return (Article.joins(*tables.map(&:to_sym)).where con).uniq
-  end
+      if field.table == "authors"
+        con = model.search_by("first_name", operator, search_value).or model.search_by("middle_name", operator, search_value).or model.search_by("last_name", operator, search_value)
+      end
+
+      # Or not search
+      if or_not
+        if field.table == "articles"
+          return Article.where.not con
+        end
+
+        tables = [field.table]
+        return (Article.joins(*tables.map(&:to_sym)).where.not con).uniq
+      end
+
+      if field.table == "articles"
+        return Article.where con
+      end
+
+      tables = [field.table]
+      return (Article.joins(*tables.map(&:to_sym)).where con).uniq
+    end
+
+    # Get operator & field value
+    def operator_field_value(field_id)
+      field = FieldTable.find field_id
+
+      # Operator value
+      case field_id
+        when 1,2,3,4
+          @operators = Operator.where(value: 5)
+        when 5,6,7,8,9,12,13,14
+          @operators = Operator.where(value: [1,2,3,4])
+        when 10,11
+          @operators = Operator.where(value: [5,6,7,8,9])
+      end
+
+      # Field value
+      model_name = field.model
+      model = Object.const_get model_name
+      @field_values = model.all
+    end
 end
