@@ -16,7 +16,7 @@
               <button id="quick_go" type="submit" class="btn btn-primary"> Go!</button>
             </span>
           </div>
-          <p class="mandatory">This field is required</p>
+          <p class="mandatory">* This field is required!!</p>
           <%= link_to 'Advance Search', new_search_query_path, {class: 'btn btn-success'} %>
         </form>
       </div>
@@ -54,49 +54,20 @@
         <tbody>
         <% @articles.each do |article| %>
             <tr>
-<<<<<<< HEAD
-              <th class="title">Title </th>
-              <th class="author">Author</th>
-              <th class="year">Year</th>
-              <th class="journal">Journal </th>
-              <th class="volume">Volume</th>
-              <th class="issues">Issues</th>
-              <th class="pages">Pages</th>
-              <th class="doi">DOI</th>
-              <th class="url">URL</th>
-              <th class="keywords">Keywords</th>
+              <td class="title"><b><%= article.title %></b></td>
+              <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
+              <td class="year"><%= article.year %></td>
+              <td class="journal"><%= article.journal %></td>
+              <td class="volume"><%= article.volume %></td>
+              <td class="issues"><%= article.number %></td>
+              <td class="pages"><%= article.pages %></td>
+              <td class="doi"><%= article.doi %></td>
+              <td class="url"><%= article.url %></td>
+              <td class="keywords"><%= article.keyword %></td>
             </tr>
-            </thead>
-            <tbody>
-            <% @articles.each do |article| %>
-                <tr>
-                  <!--<td class="title"><b><%= link_to article.title, article %></b></td>-->
-                  <!--<td class="author">Authors</td>-->
-                  <!--<td class="year"><%= article.year %></td>-->
-                  <!--<td class="journal"><%= article.journal %></td>-->
-                  <!--<td class="volume">2</td>-->
-                  <!--<td class="issues"></td>-->
-                  <!--<td class="pages"><%= article.pages %></td>-->
-                  <!--<td class="doi"></td>-->
-                  <!--<td class="url"></td>-->
-                  <!--<td class="keywords"></td>-->
-                  <td class="title"><b><%= article.title %></b></td>
-                  <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
-                  <td class="year"><%= article.year %></td>
-                  <td class="journal"><%= article.journal %></td>
-                  <td class="volume"><%= article.volume %></td>
-                  <td class="issues"><%= article.number %></td>
-                  <td class="pages"><%= article.pages %></td>
-                  <td class="doi"><%= article.doi %></td>
-                  <td class="url"><%= article.url %></td>
-                  <td class="keywords"><%= article.keyword %></td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
+        <% end %>
+        </tbody>
+      </table>
 
     </div>
   </div>
