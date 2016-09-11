@@ -27,5 +27,6 @@ RSpec.feature "QuickSearches", type: :feature do
     click_link "Advance Search"
     current_path.should eq(new_search_query_path)
     expect(page).to have_text("New Search Query")
+    select('Methodology', :from => 'search_query_search_lines_attributes_0_field_id')
   end
 end
