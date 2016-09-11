@@ -49,7 +49,6 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @devmethod11 = DevMethod.create(name: 'Requirements prioritisations', description: '', is_active: true)
 @devmethod12 = DevMethod.create(name: 'Version control',              description: '', is_active: true)
 @devmethod13 = DevMethod.create(name: 'Code sharing',                 description: '', is_active: true)
-@devmethod14 = DevMethod.create(name: 'Code sharing',                 description: '', is_active: true)
 
 @methodology1 = Methodology.create(name: 'Spiral',                      description: '', is_active: true)
 @methodology2 = Methodology.create(name: 'XP',                          description: '', is_active: true)
@@ -66,6 +65,9 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @methodology13 = Methodology.create(name: 'Value Driven Development',    description: '', is_active: true)
 @methodology14 = Methodology.create(name: 'Product Driven Development',  description: '', is_active: true)
 @methodology15 = Methodology.create(name: 'Agile',                       description: '', is_active: true)
+@methodology16 = Methodology.create(name: 'Domain Driven Development',  description: '', is_active: true)
+@methodology17 = Methodology.create(name: 'Scrum',  description: '', is_active: true)
+@methodology18 = Methodology.create(name: 'Waterfall',  description: '', is_active: true)
 
 @researchmethod1 = ResearchMethod.create(name: 'Case study',        description: '', is_active: true)
 @researchmethod2 = ResearchMethod.create(name: 'Field Observation', description: '', is_active: true)
@@ -85,9 +87,8 @@ Role.create(name: 'User',                     description: '', is_active: true)
 Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 
 @researchparticipant1 = ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
-@researchparticipant2 = ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
-@researchparticipant3 = ResearchParticipant.create(name: 'Postgraduate students',  description: '', is_active: true)
-@researchparticipant4 = ResearchParticipant.create(name: 'Practitioners',          description: '', is_active: true)
+@researchparticipant2 = ResearchParticipant.create(name: 'Postgraduate students', description: '', is_active: true)
+@researchparticipant3 = ResearchParticipant.create(name: 'Practitioners',  description: '', is_active: true)
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)
 @article_type2 = ArticleType.create(name: 'Book article',          description: '', is_active: true)
@@ -122,7 +123,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 @author2.articles << @article1
 @author3.articles << @article1
 
-@author4 = Author.create(first_name: 'Deanne', middle_name: '', last_name: 'Deanne', is_active: true)
+@author4 = Author.create(first_name: 'Deanne', middle_name: '', last_name: 'Larson', is_active: true)
 @author5 = Author.create(first_name: 'Victor', middle_name: '', last_name: 'Chang', is_active: true)
 @article2 = Article.create(title: 'A review and future direction of agile, business intelligence, analytics and data science',
                            journal: 'International Journal of Information Management',
@@ -297,6 +298,12 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 @methodology15.articles << @article10
 @methodology15.articles << @article4
 @methodology15.articles << @article8
+@methodology16.articles << @article1
+@methodology16.articles << @article3
+@methodology17.articles << @article2
+@methodology17.articles << @article5
+@methodology18.articles << @article4
+@methodology18.articles << @article8
 
 @devmethod1.articles << @article1
 @devmethod1.articles << @article2
@@ -314,7 +321,6 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 @devmethod11.articles << @article4
 @devmethod12.articles << @article5
 @devmethod13.articles << @article6
-@devmethod14.articles << @article7
 @devmethod13.articles << @article8
 @devmethod12.articles << @article9
 @devmethod11.articles << @article10
@@ -355,8 +361,4 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 @researchparticipant3.articles << @article8
 @researchparticipant3.articles << @article9
 @researchparticipant3.articles << @article10
-@researchparticipant4.articles << @article1
-@researchparticipant4.articles << @article2
-@researchparticipant4.articles << @article3
-@researchparticipant4.articles << @article9
 @researchparticipant3.articles << @article5
