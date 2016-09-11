@@ -259,7 +259,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                             abstract: 'Extreme Programming (XP) is a lightweight methodology that is gaining industry acceptance and momentum. XP promises to reduce project risk, improve responsiveness to changing/vague requirements, and allow a system to grow naturally while at the same time facilitating an enjoyable development environment. XP consists of four values and twelve practices. This letter explores how well these values and practices can be applied in the telecommunications domain.',
                             research_questions: '', research_metrics: '',
                             type_id: @article_type3.id, status_id: @completed.id, is_active: true)
-@author26.articles << @article9
+@author26.articles << @article10
 
 @methodology1.articles << @article1
 @methodology1.articles << @article3
