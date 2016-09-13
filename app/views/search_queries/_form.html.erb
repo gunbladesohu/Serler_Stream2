@@ -26,7 +26,7 @@
         <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='fromYear'>
             <!--<input type='text' class="form-control" />-->
-            <%= f.text_field :from_date, {class: 'form-control'} %>
+            <%= f.text_field :from_date, {class: 'form-control input-fromYear'} %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
@@ -41,7 +41,7 @@
         <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='toYear'>
             <!--<input type='text' class="form-control" />-->
-            <%= f.text_field :to_date, {class: 'form-control'} %>
+            <%= f.text_field :to_date, {class: 'form-control input-toYear'} %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
@@ -59,7 +59,7 @@
   <div class="row" style="padding-bottom: 10px;">
     <div class="col-md-12">
       <%= link_to_add_search_line "", f, :search_lines %>
-      <%= f.submit :'Start Search', {class: 'btn btn-primary'} %>
+      <%= f.submit :'Start Search', {class: 'btn btn-primary search_button'} %>
     </div>
   </div>
 
@@ -86,5 +86,26 @@
       e.preventDefault();
       return false;
     });
+
+    $('#fromYear')
+
+    $('.search_button').click(function () {
+
+      var fromYear = $('.input-fromYear').val();
+      var toYear = $('.input-toYear').val();
+
+      if (fromYear>toYear){
+        alert('To Year cannot smaller than From Year');
+        $('.input-fromYear').css("background-color", "yellow");
+        return false;
+      }
+    });
+
+
+    $('.input-group-addon').click(function(){
+      $('.input-fromYear').css("background-color", "transparent");
+    });
+
+
   })
 </script>
