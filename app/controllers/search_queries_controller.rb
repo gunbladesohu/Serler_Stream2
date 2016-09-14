@@ -7,7 +7,7 @@ class SearchQueriesController < BaseController
     if params[:quick_search].nil? || params[:quick_search].blank?
       @articles = Array.new
     else
-      @articles = Article.search(params[:quick_search])
+      @articles = Article.search(params[:quick_search].strip)
     end
   end
 
@@ -153,7 +153,7 @@ class SearchQueriesController < BaseController
         when 1,2,3,4
           search_value = array[:value_id]
         when 5,6,7,8,9,12,13,14
-          search_value = array[:value_text]
+          search_value = array[:value_text].strip
         when 10,11
           search_value = array[:value_number]
       end
