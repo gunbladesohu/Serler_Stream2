@@ -76,8 +76,6 @@ class ArticlesController < BaseController
     def article_params
       params.require(:article).permit(:title)
     end
-
-
-
+  end
 
 end
