@@ -4,6 +4,6 @@ class ModeratorMailer < ApplicationMailer
 
   def new_article(article)
     @article = article
-    mail(to: 'moderator@example.com', subject: 'SERLER - New Paper Added ')
+    mail(to: 's.anmoldeep1993@gmail.com', subject: 'SERLER - New Paper Added ')
   end
 end
