@@ -1,5 +1,5 @@
 class AdminController  < BaseController
-  layout false
+  # layout false
   def article_view
     @ArticleList = Article.joins(:article_type,:status)
     .select("articles.id as article_id, articles.title as article_title, 
