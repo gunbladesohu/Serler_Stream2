@@ -15,6 +15,11 @@ class ArticlesController < BaseController
   # GET /articles/new
   def new
     @article = Article.new
+
+    #if a new article is saved
+    if @article.save
+  # tell the moderator mailer to send an email
+      ModeratorMailer.new_article(@article).deliver_later
   end
 
   # GET /articles/1/edit
@@ -71,4 +76,8 @@ class ArticlesController < BaseController
     def article_params
       params.require(:article).permit(:title)
     end
+
+
+
+
 end
