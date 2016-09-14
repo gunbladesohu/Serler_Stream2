@@ -129,14 +129,12 @@
         
         
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-             $('#myModal').modal('hide');
+       window.onclick = function(event) {
+           if(event.toElement.className.toLowerCase() == 'modal-backdrop fade in'){
+               $('#myModal').modal('hide');
+           }
         }
         
-        
-        $('#articleTitleHeader').click(function(){
-            console.log($('#mainTable'));
-        });
         
     function viewDetail (id, tbody){
         
