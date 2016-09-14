@@ -11,6 +11,7 @@ ResearchMethod.destroy_all
 Status.destroy_all
 Role.destroy_all
 ResearchParticipant.destroy_all
+Article.destroy_all
 
 DevMethod.create(name: 'Test Driven Development',      description: '', is_active: true)
 DevMethod.create(name: 'Behaviour Driven Development', description: '', is_active: true)
@@ -63,6 +64,6 @@ ResearchParticipant.create(name: 'Undergraduate students', description: '', is_a
 ResearchParticipant.create(name: 'Postgraduate students',  description: '', is_active: true)
 ResearchParticipant.create(name: 'Practitioners',          description: '', is_active: true)
 
-Article.create(title: 'Ruby')
-Article.create(title: 'Rails')
-Article.create(title: 'Java')
+Article.create(title: 'Ruby',   journal: 'good')
+Article.create(title: 'Rails',  journal: 'good')
+Article.create(title: 'Java',   journal: 'good')
