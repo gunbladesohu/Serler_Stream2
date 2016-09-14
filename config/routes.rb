@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :research_participants
   resources :roles
   resources :users
+  resources :anaylsts, only: [:show, :edit, :update, :destroy]
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

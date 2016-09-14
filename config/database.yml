@@ -32,20 +32,20 @@ default: &default
 
 development:
   adapter: postgresql
-  database: SERLER_Backup
+  database: serler_backup
   host: localhost
   pool: 5
   timeout: 5000
-  username: trungtang
+  #username: trungtang
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: SERLER
+  username: serler 
 
   # The password associated with the postgres role (username).
-  #password:
+  password: super0924
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
