@@ -16,10 +16,6 @@ class ArticlesController < BaseController
   def new
     @article = Article.new
 
-    #if a new article is saved
-    if @article.save
-  # tell the moderator mailer to send an email
-      ModeratorMailer.new_article(@article).deliver_later
   end
 
   # GET /articles/1/edit
@@ -35,6 +31,10 @@ class ArticlesController < BaseController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+
+        # tell the moderator mailer to send an email
+        ModeratorMailer.new_article(@article).deliver_later
+
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
