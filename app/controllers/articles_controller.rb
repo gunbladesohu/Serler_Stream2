@@ -79,5 +79,3 @@ layout false
       params.require(:article).permit(:title)
     end
   end
-
-end

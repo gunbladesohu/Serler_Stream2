@@ -1,0 +1,23 @@
+<h1>Add Development Method to Article - List</h1>
+</br>
+
+<% @ArticleList.each do |article| %>
+    <%=   article.article_id %>. <%=   article.article_title %> <br>
+    Please enter the Development Methodology name and Description Below:<br>
+
+    <%= form_for :admin, url: url_for( :controller => "admin", :action => "update_methodology" ) do |f| %>
+    Dev Methodology Name :  <%= text_field_tag("name","") %><br />
+    Dev Methodology Description :  <%= text_field_tag("description","") %><br />
+    Article Id :  <%= text_field_tag("articleid",article.article_id) %><br />
+
+
+        <%= f.submit %>
+    <% end %>
+<% end %>
+    <br>
+
+
+<%= debug params %>
+
+
+

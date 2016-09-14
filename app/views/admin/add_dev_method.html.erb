@@ -1,0 +1,20 @@
+<h1>Add Development Method to Article - List</h1>
+    </br>
+
+<% @ArticleList.each do |article| %>
+    <%=   article.article_id %>. <%=   article.article_title %>
+    <%= # link_to "Update", controller: "admin", action: "add_dev_method_page", id: article.article_id
+    %>
+    <%= link_to "Update", {:controller => "admin", :action => "add_dev_method_page", :articleid => article.article_id }%>
+
+
+    <br>
+<% end %>
+
+
+    
+
+
+
+
+

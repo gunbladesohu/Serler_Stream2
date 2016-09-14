@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
   root 'home#index'
 
+  match ':controller(/:action(/:id))', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -71,4 +72,9 @@ Rails.application.routes.draw do
   get 'admin_controller/article_view'
   get "admin/article_quality_check", as: "article_quality_check"
   get "admin/article_detail", as: "article_detail"
+
+  get 'admin/add_dev_method'
+  get 'admin/update_methodology'
+  post 'admin/update_methodology'
+
 end

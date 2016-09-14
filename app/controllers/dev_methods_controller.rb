@@ -1,6 +1,6 @@
 class DevMethodsController < BaseController
   before_action :set_dev_method, only: [:show, :edit, :update, :destroy]
-
+layout false
   # GET /dev_methods
   # GET /dev_methods.json
   def index
