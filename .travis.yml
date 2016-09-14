@@ -1,2 +1,14 @@
+notifications: # set notification options
+  email:
+    recipients:
+      - one@example.com
+
+
+    # change is when the repo status goes from pass to fail or vice versa
+    on_success: [always|never|change]
+    on_failure: [always|never|change]
+  # Or we could just disable all email
+  email: false
+
 before_deploy:
 - rvm 1.9.3 do gem install mime-types -v 2.6.2
