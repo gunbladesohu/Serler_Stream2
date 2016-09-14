@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'test/index'
+  match ':controller(/:action(/:id))', :via => :get
   resources :methodologies
   resources :dev_methods
   resources :research_methods
@@ -11,7 +13,10 @@ Rails.application.routes.draw do
   resources :research_participants
   resources :roles
   resources :users
-  root 'home#index'
+
+  #define homepage of the application
+ # root 'home#index'
+  root 'test#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
