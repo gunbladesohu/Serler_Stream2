@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Athena - Add constraint to email: must be unique & validate (by email_validator.rb)
   validates :email, uniqueness: true
-  validates :email, presence: true, email: true
+  validates :email, presence: true #, email: true
   validates_confirmation_of :password
 
   # Trung - Define model associations
