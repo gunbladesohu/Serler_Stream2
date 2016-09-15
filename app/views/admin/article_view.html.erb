@@ -21,8 +21,8 @@
              <td class="statusName"><%= article.status_name %></td>
              <td><%= article.updated_time %></td>
              <td><button><%= link_to "View Details",article_detail_path(articleId: article.article_id), :class => "btn", :remote => true, :onclick => "viewDetail('#{article.article_id}',mainTableBody  );return false;" %></button></td>
-             <td><button><%= link_to "Accept", article_quality_check_path(articleId: article.article_id, isAccepted: true), :class => "btn" %></button></td>
-             <td><button><%= link_to "Reject", article_quality_check_path(articleId: article.article_id ), :class => "btn" %></button></td>
+             <!-- <td><button><%= link_to "Accept", article_quality_check_path(articleId: article.article_id, isAccepted: true), :class => "btn" %></button></td> -->
+             <!-- <td><button><%= link_to "Reject", article_quality_check_path(articleId: article.article_id ), :class => "btn" %></button></td> -->
              <td style="display:none;"><%= article.journal %></td>
              <td style="display:none;"><%= article.year %></td>
              <td style="display:none;"><%= article.month %></td>
@@ -149,17 +149,34 @@
                 }
             }
            $('#modalHeader').text(selectedRow[1].innerHTML);
-           $('#journal').text(selectedRow[8].innerHTML);
-           $('#year').text(selectedRow[9].innerHTML);
-           $('#volume').text(selectedRow[10].innerHTML);
-           $('#number').text(selectedRow[11].innerHTML);
-           $('#month').text(selectedRow[12].innerHTML);
-           $('#pages').text(selectedRow[13].innerHTML);
-           $('#isbn').text(selectedRow[14].innerHTML);
-           $('#doi').text(selectedRow[15].innerHTML);
-           $('#url').text(selectedRow[16].innerHTML);
-           $('#keyword').text(selectedRow[17].innerHTML);
-           $('#abstract').text(selectedRow[18].innerHTML);
+           $('#journal').text(selectedRow[6].innerHTML);
+           $('#year').text(selectedRow[7].innerHTML);
+           $('#volume').text(selectedRow[8].innerHTML);
+           $('#number').text(selectedRow[9].innerHTML);
+           $('#month').text(selectedRow[10].innerHTML);
+           $('#pages').text(selectedRow[11].innerHTML);
+           $('#isbn').text(selectedRow[12].innerHTML);
+           
+           if(selectedRow[13].innerHTML.toLowerCase().indexOf("http") >= 0 || selectedRow[13].innerHTML.toLowerCase().indexOf("https") >= 0){
+               var link = $('<a>', {href: selectedRow[13].innerHTML });
+                link.text(selectedRow[13].innerHTML);
+                
+                $('#doi').text('').append(link);
+           }else{
+                $('#doi').text(selectedRow[13].innerHTML);
+           }
+          
+          if(selectedRow[14].innerHTML.toLowerCase().indexOf("http") >= 0 || selectedRow[14].innerHTML.toLowerCase().indexOf("https") >= 0){
+               var link = $('<a>', {href: selectedRow[14].innerHTML });
+                link.text(selectedRow[14].innerHTML);
+                
+                $('#url').text('').append(link);
+           }else{
+                $('#url').text(selectedRow[14].innerHTML);
+           }
+           
+           $('#keyword').text(selectedRow[15].innerHTML);
+           $('#abstract').text(selectedRow[16].innerHTML);
            $('#articleType').text(selectedRow[2].innerHTML);
                 
             selectedArticleId = id;
