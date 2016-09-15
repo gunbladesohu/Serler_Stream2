@@ -1,5 +1,5 @@
 class AdminController  < BaseController
-  layout false
+# layout false
   def article_view
     @ArticleList = Article.joins(:article_type,:status)
     .select("articles.id as article_id, articles.title as article_title, 
@@ -56,10 +56,10 @@ class AdminController  < BaseController
             , articles.pages as pages, articles.isbn as isbn
             , articles.doi as doi, articles.url as url
             , articles.keyword as keyword, articles.abstract as abstract")
-                       .where("article_types.is_active = true and articles.is_active =true")
+                       .where("article_types.is_active = true and articles.is_active = false")
 
     #NewArticleDevMethod = articles_dev_method.new(:article_id => , :dev_method_id=> )
-    #NewArticleDevMethod.savera
+    #NewArticleDevMethod.save
 
   end
 
