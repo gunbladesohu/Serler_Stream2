@@ -21,10 +21,15 @@ class AdminController  < BaseController
     
     
     if params[:isAccepted] 
-      articleItem.status_id = 2
-      articleItem.is_active = true
+      @statusId = Status.find_by name: "Accepted"
+      
+      articleItem.status = @statusId
+      # articleItem.status_id = @Status.id
+      # articleItem.is_active = true
     else
-      articleItem.status_id = 3
+      
+      @statusId = Status.find_by name: "Rejected"
+      articleItem.status = @statusId
     end
     
     #articleItem.updated_at = DateTime.now
