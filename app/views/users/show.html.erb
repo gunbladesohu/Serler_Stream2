@@ -1,7 +1,17 @@
+
+
+<% if user_signed_in? %>
 <p id="notice"><%= notice %></p>
 <% provide(:title, @user.first_name) %>
 
-<h1>Welcome, <%= @user.first_name %>!</h1> You are a <%= @user.roles %>
+
+
+<h1>Welcome, <%= @user.first_name %>!</h1>
+
+<% @user.roles.each do |role| %>
+    <%= role.name %>
+<% end  %>
+
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %><br>
@@ -21,6 +31,14 @@
 
 </p>
 
+<%= link_to 'Edit User', edit_user_path(@user) %>  |  <%= link_to 'List Users', users_path %>
+<!--<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>-->
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% else %>
+<li>
+  <%= link_to('Log In', new_user_session_path)  %>
+
+</li>
+<li> <a  href="users/sign_up">Sign Up</a> </li>
+<% end %>

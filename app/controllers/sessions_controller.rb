@@ -29,8 +29,10 @@ class SessionsController < BaseController
     end
   end
 
-
-
   def destroy
+
+    cookies.delete(:remember_token)
+
+    redirect_to root_url
   end
 end

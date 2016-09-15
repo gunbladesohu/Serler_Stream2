@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   # Athena - Add constraint to email: must be unique & validate (by email_validator.rb)
   validates :email, uniqueness: true
@@ -12,6 +16,6 @@ class User < ActiveRecord::Base
   has_many :ratings
   has_many :articles, through: :ratings
 
-  has_secure_password
+  #has_secure_password
 
 end

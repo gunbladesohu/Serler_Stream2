@@ -24,6 +24,11 @@
   <%= content_for?(:topnavbar) ? yield(:topnavbar) : '' %>
 
   <!-- Page Content -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+
+
   <div class="container">
     <%= content_for?(:login_content) ? yield(:login_content) : yield %>
 
