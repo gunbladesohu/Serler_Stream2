@@ -1,23 +1,39 @@
 <h1>Add Development Method to Article - List</h1>
+<style>
+  #hidethis
+  {display:none;}
+</style>
+
 </br>
 
 <% @ArticleList.each do |article| %>
-    <%=   article.article_id %>. <%=   article.article_title %> <br>
-    Please enter the Development Methodology name and Description Below:<br>
+   <h2> You are currently adding Methodology for: <%=   article.article_id %>. <%=   article.article_title %></h2> </br>
+    Please enter the Development Methodology name and Description Below:</br></br>
 
     <%= form_for :admin, url: url_for( :controller => "admin", :action => "update_methodology" ) do |f| %>
-    Dev Methodology Name :  <%= text_field_tag("name","") %><br />
-    Dev Methodology Description :  <%= text_field_tag("description","") %><br />
-    Article Id :  <%= text_field_tag("articleid",article.article_id) %><br />
+        <table>
+          <tr>
+            <td>Dev Methodology Name :</td>
+            <td><%= text_field_tag("name","") %></td>
+          </tr>
+          <tr>
+            <td>Dev Methodology Description :</td>
+            <td><%= text_area_tag("description","") %></td>
+          </tr>
+
+        </table>
+
+    <div id="hidethis">Article Id :  <%= text_field_tag("articleid",article.article_id) %></div><br />
 
 
-        <%= f.submit %>
+        <%= f.submit "Save"%>
     <% end %>
 <% end %>
     <br>
 
 
-<%= debug params %>
+
+
 
 
 

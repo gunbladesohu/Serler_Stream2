@@ -1,5 +1,5 @@
 class AdminController  < BaseController
-  # layout false
+# layout false
   def article_view
     @ArticleList = Article.joins(:article_type,:status)
     .select("articles.id as article_id, articles.title as article_title, 
@@ -81,13 +81,14 @@ class AdminController  < BaseController
 
   def update_methodology
 
-    @name = params[:methodology_name]
-    @description = params[:methodology_description]
+    @name = params[:name]
+    @description = params[:description]
     @articleid = params[:articleid]
     # create a record in the methodology  table and add a relation in articles methodology table.
-
-    @m = Methodology.create(name: @name, description: @description)
-
+    @m = Methodology.create(:name=> @name, :description=> @description)
+    @last_record_save_id=Methodology.last.id
+    @am = ArticlesMethodology.create(:article_id => @articleid,:methodology_id => @last_record_save_id,:is_active => true)
 
   end
+
   end
