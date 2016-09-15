@@ -74,7 +74,7 @@ class AdminController  < BaseController
             , articles.pages as pages, articles.isbn as isbn
             , articles.doi as doi, articles.url as url
             , articles.keyword as keyword, articles.abstract as abstract")
-                       .where("article_types.is_active = true and articles.is_active = false and articles.id = ?",params[:articleid])
+                       .where("article_types.is_active = true and articles.is_active = true and articles.id = ?",params[:articleid])
   end
 
   #adds a record to the methodology table and adds a relation to articles methodology table
