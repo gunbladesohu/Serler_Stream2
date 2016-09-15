@@ -37,7 +37,7 @@ development:
   pool: 5
   timeout: 5000
   username: postgres
-  port: 5433
+
   
 #  database: d80g8747cda83p
 #  host: ec2-54-225-89-110.compute-1.amazonaws.com
