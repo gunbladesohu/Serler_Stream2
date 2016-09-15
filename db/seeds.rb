@@ -12,6 +12,8 @@ Status.destroy_all
 Role.destroy_all
 ResearchParticipant.destroy_all
 Article.destroy_all
+User.destroy_all
+Rating.destroy_all
 
 DevMethod.create(name: 'Test Driven Development',      description: '', is_active: true)
 DevMethod.create(name: 'Behaviour Driven Development', description: '', is_active: true)
@@ -67,3 +69,12 @@ ResearchParticipant.create(name: 'Practitioners',          description: '', is_a
 Article.create(title: 'Ruby',   journal: 'good')
 Article.create(title: 'Rails',  journal: 'good')
 Article.create(title: 'Java',   journal: 'good')
+
+User.create(first_name: '1',   middle_name: 'good')
+User.create(first_name: '2',   middle_name: 'good')
+User.create(first_name: '3',   middle_name: 'good')
+
+Rating.create!(user_id: User.first.id,    article_id: Article.first.id)
+Rating.create!(user_id: User.first.id,    article_id: Article.second.id)
+Rating.create!(user_id: User.second.id,   article_id: Article.second.id)
+Rating.create!(user_id: User.last.id,     article_id: Article.last.id)

@@ -17,4 +17,8 @@ class Article < ActiveRecord::Base
   belongs_to :status, foreign_key: :status_id
   belongs_to :article_type, foreign_key: :type_id
 
+  scope :user_filter, ->(user_id){
+    joins(:users).where('users.id = ?', user_id) if user_id.present?
+  }
+
 end
