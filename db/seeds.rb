@@ -6,6 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Article.destroy_all
+DevMethod.destroy_all
+Methodology.destroy_all
+ResearchMethod.destroy_all
+Status.destroy_all
+Role.destroy_all
+ResearchParticipant.destroy_all
+ArticleType.destroy_all
+Author.destroy_all
+
 @devmethod1 = DevMethod.create(name: 'Test Driven Development',      description: '', is_active: true)
 @devmethod2 = DevMethod.create(name: 'Behaviour Driven Development', description: '', is_active: true)
 @devmethod3 = DevMethod.create(name: 'Pair programming',             description: '', is_active: true)

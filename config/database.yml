@@ -31,7 +31,7 @@ default: &default
 #  password: vEgGuyfHuc6FSVE31ms7ZhvHhA
 
 development:
-  adapter: postgres
+  adapter: postgresql
   #database: SERLER_Backup
  # host: localhost
  # pool: 5
