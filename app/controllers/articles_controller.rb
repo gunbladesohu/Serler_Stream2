@@ -5,7 +5,7 @@ class ArticlesController < BaseController
   # GET /articles.json
   def index
     #@articles = Article.all
-     @articles = Article.includes(:users).user_filter(8)
+     @articles = Article.includes(:users).user_filter(11)
   end
 
   # GET /articles/1

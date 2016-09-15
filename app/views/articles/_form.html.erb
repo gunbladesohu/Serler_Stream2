@@ -12,22 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %><br>
-    <%= f.label :journal %>
-    <%= f.text_field :journal %><br>
-    <%= f.label :year %>
-    <%= f.text_field :year %><br>
-    <%= f.label :volume %>
-    <%= f.text_field :volume %><br>
-    <%= f.label :number %>
-    <%= f.text_field :number %><br>
-    <%= f.label :month %>
-    <%= f.text_field :month %><br>
+    <%= f.label :research_questions %>
+    <%= f.text_field :research_questions %><br>
+    <%= f.label :research_methods %>
+    <%= f.text_field :keyword %><br>
+    <%= f.label :research_metric %>
+    <%= f.text_field :research_metrics %><br>
+    <%= f.label :research_participants %>
+    <%= f.text_field :abstract %><br>
+
   </div>
   <div class="actions">
-    <%= link_to "update", @article, :method => :update, :confirm => "You sure?",
-    :title => "update #{@article.title}" %>
     <%= f.submit %>
   </div>
 <% end %>
