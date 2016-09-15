@@ -10,7 +10,7 @@ class AdminController  < BaseController
             , articles.pages as pages, articles.isbn as isbn
             , articles.doi as doi, articles.url as url
             , articles.keyword as keyword, articles.abstract as abstract")
-    .where("article_types.is_active = true and articles.is_active = true")
+    .where("article_types.is_active = true and articles.is_active = false")
     
   end
   
@@ -24,7 +24,7 @@ class AdminController  < BaseController
       
       articleItem.status = @statusId
       # articleItem.status_id = @Status.id
-      # articleItem.is_active = true
+       articleItem.is_active = true
     else
       
       @statusId = Status.find_by name: "Rejected"
