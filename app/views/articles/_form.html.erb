@@ -26,6 +26,8 @@
     <%= f.text_field :month %><br>
   </div>
   <div class="actions">
+    <%= link_to "update", @article, :method => :update, :confirm => "You sure?",
+    :title => "update #{@article.title}" %>
     <%= f.submit %>
   </div>
 <% end %>
