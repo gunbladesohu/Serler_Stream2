@@ -98,7 +98,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            keyword: 'Tertiary study; Agile software development; Lean software development; Project constraints',
                            abstract: 'The growing interest in Agile and Lean software development is reflected in the increasing number of secondary studies on the benefits and limitations of Agile and Lean processes and practices',
                            research_questions: ' ', research_metrics: ' ',
-                           type_id: @article_type3.id, status_id: @moderated.id, is_active: true)
+                           type_id: @article_type3.id, status_id: @moderated.id, is_active: false)
 @author1.articles << @article1
 @author2.articles << @article1
 @author3.articles << @article1
@@ -150,7 +150,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            keyword: 'DP industry;Internet;cultural aspects;organisational aspects;OSD;Scrum effectiveness;Sri Lanka;Web based survey;communication factor;comprehensive literature survey;cultural distance;geographical distance;offshore software development;organizational factor;people factor;process factor;requirement volatility management;software development industry;Collaboration;Companies;Context;Contracts;Cultural differences;Scrum (Software development);Software;Agile;Global teams;Off-shoring;Offshore software development;Scrum;XP',
                            abstract: 'This paper presents the results of a comprehensive literature survey and a web based survey on the use of Scrum in offshore software development (OSD) in Sri Lankan context. The trend in the recent software development industry is to move towards OSD. Issues and challenges related to OSD have to be solved to gain success. Scrum has gained a significant attention due to its flexible approach to managing requirement volatility and emphasis on extensive collaboration between customer and development team. However, the geographical and cultural distance of offshore teams create challenges for use Scrum with OSD. Hence objectives of the research was to identify issues and challenges related to OSD in Sri Lankan context and how those issues and challenges can be overcome by using Scrum. Results of the study reveal that key factors of Scrum such as communication, people, process, and organizational factors are having positive contribution towards OSD success in Sri Lankan context. This study further reveals the importance of combining engineering practices with Scrum to achieve the success in OSD in Sri Lankan context.',
                            research_questions: '', research_metrics: '',
-                           type_id: @article_type3.id, status_id: @moderated.id, is_active: true)
+                           type_id: @article_type3.id, status_id: @moderated.id, is_active: false)
 @author11.articles << @article4
 @author12.articles << @article4
 
@@ -168,7 +168,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            keyword: 'software development management;SCRUM methodology;SCRUM project management;V-model;',
                            abstract: 'SCRUM methodology is increasing software development speed. So far SCRUM has seen little application in automotive industry where V-model',
                            research_questions: '', research_metrics: '',
-                           type_id: @article_type3.id, status_id: @rejected.id, is_active: true)
+                           type_id: @article_type3.id, status_id: @rejected.id, is_active: false)
 @author13.articles << @article5
 @author14.articles << @article5
 @author15.articles << @article5
@@ -225,7 +225,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            keyword: 'artificial intelligence;innovation management;public domain software;software prototyping;systems analysis;value engineering;EPISODE;agile software development;articial intelligence;customer-centric development;extreme programming method for innovative software based on system design;idea creation;large-scale software systems;open source software;scrum;smaller-scale software development;value engineering;Educational institutions;Encoding;Planning;Programming profession;Software;Extreme Programming;Open Source Software;Value engineering',
                            abstract: 'In software development, the waterfall model is commonly used, especially for large-scale software systems. For smaller-scale software development, agile software development approaches such as extreme programming or scrum are used. Traditional software development methodologies are mainly targeted toward customer-centric development, and therefore, new software methodologies are often not well received in the industry. In this study, we propose a new software development methodology that is aimed at developing innovative software using artificial intelligence (AI), idea creation, value engineering, and systems design. The name of our method is named as EPISODE (Extreme Programming method for Innovative Software based on systems DEsign). EPISODE supports the efficient and creative development of open source software (OSS) by small groups.',
                            research_questions: '', research_metrics: '',
-                           type_id: @article_type5.id, status_id: @rejected.id, is_active: true)
+                           type_id: @article_type5.id, status_id: @rejected.id, is_active: false)
 @author23.articles << @article9
 @author24.articles << @article9
 @author25.articles << @article9
