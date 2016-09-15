@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :users
   root 'home#index'
 
+  get    '/login',   to: 'sessions#create'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
   match ':controller(/:action(/:id))', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
