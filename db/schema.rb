@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914105421) do
+ActiveRecord::Schema.define(version: 20160918002129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20160914105421) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "article_users", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "article_users", ["article_id"], name: "index_article_users_on_article_id", using: :btree
+  add_index "article_users", ["user_id"], name: "index_article_users_on_user_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -78,6 +88,9 @@ ActiveRecord::Schema.define(version: 20160914105421) do
     t.datetime "updated_at",         null: false
   end
 
+  add_index "articles_research_methods", ["article_id"], name: "index_articles_research_methods_on_article_id", using: :btree
+  add_index "articles_research_methods", ["research_method_id"], name: "index_articles_research_methods_on_research_method_id", using: :btree
+
   create_table "articles_research_participants", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "research_participant_id"
@@ -85,6 +98,9 @@ ActiveRecord::Schema.define(version: 20160914105421) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "articles_research_participants", ["article_id"], name: "index_articles_research_participants_on_article_id", using: :btree
+  add_index "articles_research_participants", ["research_participant_id"], name: "index_articles_research_participants_on_research_participant_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.string   "first_name"
@@ -182,4 +198,10 @@ ActiveRecord::Schema.define(version: 20160914105421) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "article_users", "articles"
+  add_foreign_key "article_users", "users"
+  add_foreign_key "articles_research_methods", "articles"
+  add_foreign_key "articles_research_methods", "research_methods"
+  add_foreign_key "articles_research_participants", "articles"
+  add_foreign_key "articles_research_participants", "research_participants"
 end

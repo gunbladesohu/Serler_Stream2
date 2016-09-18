@@ -5,7 +5,8 @@ class ArticlesController < BaseController
   # GET /articles.json
   def index
     #@articles = Article.all
-     @articles = Article.includes(:users).user_filter(11)
+     @articles = Article.includes(:users)
+     #.user_filter(11)
   end
 
   # GET /articles/1
@@ -20,6 +21,9 @@ class ArticlesController < BaseController
 
   # GET /articles/1/edit
   def edit
+    @articles = Article.includes(:research_participants, :research_methods)
+    @research_participants = ResearchParticipant.all
+    @research_methods = ResearchMethod.all
   end
 
   # POST /articles
@@ -70,6 +74,12 @@ class ArticlesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :journal, :year, :volume, :number, :month)
+      params.require(:article).permit(:title, :journal, :year, :volume,
+        :number, :month, :research_questions, :research_metrics,
+        #research_participants_attributes: [:name],
+        #research_methods_attributes: [:name, :id]
+        { research_method_ids: []},
+        { research_participant_ids: []}
+        )
     end
 end

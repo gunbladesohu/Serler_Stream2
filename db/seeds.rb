@@ -5,15 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+ArticlesResearchMethod.destroy_all
+ArticlesResearchParticipant.destroy_all
 DevMethod.destroy_all
 Methodology.destroy_all
 ResearchMethod.destroy_all
 Status.destroy_all
 Role.destroy_all
 ResearchParticipant.destroy_all
+ArticleUser.destroy_all
 Article.destroy_all
 User.destroy_all
 Rating.destroy_all
+
+
+
 
 DevMethod.create(name: 'Test Driven Development',      description: '', is_active: true)
 DevMethod.create(name: 'Behaviour Driven Development', description: '', is_active: true)
@@ -45,11 +51,11 @@ Methodology.create(name: 'Value Driven Development',    description: '', is_acti
 Methodology.create(name: 'Product Driven Development',  description: '', is_active: true)
 Methodology.create(name: 'Agile',                       description: '', is_active: true)
 
-ResearchMethod.create(name: 'Case study',        description: '', is_active: true)
-ResearchMethod.create(name: 'Field Observation', description: '', is_active: true)
-ResearchMethod.create(name: 'Experiment',        description: '', is_active: true)
-ResearchMethod.create(name: 'Interview',         description: '', is_active: true)
-ResearchMethod.create(name: 'Survey',            description: '', is_active: true)
+research_method1 = ResearchMethod.create(name: 'Case study',        description: '', is_active: true)
+research_method2 = ResearchMethod.create(name: 'Field Observation', description: '', is_active: true)
+research_method3 = ResearchMethod.create(name: 'Experiment',        description: '', is_active: true)
+research_method4 = ResearchMethod.create(name: 'Interview',         description: '', is_active: true)
+research_method5 = ResearchMethod.create(name: 'Survey',            description: '', is_active: true)
 
 Status.create(name: 'To be moderated',   description: '', is_active: true)
 Status.create(name: 'Accepted',          description: '', is_active: true)
@@ -62,19 +68,17 @@ Role.create(name: 'Analyst',                  description: '', is_active: true)
 Role.create(name: 'User',                     description: '', is_active: true)
 Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 
-ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
-ResearchParticipant.create(name: 'Postgraduate students',  description: '', is_active: true)
-ResearchParticipant.create(name: 'Practitioners',          description: '', is_active: true)
+participant1 = ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
+participant2 = ResearchParticipant.create(name: 'Postgraduate students',  description: '', is_active: true)
+participant3 = ResearchParticipant.create(name: 'Practitioners',          description: '', is_active: true)
 
-Article.create(title: 'Ruby',   journal: 'good')
-Article.create(title: 'Rails',  journal: 'good')
-Article.create(title: 'Java',   journal: 'good')
+user1 = User.create(first_name: '1',   middle_name: '1')
+user2 = User.create(first_name: '2',   middle_name: '2')
+user3 = User.create(first_name: '3',   middle_name: '3')
 
-User.create(first_name: '1',   middle_name: 'good')
-User.create(first_name: '2',   middle_name: 'good')
-User.create(first_name: '3',   middle_name: 'good')
-
-Rating.create!(user_id: User.first.id,    article_id: Article.first.id)
-Rating.create!(user_id: User.first.id,    article_id: Article.second.id)
-Rating.create!(user_id: User.second.id,   article_id: Article.second.id)
-Rating.create!(user_id: User.last.id,     article_id: Article.last.id)
+Article.create(title: 'Ruby',   journal: 'good', users: [user1],
+  research_participants: [participant1], research_methods: [research_method1, research_method2])
+Article.create(title: 'Rails',  journal: 'good', users: [user2],
+  research_participants: [participant2], research_methods: [research_method1])
+Article.create(title: 'Java',   journal: 'good', users: [user3],
+  research_participants: [participant3], research_methods: [research_method1])

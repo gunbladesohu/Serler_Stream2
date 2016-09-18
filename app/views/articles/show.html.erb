@@ -1,23 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-  <strong>journal:</strong>
-  <%= @article.journal %>
-  <strong>year:</strong>
-  <%= @article.year %>
-  <strong>volume:</strong>
-  <%= @article.volume %>
-  <strong>number:</strong>
-  <%= @article.number %>
-  <strong>month:</strong>
-  <%= @article.month %>
-  <strong>pages:</strong>
-  <%= @article.pages %>
-  <strong>isbn:</strong>
-  <%= @article.isbn %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Research Questions</th>
+      <th>Research Metrics</th>
+      <th>Research Methods</th>
+      <th>Research Participants</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+      <td><%= @article.title %></td>
+      <td><%= @article.research_questions %></td>
+      <td><%= @article.research_metrics %></td>
+
+      <% @article_research_method = ""%>
+      <% @article.research_methods.each do |research_method| %>
+        <% @article_research_method = @article_research_method + research_method.name + ", "%>
+      <% end %>
+      <td><%= @article_research_method.chop.chop %></td>
+
+      <% @article_research_participant = ""%>
+      <% @article.research_participants.each do |research_participant| %>
+        <% @article_research_participant = @article_research_participant + research_participant.name + ", "%>
+      <% end %>
+      <td><%= @article_research_participant.chop.chop %></td>
+      </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

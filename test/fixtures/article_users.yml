@@ -2,10 +2,8 @@
 
 one:
   article_id: 
-  research_participant_id: 
-  is_active: false
+  user_id: 
 
 two:
   article_id: 
-  research_participant_id: 
-  is_active: false
+  user_id: 
