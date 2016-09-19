@@ -48,7 +48,6 @@
         </label>
       </div>
     <% end %>
-    
     <legend>Method</legend>
     <% @dev_methods.each do |dev_method| %>
       <div class="checkbox">
@@ -60,7 +59,7 @@
               <% break %>
             <% end %>
           <% end %>
-          <%= check_box_tag 'article[dev_methods_ids][]', dev_method.id, @is_check%>
+          <%= check_box_tag 'article[dev_method_ids][]', dev_method.id, @is_check%>
           <%= dev_method.name %>
         </label>
       </div>
