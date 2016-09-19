@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906020304) do
+ActiveRecord::Schema.define(version: 20160917072029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(version: 20160906020304) do
     t.boolean  "is_active"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.boolean  "peer_reviewed"
+    t.boolean  "relevance"
+    t.boolean  "not_duplicate"
+    t.integer  "user_id"
   end
 
   create_table "articles_authors", force: :cascade do |t|
@@ -224,8 +228,9 @@ ActiveRecord::Schema.define(version: 20160906020304) do
     t.date     "dob"
     t.string   "affiliation"
     t.boolean  "is_active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
   create_table "users_roles", force: :cascade do |t|
