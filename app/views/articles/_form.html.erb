@@ -64,6 +64,23 @@
         </label>
       </div>
     <% end %>
+    
+    <legend>Methodology</legend>
+    <% @methodologies.each do |methodology| %>
+      <div class="checkbox">
+        <label>
+          <% @is_check = false %>
+          <% @article.methodologies.each do |article_methodology| %>
+            <% if article_methodology.name == methodology.name%>
+              <% @is_check = true%>
+              <% break %>
+            <% end %>
+          <% end %>
+          <%= check_box_tag 'article[methodology_ids][]', methodology.id, @is_check%>
+          <%= methodology.name %>
+        </label>
+      </div>
+    <% end %>
 
 
   </div>

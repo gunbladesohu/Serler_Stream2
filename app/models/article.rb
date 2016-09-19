@@ -17,6 +17,7 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :dev_methods
   has_many :articles_methodologies
   has_many :methodologies, through: :articles_methodologies
+    accepts_nested_attributes_for :methodologies
 
   belongs_to :status, foreign_key: :status_id
   belongs_to :article_type, foreign_key: :type_id

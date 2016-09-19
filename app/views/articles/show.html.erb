@@ -9,6 +9,7 @@
       <th>Research Methods</th>
       <th>Research Participants</th>
       <th>Development Method</th>
+      <th>Methodology</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,6 +37,12 @@
         <% @article_dev_method = @article_dev_method + dev_method.name + ", "%>
       <% end %>
       <td><%= @article_dev_method.chop.chop %></td>
+      
+      <% @article_methodology = ""%>
+      <% @article.methodologies.each do |methodology| %>
+        <% @article_methodology = @article_methodology + methodology.name + ", "%>
+      <% end %>
+      <td><%= @article_methodology.chop.chop %></td>
       
       </tr>
   </tbody>

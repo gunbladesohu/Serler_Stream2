@@ -25,6 +25,7 @@ class ArticlesController < BaseController
     @research_participants = ResearchParticipant.all
     @research_methods = ResearchMethod.all
     @dev_methods = DevMethod.all
+    @methodologies = Methodology.all
   end
 
   # POST /articles
@@ -81,7 +82,8 @@ class ArticlesController < BaseController
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},
         { research_participant_ids: []},
-        { dev_method_ids: []}
+        { dev_method_ids: []},
+        { methodology_ids: []}
         )
     end
 end
