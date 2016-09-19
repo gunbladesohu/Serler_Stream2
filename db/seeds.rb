@@ -16,6 +16,39 @@ ResearchParticipant.destroy_all
 ArticleType.destroy_all
 Author.destroy_all
 User.destroy_all
+FieldTable.destroy_all
+Operator.destroy_all
+JoinCondition.destroy_all
+
+FieldTable.create(name: 'Method', field: 'id', table: 'dev_methods', join_table: 'articles_dev_methods', model: 'DevMethod' )
+FieldTable.create(name: 'Methodology', field: 'id', table: 'methodologies', join_table: 'articles_methodologies', model: 'Methodology')
+FieldTable.create(name: 'Research Method', field: 'id', table: 'research_methods', join_table: 'articles_research_methods', model: 'ResearchMethod')
+FieldTable.create(name: 'Participant', field: 'id', table: 'research_participants', join_table: 'articles_research_participants', model: 'ResearchParticipant')
+FieldTable.create(name: 'Title', field: 'title',  table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Author', field: 'first_name, middle_name, last_name', table: 'authors', join_table: 'articles_authors', model: 'Author')
+FieldTable.create(name: 'Abstract', field: 'abstract', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Keyword', field: 'keyword', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Research Question', field: 'research_questions', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Volume', field: 'volume', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Number', field: 'number', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Journal', field: 'journal', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'ISBN', field: 'isbn', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'DOI', field: 'doi', table: 'articles', join_table: '', model: 'Article')
+
+Operator.create(value: 1, name: "Contains")
+Operator.create(value: 2, name: "Does not contain")
+Operator.create(value: 3, name: "Begins with")
+Operator.create(value: 4, name: "End with")
+Operator.create(value: 5, name: "Is equal to")
+Operator.create(value: 6, name: "Is less than")
+Operator.create(value: 7, name: "Is less than or equal")
+Operator.create(value: 8, name: "Is more than")
+Operator.create(value: 9, name: "Is more than or equal")
+
+JoinCondition.create(value: 1, name: "OR")
+JoinCondition.create(value: 2, name: "AND")
+JoinCondition.create(value: 3, name: "AND NOT")
+JoinCondition.create(value: 4, name: "OR NOT")
 
 @devmethod1 = DevMethod.create(name: 'Test Driven Development',      description: '', is_active: true)
 @devmethod2 = DevMethod.create(name: 'Behaviour Driven Development', description: '', is_active: true)
@@ -144,6 +177,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @accepted.id, is_active: true,
                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+
 @author6.articles << @article3
 @author7.articles << @article3
 @author8.articles << @article3
@@ -163,6 +197,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @moderated.id, is_active: false,
                            peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user3.id)
+
 @author11.articles << @article4
 @author12.articles << @article4
 
@@ -182,6 +217,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @rejected.id, is_active: false,
                            peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user1.id)
+
 @author13.articles << @article5
 @author14.articles << @article5
 @author15.articles << @article5
@@ -200,6 +236,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @completed.id, is_active: true,
                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+
 @author19.articles << @article6
 
 @author20 = Author.create(first_name: 'Kholid', middle_name: '', last_name: 'Haryono', is_active: true)
@@ -212,6 +249,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @completed.id, is_active: true,
                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id)
+
 @author20.articles << @article7
 
 @author21 = Author.create(first_name: 'Jason', middle_name: 'Jen-Yen', last_name: 'Chen', is_active: true)
@@ -227,6 +265,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @accepted.id, is_active: true,
                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+
 @author21.articles << @article8
 @author22.articles << @article8
 
@@ -243,6 +282,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @rejected.id, is_active: false,
                            peer_reviewed: true, relevance: false, not_duplicate: false, user_id: @user1.id)
+
 @author23.articles << @article9
 @author24.articles << @article9
 @author25.articles << @article9
@@ -258,6 +298,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                             research_questions: '', research_metrics: '',
                             type_id: @article_type3.id, status_id: @completed.id, is_active: true,
                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+
 @author26.articles << @article10
 
 @methodology1.articles << @article1

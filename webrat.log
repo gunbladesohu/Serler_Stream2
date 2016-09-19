@@ -1,0 +1,9 @@
+# Logfile created on 2016-09-09 00:07:37 +1200 by logger.rb/53141
+D, [2016-09-09T00:07:37.480179 #30030] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T00:08:08.879241 #30040] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T10:54:35.463202 #31569] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T10:54:35.736498 #31569] DEBUG -- : REQUESTING PAGE: GET /search_queries with {"quick_search"=>"Agile"} and HTTP headers {"HTTP_REFERER"=>"http://localhost:3000/search_queries"}
+D, [2016-09-09T10:54:35.828187 #31569] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T10:54:35.835483 #31569] DEBUG -- : REQUESTING PAGE: GET /search_queries with {"quick_search"=>"Pizza"} and HTTP headers {"HTTP_REFERER"=>"http://localhost:3000/search_queries"}
+D, [2016-09-09T10:54:35.854378 #31569] DEBUG -- : REQUESTING PAGE: GET http://localhost:3000/search_queries with {} and HTTP headers {}
+D, [2016-09-09T10:54:35.867939 #31569] DEBUG -- : REQUESTING PAGE: GET /search_queries/new with {} and HTTP headers {"HTTP_REFERER"=>"http://localhost:3000/search_queries"}
