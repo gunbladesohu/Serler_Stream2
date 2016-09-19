@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  get 'admin/article_view'
+  get 'admin/article_view', as:"article_view"
   get 'admin_controller/article_view'
   get "admin/article_quality_check", as: "article_quality_check"
   get "admin/article_detail", as: "article_detail"
@@ -80,5 +80,5 @@ Rails.application.routes.draw do
   get 'admin/add_dev_method'
   get 'admin/update_methodology'
   post 'admin/update_methodology'
-
+  get 'admin/mail_send'
 end
