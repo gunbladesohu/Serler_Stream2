@@ -21,9 +21,10 @@ class ArticlesController < BaseController
 
   # GET /articles/1/edit
   def edit
-    @articles = Article.includes(:research_participants, :research_methods)
+    @articles = Article.includes(:research_participants, :research_methods, :dev_methods)
     @research_participants = ResearchParticipant.all
     @research_methods = ResearchMethod.all
+    @dev_methods = DevMethod.all
   end
 
   # POST /articles
@@ -75,11 +76,12 @@ class ArticlesController < BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :journal, :year, :volume,
-        :number, :month, :research_questions, :research_metrics,
+        :number, :month, :research_questions, :research_metrics, 
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},
-        { research_participant_ids: []}
+        { research_participant_ids: []},
+        { dev_method_ids: []}
         )
     end
 end

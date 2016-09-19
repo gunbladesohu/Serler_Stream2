@@ -16,7 +16,7 @@
   <%= f.text_field :research_metrics %><br>
 
   <div class="field">
-    <legend>Research Mmethod</legend>
+    <legend>Research Method</legend>
     <% @research_methods.each do |research_method| %>
       <div class="checkbox">
         <label>
@@ -48,6 +48,24 @@
         </label>
       </div>
     <% end %>
+    
+    <legend>Method</legend>
+    <% @dev_methods.each do |dev_method| %>
+      <div class="checkbox">
+        <label>
+          <% @is_check = false %>
+          <% @article.dev_methods.each do |article_dev_method| %>
+            <% if article_dev_method.name == dev_method.name%>
+              <% @is_check = true%>
+              <% break %>
+            <% end %>
+          <% end %>
+          <%= check_box_tag 'article[dev_methods_ids][]', dev_method.id, @is_check%>
+          <%= dev_method.name %>
+        </label>
+      </div>
+    <% end %>
+
 
   </div>
 

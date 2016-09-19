@@ -29,6 +29,13 @@
         <% @article_research_participant = @article_research_participant + research_participant.name + ", "%>
       <% end %>
       <td><%= @article_research_participant.chop.chop %></td>
+      
+      <% @article_dev_method = ""%>
+      <% @article.dev_methods.each do |dev_method| %>
+        <% @article_dev_method = @article_dev_method + dev_method.name + ", "%>
+      <% end %>
+      <td><%= @article_dev_method.chop.chop %></td>
+      
       </tr>
   </tbody>
 </table>

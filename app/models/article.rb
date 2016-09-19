@@ -14,6 +14,7 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :research_methods
   has_many :articles_dev_methods
   has_many :dev_methods, through: :articles_dev_methods
+  accepts_nested_attributes_for :dev_methods
   has_many :articles_methodologies
   has_many :methodologies, through: :articles_methodologies
 
