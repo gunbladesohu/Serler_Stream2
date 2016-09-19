@@ -1,21 +1,118 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field container col-lg-6 col-lg-offset-3">
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+        <div class="col-lg-6" >
+          <%= f.label :first_name %>
+        </div>
+        
+        <div class="col-lg-6">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+          <%= f.label :middle_name %>
+        </div>
+        
+        <div class="col-lg-6">
+          <%= f.text_field :middle_name, class: "form-control"  %>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+         <%= f.label :last_name %>
+        </div>
+        
+        <div class="col-lg-6">
+          <%= f.text_field :last_name, class: "form-control"  %>
+        </div>
+      </div>
+      
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+        <%= f.label :email %>
+        </div>
+        
+        <div class="col-lg-6">
+          <%= f.text_field :email, class: "form-control"  %>
+        </div>
+      </div>
+      
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+         <%= f.label :gender %>
+        </div>
+        
+        <div class="col-lg-6">
+          <%= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
+        </div>
+      </div>
+     
+        <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+         <%= f.label :dob %>
+        </div>
+        
+        <div class="col-lg-6">
+         <%= f.date_select :dob, {start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today}, class: 'datepicker'%>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+          <%= f.label :affiliation %>
+        </div>
+        
+        <div class="col-lg-6">
+         <%= f.text_field :affiliation, class: 'form-control' %>
+        </div>
+      </div>
+     
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+          <%= f.label :password %>
+        </div>
+        
+        <div class="col-lg-6">
+         <%= f.password_field :password , class: 'form-control'%>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="col-lg-6">
+          <%= f.label :password_confirmation %>
+        </div>
+        
+        <div class="col-lg-6">
+         <%= f.password_field :password_confirmation , class: 'form-control'%>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        
+       <div class="col-lg-6 col-lg-offset-6">
+        <%= f.submit :class => 'btn btn-primary ' %>
+      </div>
+      </div>
+      
+       
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+   
 <% end %>

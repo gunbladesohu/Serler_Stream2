@@ -1,0 +1,50 @@
+<h1>Add Development Method to Article - List</h1>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+
+    </br>
+<table>
+  <tr>
+    <th>Article Id</th>
+    <th>Title</th>
+    <th>Operation</th>
+
+  </tr>
+<% @ArticleList.each do |article| %>
+
+
+    <tr>
+      <td><%=   article.article_id %>.</td>
+      <td><%=   article.article_title %></td>
+      <td> <%= link_to "Update", {:controller => "admin", :action => "add_dev_method_page", :articleid => article.article_id }%></td>
+
+    </tr>
+
+<% end %>
+</table>
+
+
+    
+
+
+
+
+
