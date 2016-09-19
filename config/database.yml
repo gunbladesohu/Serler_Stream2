@@ -94,9 +94,15 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: SERLER_test
-
+  adapter: postgresql
+  database: d85arbm5rloo9e
+  host: ec2-54-243-52-209.compute-1.amazonaws.com
+  pool: 5
+  timeout: 5000
+  username: ghguylfvlizywt
+  password: uuFI-cio8EqC_cNaqfdqVal-Kl
+  port: 5432
+  
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
