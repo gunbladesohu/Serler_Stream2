@@ -17,6 +17,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+
 </head>
 <body class="top-navigation">
 
@@ -28,8 +35,10 @@
     <%= content_for?(:login_content) ? yield(:login_content) : yield %>
 
     <!-- Footer -->
-    <hr />
-    <%= render 'layouts/footer' %>
+    <div class="container">
+      <hr />
+      <%= render 'layouts/footer' %>
+    </div>
   </div>
 
   <!-- Include javascript per-controller - vendor plugins -->

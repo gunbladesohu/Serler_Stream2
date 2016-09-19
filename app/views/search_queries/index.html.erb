@@ -1,0 +1,125 @@
+<style>
+  /*.table td.fit,*/
+  .table th {
+    white-space: nowrap;
+    /*width: 1%;*/
+  }
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Search Result</h1>
+
+<br>
+<div class="container">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row table_box">
+      <div class="col-md-6">
+        <form action="/search_queries" class="search-form" method="get">
+          <div class="input-group">
+            <%= text_field_tag 'quick_search', params[:quick_search], placeholder: 'Quick search by title...', class: 'form-control' %>
+            <!--<input id="quick_search" type="text" placeholder="Quick search by title" name="search" class="form-control">-->
+            <span class="input-group-btn" required>
+              <button id="quick_go" type="submit" class="btn btn-primary">Go!</button>
+            </span>
+          </div>
+          <p class="mandatory">This field is required</p>
+          <%= link_to 'Advance Search', new_search_query_path, {class: 'btn btn-success'} %>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="column-view">
+          <label style="font-weight:bold;">Filter: </label>
+          <label><input type="checkbox" class="check-head" value="1" name="author" checked="checked"><span>Author</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="year" checked="checked"><span>Year</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="journal"><span>Journal</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="volume"><span>Volume</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="issues"><span>Issues</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="pages"><span>Pages</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="doi"><span>DOI</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="url"><span>URL</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="keywords"><span>Keywords</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped" id="result-table">
+        <thead>
+        <tr>
+          <th id="col0" class="title">Title <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col1" class="author">Author <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col2" class="year">Year <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col3" class="journal">Journal <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col4" class="volume">Volume <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col5" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col6" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @articles.each do |article| %>
+            <tr>
+              <td class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
+              <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
+              <td class="year"><%= article.year %></td>
+              <td class="journal"><%= article.journal %></td>
+              <td class="volume"><%= article.volume %></td>
+              <td class="issues"><%= article.number %></td>
+              <td class="pages"><%= article.pages %></td>
+              <td class="doi"><%= article.doi %></td>
+              <td class="url"><%= article.url %></td>
+              <td class="keywords"><%= article.keyword %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $(".tooltips").tooltip({placement: 'top'});
+
+    $(".check-head:checkbox:not(:checked)").each(function(){
+      var col = "table ." + $(this).attr("name");
+      $(col).hide();
+    });
+
+    $(".check-head:checkbox").click(function(){
+      var col = "table ." + $(this).attr("name");
+      $(col).toggle();
+    });
+
+    var table = $('#result-table').DataTable({
+      paging: false,
+      retrieve: true,
+      dom: '<"bottom">p'
+    });
+
+    $('#result-table').on('order.dt', function () {
+      var order = table.order();
+      var col = order[0][0];
+      var orderType = order[0][1];
+      var span = $('#col' + col).find('#result-table span'); // selected span
+      var i = $('#col' + col).find('i'); // selected i
+      $('#result-table span').attr('class', 'grey'); // set all span to grey
+      $('#result-table thead i').attr('class', 'fa fa-sort'); // reset all sort icon
+      span.attr('class', 'orange'); // set selected span to orange
+      i.attr('class', 'fa fa-sort-' + orderType);
+    });
+
+    $(".search-form").submit(function(e) {
+      if($.trim($('#quick_search').val()) == ''){
+        $("#quick_search").css("border", "2px solid red");
+        $(".mandatory").css("display", "block");
+        e.preventDefault();
+        return false;
+      }
+    });
+  });
+</script>
