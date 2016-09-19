@@ -1,4 +1,6 @@
 class ArticlesController < BaseController
+
+layout false
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -15,6 +17,7 @@ class ArticlesController < BaseController
   # GET /articles/new
   def new
     @article = Article.new
+
   end
 
   # GET /articles/1/edit
@@ -30,6 +33,10 @@ class ArticlesController < BaseController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+
+        # tell the moderator mailer to send an email
+        ModeratorMailer.new_article(@article).deliver_later
+
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -71,4 +78,4 @@ class ArticlesController < BaseController
     def article_params
       params.require(:article).permit(:title)
     end
-end
+  end
