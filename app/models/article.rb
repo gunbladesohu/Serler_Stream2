@@ -16,5 +16,5 @@ class Article < ActiveRecord::Base
 
   belongs_to :status, foreign_key: :status_id
   belongs_to :article_type, foreign_key: :type_id
-
+  belongs_to :user, foreign_key: :user_id
 end

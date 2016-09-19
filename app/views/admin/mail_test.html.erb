@@ -1,0 +1,24 @@
+<h1>Mail Test</h1>
+
+<input type="email" class="form-control" id="InputEmail" placeholder="Email">
+<input type="text" class="form-control" id="InputName" placeholder="Name">
+
+<button  class="btn btn-primary" onclick="MailSend()">Send</button >
+
+<script type="text/javascript">
+    
+   
+    
+    function MailSend(){
+        
+         console.log($("#InputEmail").val());
+        console.log($("#InputName").val());
+    
+         $.ajax({
+                        url: '/admin/mail_send',
+                        type: 'get',
+                        data: {email: $("#InputEmail").val(), name:  $("#InputName").val()},
+                        contentType: 'json'
+                      });
+    }
+</script>
