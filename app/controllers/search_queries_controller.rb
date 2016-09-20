@@ -28,6 +28,10 @@ class SearchQueriesController < BaseController
     operator_field_value field
   end
 
+  def browse_repository
+    @articles = Article.all
+  end
+
   # GET /search_queries/1/edit
   def edit
   end

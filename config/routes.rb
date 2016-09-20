@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :search1_queries
   get 'search_queries/update_values' => 'search_queries#update_values'
+  get 'search_queries/browse_repository' => 'search_queries#browse_repository'
+
 
   resources :search_queries
   resources :methodologies
