@@ -1,3 +1,21 @@
+language:
+  ruby 
+rvm:
+   - 2.3.0
+before_install:
+  - gem update --system
+  - gem --version
+env:
+  - DB=postgresql
+addons:
+  postgresql: "9.5.4:"
+before_script:
+  - bundle install
+  - bundle exec rake db:setup
+  - RAILS_ENV=test bundle exec rake db:seed
+script:
+  - bundle exec cucumber
+  - bundle exec rspec  
 notifications: # set notification options
   email:
     recipients:
@@ -12,3 +30,11 @@ notifications: # set notification options
 
 before_deploy:
 - gem install mime-types -v 2.6.2
+# deploy:
+#   provider: heroku
+#   api_key:
+#   app:
+#     master:my-app
+#     sprint1
+#     sprint2
+#     sprint3
