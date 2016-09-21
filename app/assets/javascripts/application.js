@@ -5,10 +5,12 @@
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 //
+
+//= require bootstrap.js
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.js
 //= require moment
 //= require bootstrap-datetimepicker
 //= require dataTables/datatables.min
-
+//= require turbolinks
+//= require_tree .
