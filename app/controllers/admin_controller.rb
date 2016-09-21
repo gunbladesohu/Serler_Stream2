@@ -71,8 +71,8 @@ class AdminController  < BaseController
                    <p>Thank you so much for using Serler</p>
                    ".html_safe
        
-       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now 
-       
+       HubMailer.new_article_email(@user, @subject, @message).deliver_now
+
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
     else0
