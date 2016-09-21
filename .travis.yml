@@ -23,8 +23,8 @@ notifications: # set notification options
   # Or we could just disable all email
   email: false
 
-# before_deploy:
-# - gem install mime-types -v 2.6.2
+before_deploy:
+- gem install mime-types -v 2.6.2
 # deploy:
 #   provider: heroku
 #   api_key:
