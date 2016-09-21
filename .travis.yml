@@ -1,5 +1,8 @@
 language:
   ruby 2.3.0
+before_install:
+  - gem update --system
+  - gem --version
 env:
   - DB=postgresql
 addons:
