@@ -1,7 +1,30 @@
 <h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
-<font color="red"><%= flash[:notice] %></font>
+<meta name="google-signin-client_id" content="801118970389-nj4elevvk0vqnqh7iigu0957e97k4msj.apps.googleusercontent.com">
+<meta name="google-signin-scope" content="profile email">
+
+
+<script>
+  function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+
+
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+
+  };
+</script>
+<div color="red"><%= flash[:notice] %></div>
 <% provide(:title, "Log in") %>
 <h1>Log in</h1>
 
@@ -19,5 +42,22 @@
     <% end %>
 
     <a class="btn btn-sm btn-white btn-block" href="users/new.html">Register</a>
+
+    <!-- the next two Google-SignIn button are same.
+    Please choose one for UI design and delete another. --Athena -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div><br>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <!-- -->
+
+    <a href="/" onclick="signOut();">Sign out</a>
+    <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+
+        });
+      }
+    </script>
   </div>
 </div>
