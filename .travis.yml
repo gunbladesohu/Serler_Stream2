@@ -12,7 +12,7 @@ addons:
 before_script:
   - bundle install
   #- cp config/database.yml.travis config/database.yml
-  - "cp ./.travis.database.yml ./config/database.yml"
+  - cp config/travis.database.yml config/database.yml
   - bundle exec rake db:setup
 script:
   - RAILS_ENV=test bundle exec rake db:seed
