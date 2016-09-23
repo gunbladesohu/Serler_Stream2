@@ -1,21 +1,523 @@
-<h1 class="col-lg-6 col-lg-offset-3 ">New User</h1>
 
 
-
-<div class="container col-log-8">
-    
-    
-   
-    <div class="row">
-        <%= render 'form' %>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-6">
-        <%= link_to 'Back', users_path %>
+<div class="container col-lg-8 col-lg-offset-2">
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+          
+        <div class="fieldLable col-lg-5" >
+           <h1 >User Registration</h1>
+        </div>
       </div>
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5" >
+          <label>First name</label>
+        </div>
         
-    </div>
+        <div id="firstNameSection" class="col-lg-5 form-group">
+          <input class="form-control" id="firstName" >
+            <span id="firstName_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+            <span id="firstName_val_msg" class="validation help-block"></span>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable col-lg-5">
+         <label>Middle name</label>
+        </div>
+        
+        <div  class="col-lg-5 form-group">
+          <input class="form-control" id="middleName" placeholder="(optional)" >
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5">
+         <label>Last name</label>
+        </div>
+        
+        <!--<div class="col-lg-5 form-group has-error has-feedback">-->
+        <!-- <input class="form-control" id="lastName" >-->
+        <!-- <span class="validationIcon glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ></span>-->
+        <!-- <span class="help-block">This email is already existed, please choose different email</span>-->
+        <!--</div>-->
+        <div id="lastNameSection" class="col-lg-5 form-group">
+         <input class="form-control" id="lastName" >
+         <span id="lastName_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+        <span id="lastName_val_msg" class="validation help-block"></span>
+        </div>
+        
+      </div>
+      
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5">
+        <label>Email</label>
+        </div>
+        
+        <!--<div class="col-lg-5 form-group has-success has-feedback">-->
+        <!--  <input class="form-control" id="email" >-->
+        <!--  <span class="validationIcon glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ></span>-->
+        <!--</div>-->
+        <div id="emailSection" class="col-lg-5 form-group">
+          <input class="form-control" id="email" >
+            <span id="email_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+            <span id="email_val_msg" class="validation help-block"></span>
+        </div>
+      </div>
+      
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable col-lg-5">
+         <label>Gender</label>
+        </div>
+        
+        <div class="row col-lg-5" >
+            <div class="col-lg-4" >
+                <label><input type="radio" name="genderRadio" value="Male" id="maleRadioBtn" checked="true"> Male</label>
+            </div>
+             
+             
+             <div class="col-lg-6" >
+                 <label><input type="radio" name="genderRadio" value="Female" id="femaleRadioBtn"  > Female</label>
+            </div>
+           
+        </div>
+      </div>
+     
+        <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5">
+            <label>Date of birth</label>
+        </div>
+        
+        <div id="dateOfBrithSection" class="col-lg-5 form-group">
+            
+             <div class='input-group date' id='dateOfBrith'>
+                <input class="form-control input-dateOfBrith" onchange="dateOfBirthErrorCheck();" >
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar">
+                  </span>
+                </span>
+            </div>
+            <span id="dateOfBrith_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+            <span id="dateOfBrith_val_msg" class="validation help-block"></span>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable col-lg-5">
+          <label>Affiliation</label>
+        </div>
+        
+        <div class="col-lg-5">
+         <input class="form-control" id="affiliation" >
+        </div>
+      </div>
+     
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5">
+         <label>Password</label>
+        </div>
+        
+        <div id="passwordSection" class="col-lg-5 form-group">
+          <input type="password" class="form-control" id="password" >
+           <span id="password_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+        <span id="password_val_msg" class="validation help-block"></span>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5">
+          <label>Password confirmation</label>
+        </div>
+        
+        <div id="password_confirmationSection" class="col-lg-5 form-group">
+         <input type="password" class="form-control" id="password_confirmation" >
+          <span id="password_confirmation_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
+        <span id="password_confirmation_val_msg" class="validation help-block"></span>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 5px 0px 5px 0px">
+        
+       <div class="col-lg-6 col-lg-offset-5">
+           
+        <button type="button" class="btn btn-primary" id="SubmitBtn">Register Now</button>
+        <button type="button" class="btn btn-primary" id="CancelBtn">Cancel</button>
+        
+      </div>
+      </div>
+    <h2 id="lineBreak"><span id="lineBreakText">Or</span></h2>
     
+    <div class="row" style="padding: 10px 0px 5px 0px">
+          
+        <div class="col-lg-3 col-lg-offset-3" align="right" >
+          <button type="button" class="btn btn-default btn-block"  id="facebookBtn"  >
+              <span class="fa fa-facebook"></span> Facebook
+            </button>
+        </div>
+        
+         <div class="col-lg-3" >
+           <button type="button" class="btn btn-default btn-block" id="googleBtn" >
+              <span class="fa fa-google"></span> Google
+            </button>
+        </div>
+    </div>
 </div>
 
+
+<script type="text/javascript">
+
+    var today = new Date();
+    
+    var datePicker = $('#dateOfBrith').datetimepicker({
+              defaultDate: today,
+              viewMode: 'days',
+              format: 'DD/MM/YYYY'
+            });
+        
+     $('#CancelBtn').click(function(e){
+         $('.validation').hide();
+         resetSections();
+         
+        var month = today.getMonth() + 1;
+         if (today.getMonth() < 9){
+             month = "0" + (today.getMonth() + 1);
+         }
+        $('#maleRadioBtn').prop('checked',true);
+        $('.input-dateOfBrith').val(today.getDate() + "/"+ month +"/"+today.getFullYear())
+        $('#firstName').val("");
+        $('#middleName').val("");
+        $('#lastName').val("");
+        $('#email').val("");
+        $('#affiliation').val("");
+        $('#password').val("");
+        $('#password_confirmation').val("");
+     });
+     
+    $('#SubmitBtn').click(function(e){
+        
+        doubleCheckError();
+        
+        if(firstNameFreeError && lastNameFreeError && dobFreeError && emailFreeError && passwordFreeError && passwordConfirmFreeError){
+            var firstName = $('#firstName').val();
+            var middleName = $('#middleName').val();
+            var lastName = $('#lastName').val();
+            var email = $('#email').val();
+            var affiliation = $('#affiliation').val();
+            var password = $('#password').val();
+            var dob = $('.input-dateOfBrith').val();
+            var gender = $('input[name=genderRadio]:checked').val();
+            
+            //  $.ajax({
+            //                 url: '/users',
+            //                 type: 'post',
+            //                 data: {
+            //                         firstName: firstName, 
+            //                         middleName: middleName, 
+            //                         lastName: lastName, 
+            //                         email: email, 
+            //                         password: password, 
+            //                         affiliation: affiliation, 
+            //                         dob: dob, 
+            //                         gender: gender
+            //                 },
+            //                 contentType: 'json'
+            //         });
+            
+            var user = {
+                    first_name: firstName, 
+                    middle_name: middleName, 
+                    last_name: lastName, 
+                    email: email, 
+                    password_digest: password, 
+                    affiliation: affiliation, 
+                    dob: dob, 
+                    gender: gender,
+                    is_active: false
+            }
+            
+            $.post('/users', user);
+        }
+                   
+     });
+    
+    $('.validation').hide();
+    
+    $("#firstName").change(function() {
+       firstNameErrorCheck();
+    }); 
+    
+     $("#lastName").change(function() {
+       lastNameErrorCheck();
+    }); 
+    
+    $("#email").change(function() {
+       emailErrorCheck(); 
+    }); 
+    
+    $("#password").change(function() {
+       passwordErrorCheck(); 
+    }); 
+    
+     $("#password_confirmation").change(function() {
+       passwordConfirmErrorCheck(); 
+    }); 
+    
+    var firstNameFreeError = true;
+    function firstNameErrorCheck(){
+        
+        firstNameFreeError = true ;
+        
+        $("#firstNameSection").attr('class', 'col-lg-5 form-group');
+        
+        if($("#firstName").val().length === 0){
+            $("#firstNameSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#firstName_val_icon").show();
+           $("#firstName_val_msg").show();
+           
+           $("#firstName_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#firstName_val_msg").text('Please enter your first name');
+           
+           firstNameFreeError = false;
+       }else{
+           $("#firstName_val_icon").show();
+           $("#firstName_val_msg").hide();
+           
+           $("#firstName_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+       }
+    }
+    
+    var lastNameFreeError = true;
+    function lastNameErrorCheck(){
+        
+        lastNameFreeError = true ;
+        
+        $("#lastNameSection").attr('class', 'col-lg-5 form-group');
+        
+        if($("#lastName").val().length === 0){
+            $("#lastNameSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#lastName_val_icon").show();
+           $("#lastName_val_msg").show();
+           
+           $("#lastName_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#lastName_val_msg").text('Please enter your last name');
+           
+           lastNameFreeError = false;
+       }else{
+           $("#lastName_val_icon").show();
+           $("#lastName_val_msg").hide();
+           
+           $("#lastName_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+       }
+    }
+    
+     var dobFreeError = true;
+    function dateOfBirthErrorCheck(){
+        
+        dobFreeError = true ;
+        
+        $("#dateOfBrithSection").attr('class', 'col-lg-5 form-group');
+        
+        if($('.input-dateOfBrith').val().length === 0){
+            $("#dateOfBrithSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#dateOfBrith_val_icon").show();
+           $("#dateOfBrith_val_msg").show();
+           
+           $("#dateOfBrith_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#dateOfBrith_val_msg").text('Date of birth cannot be empty');
+           
+           dobFreeError = false;
+       }else{
+           $("#dateOfBrith_val_icon").show();
+           $("#dateOfBrith_val_msg").hide();
+           
+           $("#dateOfBrith_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+       }
+    }
+    
+    var emailFreeError = true;
+    function emailErrorCheck(){
+        
+        emailFreeError = true ;
+        
+        $("#emailSection").attr('class', 'col-lg-5 form-group');
+         $("#email_val_icon").show();
+         
+        if($("#email").val().length === 0){
+            $("#emailSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#email_val_msg").show();
+           
+           $("#email_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#email_val_msg").text('Please enter your email address');
+           
+           emailFreeError = false;
+       }else{
+           
+           if(isValidEmailAddress($("#email").val())){
+               
+                 $.ajax({
+                    type : 'get',
+                    url : "/admin/exsitedEmailCheck",
+                    data : "email=" + $("#email").val(),    
+                    dataType : 'json',
+                    async : false,
+                    context : document.body,
+                    success : function(response) {
+                        if(response == null){
+                                emailFreeError = true;
+                               $("#email_val_msg").hide();
+                               
+                               $("#email_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+                        }else{
+                                emailFreeError = false;
+                             $("#emailSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+                               $("#email_val_msg").show();
+                               
+                               $("#email_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+                               $("#email_val_msg").text('This email is already used, please provide different email');
+                        }
+                    }
+                  });
+           }else{
+               emailFreeError = false;
+                $("#emailSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+               $("#email_val_msg").show();
+               
+               $("#email_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+               $("#email_val_msg").text('Please provide a valid email address');
+           }
+          
+       }
+       
+       
+    }
+    
+    var passwordFreeError = true;
+    function passwordErrorCheck(){
+        
+        passwordFreeError = true ;
+         $("#password_val_icon").show();
+         
+        $("#passwordSection").attr('class', 'col-lg-5 form-group');
+        
+        if($("#password").val().length === 0){
+            passwordFreeError = false;
+            $("#passwordSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#password_val_msg").show();
+           
+           $("#password_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#password_val_msg").text('Please enter your password');
+           
+       }else{
+           
+           if($("#password").val().match(/^(?=.*\d)[0-9a-zA-Z]{6,}$/)){
+               passwordFreeError = true;
+                $("#password_val_msg").hide();
+                 $("#password_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+           }else
+           {
+               passwordFreeError = false;
+                $("#passwordSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+               $("#password_val_msg").show();
+               
+               $("#password_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+               $("#password_val_msg").text('Password needs to contain 6 characters and one number at least');
+           }
+        
+       }
+    }
+    
+    var passwordConfirmFreeError = true;
+    function passwordConfirmErrorCheck(){
+        
+        passwordConfirmFreeError = true ;
+         $("#password_confirmation_val_icon").show();
+         
+        $("#password_confirmationSection").attr('class', 'col-lg-5 form-group');
+        
+        if($("#password_confirmation").val().length === 0){
+            passwordConfirmFreeError = false;
+            $("#password_confirmationSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+           $("#password_confirmation_val_msg").show();
+           
+           $("#password_confirmation_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+           $("#password_confirmation_val_msg").text('Please confirm your password');
+           
+       }else{
+           
+           if($("#password_confirmation").val() == $("#password").val()){
+               passwordConfirmFreeError = true;
+                $("#password_confirmation_val_msg").hide();
+                 $("#password_confirmation_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-ok form-control-feedback');
+           }else
+           {
+               passwordConfirmFreeError = false;
+                $("#password_confirmationSection").attr('class', 'col-lg-5 form-group has-error has-feedback');
+               $("#password_confirmation_val_msg").show();
+               
+               $("#password_confirmation_val_icon").attr('class', 'validation validationIcon glyphicon glyphicon-remove form-control-feedback');
+               $("#password_confirmation_val_msg").text('Confirmation password does not match');
+           }
+        
+       }
+    }
+    
+    
+    function doubleCheckError(){
+        firstNameErrorCheck();
+        lastNameErrorCheck();
+        dateOfBirthErrorCheck();
+        emailErrorCheck();
+        passwordErrorCheck();
+        passwordConfirmErrorCheck();
+        
+    }
+    
+    function resetSections(){
+         $("#firstNameSection").attr('class', 'col-lg-5 form-group');
+         $("#lastNameSection").attr('class', 'col-lg-5 form-group');
+         $("#emailSection").attr('class', 'col-lg-5 form-group');
+         $("#password_confirmationSection").attr('class', 'col-lg-5 form-group');
+         $("#passwordSection").attr('class', 'col-lg-5 form-group');
+         $("#dateOfBrithSection").attr('class', 'col-lg-5 form-group');
+    }
+    
+    function isValidEmailAddress(emailAddress) {
+        var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        return pattern.test(emailAddress);
+    }
+</script>
+
+<style>
+    .fieldLable{
+        text-align: right;
+    }
+    
+    #lineBreak{
+        width:100%; 
+        text-align:center; 
+        border-bottom: 1px solid #DDD; 
+        line-height:0.1em; 
+        margin:20px 0 30px;
+    }
+    
+     #lineBreakText{
+         font-size:15px;
+        background:#fff; 
+        padding:0 10px;
+    }
+    
+    .required label:after { 
+        content:"*";
+          color:red;
+    }
+    
+    .validationIcon{
+        right: -15px;
+    }
+    
+    .glyphicon-ok{
+        color: #3c763d;
+    }
+</style>

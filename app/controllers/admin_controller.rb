@@ -78,7 +78,9 @@ class AdminController  < BaseController
                   <h3>A rejection email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
     end
     
+    #articleItem.updated_at = DateTime.now
     articleItem.save
+    # redirect_to :action => :article_view
   end
   
   def article_detail
@@ -99,6 +101,11 @@ class AdminController  < BaseController
     articleItem.save
   end
   
+  
+  def article_show
+    #render :action => :article_view
+    redirect_to :action => :article_view
+  end
 
   def add_dev_method
     @ArticleList = Article.joins(:article_type,:status)
@@ -145,4 +152,13 @@ class AdminController  < BaseController
 
   end
 
+   # GET /admin/exsitedEmailCheck
+  def exsitedEmailCheck
+    @user = User.where("lower(email) =?", params[:email].downcase).first
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json  { render :json => @user}
+    end
+  end
+  
   end
