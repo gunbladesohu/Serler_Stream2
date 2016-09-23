@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   resources :search1_queries
   get 'search_queries/update_values' => 'search_queries#update_values'
 
@@ -18,7 +20,9 @@ Rails.application.routes.draw do
   resources :users
   root 'home#index'
 
-  get    '/login',   to: 'sessions#create'
+
+
+  get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
