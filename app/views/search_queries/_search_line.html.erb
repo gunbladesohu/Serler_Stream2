@@ -53,6 +53,9 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
+    if($(".operator").length == 1){
+      $(".operator")[0].selectedIndex = 0;
+    }
     $(".join_condition").each(function(index) {
       if(index == 0){
         $(this).toggle(false);
