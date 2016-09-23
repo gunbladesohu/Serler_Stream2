@@ -154,7 +154,7 @@
         <div class="col-lg-3 col-lg-offset-3" align="right" >
           <button type="button" class="btn btn-default btn-block"  id="facebookBtn"  >
               <span class="fa fa-facebook"></span> Facebook
-            </button>
+        </button>
         </div>
         
          <div class="col-lg-3" >
@@ -209,35 +209,20 @@
             var dob = $('.input-dateOfBrith').val();
             var gender = $('input[name=genderRadio]:checked').val();
             
-            //  $.ajax({
-            //                 url: '/users',
-            //                 type: 'post',
-            //                 data: {
-            //                         firstName: firstName, 
-            //                         middleName: middleName, 
-            //                         lastName: lastName, 
-            //                         email: email, 
-            //                         password: password, 
-            //                         affiliation: affiliation, 
-            //                         dob: dob, 
-            //                         gender: gender
-            //                 },
-            //                 contentType: 'json'
-            //         });
-            
-            var user = {
-                    first_name: firstName, 
-                    middle_name: middleName, 
-                    last_name: lastName, 
-                    email: email, 
-                    password_digest: password, 
-                    affiliation: affiliation, 
-                    dob: dob, 
-                    gender: gender,
-                    is_active: false
-            }
-            
-            $.post('/users', user);
+            $.ajax({
+                            url: '/users' ,
+                            type: 'POST',
+                            data: {
+                                    firstName: firstName, 
+                                    middleName: middleName, 
+                                    lastName: lastName, 
+                                    email: email, 
+                                    password: password, 
+                                    affiliation: affiliation, 
+                                    dob: dob, 
+                                    gender: gender
+                            }
+                    });
         }
                    
      });

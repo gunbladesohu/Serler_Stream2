@@ -20,9 +20,7 @@
              <td ><%= article.type_name %></td>
              <td class="statusName"><%= article.status_name %></td>
              <td><%= article.updated_time %></td>
-             <td><button><%= link_to "View Details",article_detail_path(articleId: article.article_id), :class => "btn", :remote => true, :onclick => "viewDetail('#{article.article_id}',mainTableBody  );return false;" %></button></td>
-             <!-- <td><button><%= link_to "Accept", article_quality_check_path(articleId: article.article_id, isAccepted: true), :class => "btn" %></button></td> -->
-             <!-- <td><button><%= link_to "Reject", article_quality_check_path(articleId: article.article_id ), :class => "btn" %></button></td> -->
+             <td><%= link_to "View Details",article_detail_path(articleId: article.article_id), :class => "btn btn-primary", :remote => true, :onclick => "viewDetail('#{article.article_id}',mainTableBody  );return false;" %></td>
              <td style="display:none;"><%= article.journal %></td>
              <td style="display:none;"><%= article.year %></td>
              <td style="display:none;"><%= article.month %></td>
@@ -112,15 +110,15 @@
                   
                     <div class="col-lg-4 ">
                         <div class="col-lg-6" id="acceptedBtn">
-                            <button  ><%= link_to "Accept", "", :onclick => "articleQualityCheck(selectedArticleId,'#{true}');return false;" , :class => "btn" %></button>
+                            <%= link_to "Accept", "", :onclick => "articleQualityCheck(selectedArticleId,'#{true}');return false;" , :class => "btn btn-primary" %>
                         </div>
                         
                          <div class="col-lg-6" id="rejectedBtn">
-                            <button><%= link_to "Reject", "", :onclick => "articleQualityCheck(selectedArticleId,'#{false}');return false;" ,:class => "btn" %></button>
+                           <%= link_to "Reject", "", :onclick => "articleQualityCheck(selectedArticleId,'#{false}');return false;" ,:class => "btn btn-primary" %>
                         </div>
                         
                          <div class="col-lg-6" style="text-align: right;">
-                            <button data-dismiss="modal" ><%= link_to "Cancel","", :class => "btn" %></button>
+                             <button data-dismiss="modal" class="btn btn-primary" >Cancel</button>
                         </div>
                        
                     </div>

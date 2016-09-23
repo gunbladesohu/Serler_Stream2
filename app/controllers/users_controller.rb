@@ -26,35 +26,17 @@ class UsersController < BaseController
   # POST /users
   # POST /users.json
   def create
+    @user = User.new(
+      :first_name => params[:firstName],
+      :middle_name => params[:middleName],
+      :last_name => params[:lastName],
+      :email => params[:email],
+      :dob => params[:dob],
+      :gender => params[:gender],
+      :password_digest => params[:password],
+      :affiliation => params[:affiliation],
+      :is_active => false)
     
-    @user = User.new(params[:user])
-    
-    # @user = User.new(
-    #   :first_name => params[:firstName],
-    #   :middle_name => params[:middleName],
-    #   :last_name => params[:lastName],
-    #   :email => params[:email],
-    #   :dob => params[:dob],
-    #   :gender => params[:gender],
-    #   :password_digest => params[:password],
-    #   :affiliation => params[:affiliation],
-    #   :is_active => false)
-    
-    # @user.save
-    
-    # @user = User.new
-    
-    # @user.first_name = params[:firstName]
-    # @user.middle_name = params[:middleName]
-    # @user.last_name = params[:lastName]
-    # @user.email = params[:email]
-    # @user.dob = params[:dob]
-    # @user.gender = params[:gender]
-    # @user.password = params[:password]
-    # @user.affiliation = params[:affiliation]
-    # @user.is_active = false
-    
-    # @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
