@@ -45,7 +45,13 @@
     </div>
 
     <% if @search_query != nil %>
-      <h3>Search from <%= @search_query.from_date %> to <%= @search_query.to_date %></h3>
+      <h3>Search from
+        <% if @search_query.from_date > 0 %> 
+          <%= @search_query.from_date %>
+        <% else %>
+          past
+        <% end %> 
+        to <%= @search_query.to_date %></h3>
       <% @search_query.search_lines.each_with_index do |search_line, index| %>
         <% if index > 0 %>
           <p><%= search_line.join_condition_txt %></p>
