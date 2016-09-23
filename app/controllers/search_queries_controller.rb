@@ -17,6 +17,33 @@ class SearchQueriesController < BaseController
     @search_query = SearchQuery.find(params[:id])
     @articles = do_search @search_query
     @search_query.allow_save = false
+    # Load search line value
+    @search_query.search_lines.each do |search_line|
+      # get search field name from FieldTable
+      field = FieldTable.find(search_line.field_id)
+      search_line.search_field_txt = field.name
+      # get join condition name
+      j_condition = JoinCondition.find(search_line.join_condition)
+      search_line.join_condition_txt = j_condition.name
+      # get operator name
+      o_operator = Operator.find(search_line.operator)
+      search_line.opertator_txt = o_operator.name
+      # get search value
+      case search_line.field_id.to_i
+        when 1
+          search_line.value = DevMethod.find(search_line.value_id).name
+        when 2
+          search_line.value = Methodology.find(search_line.value_id).name
+        when 3
+          search_line.value = ResearchMethod.find(search_line.value_id).name
+        when 4
+          search_line.value = ResearchParticipant.find(search_line.value_id).name
+        when 5,6,7,8,9,12,13,14
+          search_line.value = search_line.value_text
+        when 10,11
+          search_line.value = search_line.value_number
+      end
+    end
     respond_to do |format|
       format.html { render :index }
     end
