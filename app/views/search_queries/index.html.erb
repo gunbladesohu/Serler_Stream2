@@ -43,6 +43,47 @@
         </div>
       </div>
     </div>
+
+    <% if @search_query != nil %>
+      <h3>Search from <%= @search_query.from_date %> to <%= @search_query.to_date %></h3>
+      <% @search_query.search_lines.each_with_index do |search_line, index| %>
+        <% if index > 0 %>
+          <p><%= search_line.join_condition_txt %></p>
+        <% end %>
+        <p>
+          <h4>
+            <%= search_line.search_field_txt %> <%= search_line.opertator_txt %> <%= search_line.value %>
+          </h4>
+        </p>
+      <% end %>
+      <% if @search_query.allow_save == true %>
+        <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
+          Save Query
+        </button>
+        <div class="modal fade" id="save_query" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Save Query</h4>
+              </div>
+              <div class="modal-body">
+                <%= form_for(@search_query) do |f| %>
+                  <div class="form-group">
+                    <%= f.label :description %><br>
+                    <%= f.text_field :description, class: "form-control" %>
+                    <p class="mandatory1">This field is required</p>
+                  </div>
+                  <%= f.hidden_field :isActive, {value: 'true'} %>
+                  <%= f.submit :'Save', {class: 'btn btn-success'} %>
+                <% end %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      <% end %>
+    <% end %>
+
     <div class="table-responsive">
       <table class="table table-striped" id="result-table">
         <thead>
@@ -61,18 +102,18 @@
         </thead>
         <tbody>
         <% @articles.each do |article| %>
-            <tr>
-              <td class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
-              <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
-              <td class="year"><%= article.year %></td>
-              <td class="journal"><%= article.journal %></td>
-              <td class="volume"><%= article.volume %></td>
-              <td class="issues"><%= article.number %></td>
-              <td class="pages"><%= article.pages %></td>
-              <td class="doi"><%= article.doi %></td>
-              <td class="url"><%= article.url %></td>
-              <td class="keywords"><%= article.keyword %></td>
-            </tr>
+          <tr>
+            <td class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
+            <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
+            <td class="year"><%= article.year %></td>
+            <td class="journal"><%= article.journal %></td>
+            <td class="volume"><%= article.volume %></td>
+            <td class="issues"><%= article.number %></td>
+            <td class="pages"><%= article.pages %></td>
+            <td class="doi"><%= article.doi %></td>
+            <td class="url"><%= article.url %></td>
+            <td class="keywords"><%= article.keyword %></td>
+          </tr>
         <% end %>
         </tbody>
       </table>
@@ -84,6 +125,10 @@
   $(document).ready(function(){
 
     $(".tooltips").tooltip({placement: 'top'});
+
+    $(".toggle-model").click(function () {
+      $('#save_query').modal('toggle');
+    });
 
     $(".check-head:checkbox:not(:checked)").each(function(){
       var col = "table ." + $(this).attr("name");
@@ -117,6 +162,15 @@
       if($.trim($('#quick_search').val()) == ''){
         $("#quick_search").css("border", "2px solid red");
         $(".mandatory").css("display", "block");
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    $(".edit_search_query").submit(function(e) {
+      if($.trim($('#search_query_description').val()) == ''){
+        $("#search_query_description").css("border", "2px solid red");
+        $(".mandatory1").css("display", "block");
         e.preventDefault();
         return false;
       }

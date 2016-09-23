@@ -3,8 +3,8 @@ class CreateSearchQueries < ActiveRecord::Migration
     create_table :search_queries do |t|
       t.string  :description
       t.integer :user_id
-      t.date    :from_date
-      t.date    :to_date
+      t.integer :from_date
+      t.integer :to_date
       t.text    :sql_string
       t.boolean :isActive
 
