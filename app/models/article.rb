@@ -16,6 +16,7 @@ class Article < ActiveRecord::Base
 
   belongs_to :status, foreign_key: :status_id
   belongs_to :article_type, foreign_key: :type_id
+  belongs_to :user, foreign_key: :user_id
 
   attr_accessor :authors
 
@@ -45,10 +46,9 @@ class Article < ActiveRecord::Base
   # pavan primary search in the search page
   def self.search(search)
     if search
-      where(["title LIKE ?","%#{search}%"])
+      where(["title ILIKE ?","%#{search}%"])
     else
       all
     end
   end
-
 end
