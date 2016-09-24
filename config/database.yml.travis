@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  username: postgres
+  password:
+  pool: 5
+  timeout: 5000
+#  port: 5432
+  host: localhost
+  <<: *<%= ENV['DB'] || "postgresql" %>
+#  database: strano_<%= Rails.env %>
+#  min_messages: ERROR
+
+development:
+  <<: *default
+  database: SERLER_Stream2_dev
+
+test:
+  <<: *default
+  database: SERLER_Stream2_test
+
+production:
+  <<: *default
+  database: SERLER_Stream2_pro
+
+cucumber:
+  <<: *test
