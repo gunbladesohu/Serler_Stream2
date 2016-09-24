@@ -15,8 +15,9 @@ before_script:
 #
 #  - cp config/database.travis.yml config/database.yml
 script:
-#  - bundle exec rake db:create
-#  - RAILS_ENV=test bundle exec rake db:seed
+  - bundle exec rake db:setup
+  - bundle exec rake db:migrate
+  - RAILS_ENV=test bundle exec rake db:seed
 #  - bundle exec cucumber
 #  - bundle exec rspec
 notifications: # set notification options
