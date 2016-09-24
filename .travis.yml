@@ -16,8 +16,8 @@ script:
   - bundle exec rake db:setup
   - bundle exec rake db:migrate
   - RAILS_ENV=test bundle exec rake db:seed
-  - bundle exec cucumber
-  - bundle exec rspec
+#  - bundle exec cucumber
+#  - bundle exec rspec
 notifications: # set notification options
 #  email:
 #    recipients:
