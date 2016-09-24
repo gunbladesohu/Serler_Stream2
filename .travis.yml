@@ -6,20 +6,18 @@ rvm:
 #  - gem update --system
 #  - gem --version
 #  - gem install rake
-env:
+#env:
 #  - DB = postgresql
 #addons:
 #  postgresql: "9.5.4:"
 before_script:
 #  - bundle install
-#
-#  - cp config/database.travis.yml config/database.yml
 script:
   - bundle exec rake db:setup
   - bundle exec rake db:migrate
   - RAILS_ENV=test bundle exec rake db:seed
-#  - bundle exec cucumber
-#  - bundle exec rspec
+  - bundle exec cucumber
+  - bundle exec rspec
 notifications: # set notification options
 #  email:
 #    recipients:
@@ -37,12 +35,12 @@ deploy:
    provider: heroku
    api_key:
      secure: 6f4014f7-8c33-41a6-8a06-472ad1759113
-   app:
-     master: serlermaster
-     sprint1: serlersprint1
-     sprint2: serlersprint2
-     sprint3: serlersprint3
-     production: serlerofasiankiwi
+   app: serlerofasiankiwi
+#     master: serlermaster
+#     sprint1: serlersprint1
+#     sprint2: serlersprint2
+#     sprint3: serlersprint3
+#     production: serlerofasiankiwi
    on:
      repo: tdbt1985/Serler_Stream2
      branch: AsianKiwi
