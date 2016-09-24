@@ -2,10 +2,10 @@ language:
   ruby 
 rvm:
    - 2.3.0
-before_install:
-  - gem update --system
-  - gem --version
-  - gem install rake
+#before_install:
+#  - gem update --system
+#  - gem --version
+#  - gem install rake
 env:
   - DB=postgresql
 addons:
