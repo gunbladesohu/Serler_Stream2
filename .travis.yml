@@ -33,11 +33,14 @@ notifications: # set notification options
 
 before_deploy:
 - gem install mime-types -v 2.6.2
-# deploy:
-#   provider: heroku
-#   api_key:
-#   app:
-#     master:my-app
-#     sprint1
-#     sprint2
-#     sprint3
+
+deploy:
+   provider: heroku
+   api_key:
+     secure: 6f4014f7-8c33-41a6-8a06-472ad1759113
+   app:
+     master: serlermaster
+     sprint1: serlersprint1
+     sprint2: serlersprint2
+     sprint3: serlersprint3
+     production: serlerofasiankiwi
