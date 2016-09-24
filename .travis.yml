@@ -7,9 +7,9 @@ rvm:
 #  - gem --version
 #  - gem install rake
 env:
-  - DB=postgresql
-addons:
-  postgresql: "9.5.4:"
+#  - DB = postgresql
+#addons:
+#  postgresql: "9.5.4:"
 before_script:
 #  - bundle install
 #
