@@ -1,5 +1,39 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
+  
   def new
+    
+    firstName = params[:firstName]
+    lastName = params[:lastName]
+    email = params[:email]
+    condition = User.exists?(['lower(email) =?', email.downcase])
+    
+    if  condition == true
+     
+      user = User.where("lower(email) =?", email.downcase).first
+      
+      log_in(user)
+      
+      
+    else
+          user = User.new(
+            :first_name => firstName,
+            :middle_name => "",
+            :last_name => lastName,
+            :email => email,
+            :dob => "",
+            :gender => "",
+            :password_digest => "samplepassword123",
+            :affiliation => "",
+            :is_active => true)
+      
+          user.save
+          
+          log_in(user)
+          
+    end
+    
+
   end
 
 
@@ -20,6 +54,7 @@ class SessionsController < ApplicationController
     end
 
   end
+  
   def destroy
     log_out
     redirect_to root_url

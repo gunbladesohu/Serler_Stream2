@@ -108,7 +108,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                         affiliation: 'AUT', is_active: true, password_digest: '1234')
 @user2 = User.create(first_name: 'Tony', middle_name: '', last_name: 'Chen', email: 'dsz8022@autuni.ac.nz', gender: 'Male', dob: '', 
                         affiliation: 'Microsoft', is_active: true, password_digest: '1234')
-@user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@hotmail.com', gender: 'Female', dob: '', 
+@user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '', 
                         affiliation: 'Apple', is_active: true, password_digest: '1234')
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)

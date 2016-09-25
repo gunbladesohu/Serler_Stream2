@@ -1,5 +1,3 @@
-
-
 <div class="container col-lg-8 col-lg-offset-2">
       
       <div class="row" style="padding: 10px 0px 5px 0px">
@@ -36,11 +34,6 @@
          <label>Last name</label>
         </div>
         
-        <!--<div class="col-lg-5 form-group has-error has-feedback">-->
-        <!-- <input class="form-control" id="lastName" >-->
-        <!-- <span class="validationIcon glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ></span>-->
-        <!-- <span class="help-block">This email is already existed, please choose different email</span>-->
-        <!--</div>-->
         <div id="lastNameSection" class="col-lg-5 form-group">
          <input class="form-control" id="lastName" >
          <span id="lastName_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
@@ -55,10 +48,6 @@
         <label>Email</label>
         </div>
         
-        <!--<div class="col-lg-5 form-group has-success has-feedback">-->
-        <!--  <input class="form-control" id="email" >-->
-        <!--  <span class="validationIcon glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ></span>-->
-        <!--</div>-->
         <div id="emailSection" class="col-lg-5 form-group">
           <input class="form-control" id="email" >
             <span id="email_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
@@ -152,22 +141,47 @@
     <div class="row" style="padding: 10px 0px 5px 0px">
           
         <div class="col-lg-3 col-lg-offset-3" align="right" >
-          <button type="button" class="btn btn-default btn-block"  id="facebookBtn"  >
+          <button type="button" class="btn btn-default btn-block"  id="facebookBtn"  onclick="FacebookLogin();">
               <span class="fa fa-facebook"></span> Facebook
-        </button>
+            </button>
+        <div id="status"></div>
+        <!--<fb:login-button size="xlarge" scope="public_profile,email" onlogin="checkLoginState();" autologoutlink="true" >-->
+        <!--    Facebook-->
+        <!-- </fb:login-button>-->
+         <!-- <fb:login-button size="xlarge" scope="public_profile,email" onlogin="checkLoginState();" >-->
+         <!--   Facebook-->
+         <!--</fb:login-button>-->
+         
         </div>
         
          <div class="col-lg-3" >
-           <button type="button" class="btn btn-default btn-block" id="googleBtn" >
+           <button  type="button" class="btn btn-default btn-block" id="googleBtn"  onclick="GoogleLogin();">
               <span class="fa fa-google"></span> Google
             </button>
+            
+           <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" class="btn btn-default btn-block" id="googleBtn" >-->
+           <!--</div>-->
+
+           <!--<a href="/" onclick="signOut();">Sign out</a>-->
+           <!--<script>-->
+           <!--  function signOut() {-->
+           <!--    var auth2 = gapi.auth2.getAuthInstance();-->
+           <!--    auth2.signOut().then(function () {-->
+           <!--      console.log('User signed out.');-->
+
+           <!--    });-->
+           <!--  }-->
+           <!--</script>-->
         </div>
+        
+        
     </div>
 </div>
 
 
 <script type="text/javascript">
 
+    
     var today = new Date();
     
     var datePicker = $('#dateOfBrith').datetimepicker({
@@ -472,8 +486,160 @@
         var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
         return pattern.test(emailAddress);
     }
+    
+    
+    /*---Facebook Login part---*/
+    
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '239867929713558',
+              cookie     : true,  // enable cookies to allow the server to access 
+                                  // the session
+              xfbml      : true,  // parse social plugins on this page
+              version    : 'v2.6' // use version 2.3
+            });
+        
+            // FB.getLoginStatus(function(response) {
+            //   statusChangeCallback(response);
+            // });
+        };
+        
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+            
+            
+          if (response.status === 'connected') {
+              // Logged into your app and Facebook.
+              // we need to hide FB login button
+              $('#facebookBtn').hide();
+              //fetch data from facebook
+             // getUserInfo();
+          } else if (response.status === 'not_authorized') {
+              // The person is logged into Facebook, but not your app.
+              $('#status').html('Please log into this app.');
+          } else {
+              // The person is not logged into Facebook, so we're not sure if
+              // they are logged into this app or not.
+              $('#status').html('Please log into facebook');
+          }
+        }
+        
+
+       function FacebookLogin(){
+           FB.login(function(response) {
+             if (response.authResponse) 
+             {
+                 if (response.status == "connected"){
+                     
+                         
+                          FB.api('/me', { locale: 'en_US', fields: 'first_name, last_name, email' }, function(response) {
+                             
+                                $.ajax({
+                                    type : 'get',
+                                    url : "/sessions/new",
+                                    data : "email=" + response.email + "&firstName=" + response.first_name + "&lastName=" + response.last_name,    
+                                    dataType : 'json',
+                                    async : false,
+                                    success : function(response) {
+                                       console.log(response);
+                                    }
+                                  });
+                      
+                         });
+                     
+                   //window.location.href = "/";
+                   
+                    window;
+                 }
+                // getUserInfo(); //Get User Information.
+              } else
+              {
+               alert('Authorization failed.');
+              }
+           },{scope: 'public_profile,email'});	
+       }
+
+    /*---End of Facebook Login part---*/
+    
+    
+    /*---Google Login part---*/
+    
+    (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+     
+     function onLoadCallback()
+        {
+            gapi.client.setApiKey('AIzaSyAgBKXR8frw80a3KAZz_aSN8_xvhnS24gM'); //set your API KEY
+            gapi.client.load('plus', 'v1',function(){});//Load Google + API
+        }
+    
+    function GoogleLogin() 
+        {
+          var myParams = {
+            'clientid' : '435987715515-2vk4q9c7vtrl1js7sic133n3r5k2e04r.apps.googleusercontent.com', //You need to set client id
+            'cookiepolicy' : 'single_host_origin',
+            'callback' : 'loginCallback', //callback function
+            'approvalprompt':'force',
+            'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+          };
+          gapi.auth.signIn(myParams);
+        }
+        
+    function loginCallback(e)
+        {
+            
+            if(e['status']['signed_in'])
+            { 
+                
+                var request = gapi.client.plus.people.get(
+                {
+                    'userId': 'me'
+                });
+                
+                request.execute(function (resp)
+                {
+                     $.ajax({
+                            type : 'get',
+                            url : "/sessions/new",
+                            data : "email=" + resp.emails[0].value + "&firstName=" + resp.name['givenName'] + "&lastName=" + resp.name['familyName'],    
+                            dataType : 'json',
+                            async : false,
+                            success : function(response) {
+                               console.log(response);
+                            }
+                          });
+                });
+        
+            }   
+         
+        }
+  
+    /*---End of Google Login part---*/
 </script>
 
+<script type="text/javascript">
+
+// $(document).ready(
+//      function() {
+//       setInterval(function() {
+//         $('.top-navigation').load('/application/reload_nav');
+//     }, 3000);
+// });
+
+</script>
+   
 <style>
     .fieldLable{
         text-align: right;
@@ -505,4 +671,7 @@
     .glyphicon-ok{
         color: #3c763d;
     }
+    
+    
 </style>
+

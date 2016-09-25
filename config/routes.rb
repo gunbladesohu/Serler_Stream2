@@ -19,13 +19,14 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   root 'home#index'
-
-
-
+  
+  
+  get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-
+  
+  get "users/new", as: "register"
   match ':controller(/:action(/:id))', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

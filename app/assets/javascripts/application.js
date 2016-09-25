@@ -5,9 +5,9 @@
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 //
-
-//= require bootstrap.js
 //= require jquery
+//= require bootstrap.js
+//= require bootstrap.min.js
 //= require jquery_ujs
 //= require moment
 //= require bootstrap-datetimepicker

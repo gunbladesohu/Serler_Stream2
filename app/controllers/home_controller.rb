@@ -1,5 +1,6 @@
-class HomeController < ApplicationController
+class HomeController < BaseController
   #layout false
+  
   def index
 
   end
