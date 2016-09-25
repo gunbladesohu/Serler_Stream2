@@ -1,14 +1,22 @@
-notifications: # set notification options
-  email:
-    recipients:
-      - one@example.com
-
-
-    # change is when the repo status goes from pass to fail or vice versa
-    on_success: [always|never|change]
-    on_failure: [always|never|change]
-  # Or we could just disable all email
+language: ruby
+rvm:
+  - 2.3.0
+before_script:
+  - bundle exec rake db:setup
+  - bundle exec rake db:migrate
+#  - RAILS_ENV=test bundle exec rake db:seed
+  - RAILS_ENV=test bundle exec rake db:setup
+  - RAILS_ENV=test bundle exec rake db:migrate
+script:
+  - bundle exec cucumber
+  - bundle exec rspec
+notifications:
   email: false
-
-before_deploy:
-- gem install mime-types -v 2.6.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: 2smnOt2dH0EfPOsvr1If8XyhvxKWep6ECU/SephFUxCaGadoSstW0vxF4hNQFoAICPcCcGfXwzb2nof1E2mqtR6guGe0rbb/LrVzv+86vKTbcZu0Kt+DXLDVoD382CwOj46v7ZxDzC6O71GeIOnZyFUQTp11L2PT+MxY805VlD77xLCA3x/dAoa0yGo2cz2mb3NA3uv79lTeKtxyAgehCk0UkywQsFltTdmr8lyIC+UKH3bk9ZaS8EXNPmCa+J4vjYS/jArV9g704br052beFZxBSZLAwsfirFGcwznhQC7uIHrwcxE5gawZTxTLgz+V5ZJDLlqZX0FHtYrbXFslt9GelRecOve07sD3gQ7sBqmDiPpcKe4lv7e090yYQFEgH18uao2RyXi3e+xe9lzHIyC7RebIQHsAVhS6Lp8IJDBxVVnrbEVzlzoQbqZewV7gIU4rAZGGY8Zo3ds568PuQRHuUSotCNXOfShAYCq2E1+Q4f7scFOPmKhBDmrokMscwulw5Ggc0W2x2f5hiOlA58KdMibyIejcOnf+oQzbipi/zxJeE2mqeXCaokDxTtQ/Hha79pZmG2tBRq2oC5w8wIO7sOzLbjFFvvu2uommSC7XQJ+5wj3dcpY5MN4s/Y91erEtItmRKesy7k3KlShI41F3mkIl23FDvF6FPpoMlOM=
+  app: serlerofasiankiwi
+  on:
+    repo: tdbt1985/Serler_Stream2
+    branch: AsianKiwi
