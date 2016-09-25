@@ -36,12 +36,13 @@
 </nav>
 <% end %>
 <% content_for :login_content do %>
-    <%= content_for?(:content) ? yield(:content) : yield %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
 <% end %>
-<%= render template: "layouts/application" %>
-
+<% content_for :javascript do %>
 <script type="text/javascript">
   $(document).ready(function () {  
     $('.dropdown-toggle').dropdown();  
   }); 
 </script>
+<% end %>
+<%= render template: "layouts/application" %>
