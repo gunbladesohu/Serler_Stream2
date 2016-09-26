@@ -36,9 +36,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'byebug'
+  gem 'assert_difference'
 end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
