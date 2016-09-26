@@ -1,12 +1,13 @@
 class ArticlesController < BaseController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
 
   # GET /articles
   # GET /articles.json
   def index
     #@articles = Article.all
      @articles = Article.includes(:users)
-     #.user_filter(11)
+     .user_filter(@current_user.id)
   end
 
   # GET /articles/1
@@ -74,10 +75,14 @@ class ArticlesController < BaseController
       @article = Article.find(params[:id])
     end
 
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :journal, :year, :volume,
-        :number, :month, :research_questions, :research_metrics, 
+        :number, :month, :research_questions, :research_metrics,
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},

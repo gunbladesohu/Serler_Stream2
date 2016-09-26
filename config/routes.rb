@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
   resources :methodologies
   resources :dev_methods
   resources :research_methods
@@ -12,7 +16,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   resources :anaylsts, only: [:show, :edit, :update, :destroy]
-  root 'home#index'
+
+  root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
