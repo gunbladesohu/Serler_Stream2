@@ -10,12 +10,88 @@
       </ul>
     </div>
   <% end %>
-  <label><%= f.label :research_questions %></label>
-  <%= f.text_field :research_questions %><br>
-  <label><%= f.label :research_metrics %></label>
-  <%= f.text_field :research_metrics %><br>
-
-  <div class="field">
+  <table cellpadding="5" style="width:100%">
+    <tr>
+      <td>
+          <label><%= f.label :title %></label>
+      </td>
+      <td>
+        <%= @article.title %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <label><%= f.label :journal %></label>
+      </td>
+      <td>
+        <%= @article.journal %><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <label><%= f.label :Year %></label>
+      </td>
+      <td>
+        <%= @article.year %><br>
+      </td>
+      <td>
+          <label><%= f.label :month %></label>
+      </td>
+      <td>
+        <%= @article.month %><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <label><%= f.label :Volume %></label>
+      </td>
+      <td>
+        <%= @article.volume %><br>
+      </td>
+      <td>
+          <label>Issue&nbsp;<%= f.label :number %></label>
+      </td>
+      <td>
+        <%= @article.number %><br>
+      </td>
+    </tr>
+            <tr>
+      <td>
+          <label><%= f.label :pages %></label>
+      </td>
+      <td>
+        <%= @article.pages %><br>
+      </td>
+      <td>
+          <label>DOI</label>
+      </td>
+      <td>
+        <%= @article.doi %><br>
+      </td>
+    </tr>
+    <tr>
+      </table>
+      
+      <h2>Research Design</h2>
+      <table>
+      <td>
+        <label><%= f.label :research_questions %></label>
+      </td>
+      <td>
+        <%= f.text_area :research_questions, "cols" => 40, "rows" => 5%><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label><%= f.label :research_metrics %></label>
+      </td>
+      <td>
+        <%= f.text_field :research_metrics %><br>
+      </td>
+    </tr>
+  </table>
+  
+    <div class="field">
     <legend>Research Method</legend>
     <% @research_methods.each do |research_method| %>
       <div class="checkbox">
@@ -48,6 +124,20 @@
         </label>
       </div>
     <% end %>
+    
+    <legend>Evidence Item</legend>
+    <!--label><%= f.label :benefit %></label-->
+    <p> benefit </p> 
+    <input type="text" name="benefit"><br>
+    <p> context </p> 
+    <input type="text" name="context"><br>
+    <p> confidence rating </p> 
+    <input type="text" name="confidence_rating"><br>
+    <p> method implementation integrity </p> 
+    <input type="text" name="method_integrity"><br>
+  
+  
+  
     <legend>Method</legend>
     <% @dev_methods.each do |dev_method| %>
       <div class="checkbox">

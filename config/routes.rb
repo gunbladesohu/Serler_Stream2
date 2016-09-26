@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :statuses
   resources :authors
   resources :articles
+  get 'articles/edit' => 'articles/#/edit'
   resources :article_types
   resources :ratings
   resources :feedbacks
@@ -73,4 +74,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
 end

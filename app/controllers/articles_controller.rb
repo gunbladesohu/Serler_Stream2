@@ -13,16 +13,20 @@ class ArticlesController < BaseController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    set_article
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    
   end
 
   # GET /articles/1/edit
   def edit
-    @articles = Article.includes(:research_participants, :research_methods, :dev_methods)
+    @articles = Article.includes(:research_participants, :research_methods, :dev_methods, :methodologies)
+    #@research_questions = ResearchQuestion.all
+    #@research_metrics = ResearchMetric.all
     @research_participants = ResearchParticipant.all
     @research_methods = ResearchMethod.all
     @dev_methods = DevMethod.all
@@ -48,6 +52,7 @@ class ArticlesController < BaseController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
