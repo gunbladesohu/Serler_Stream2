@@ -72,13 +72,30 @@ participant1 = ResearchParticipant.create(name: 'Undergraduate students', descri
 participant2 = ResearchParticipant.create(name: 'Postgraduate students',  description: '', is_active: true)
 participant3 = ResearchParticipant.create(name: 'Practitioners',          description: '', is_active: true)
 
-user1 = User.create(first_name: '1',   middle_name: '1')
-user2 = User.create(first_name: '2',   middle_name: '2')
-user3 = User.create(first_name: '3',   middle_name: '3')
+default_password = "admin123"
+
+user1 = User.create!(first_name: '1',   middle_name: '1', email: 'aa@a.com',
+password: default_password,
+password_confirmation: default_password )
+user2 = User.create!(first_name: '2',   middle_name: '2', email: 'ss@s.com',
+password: default_password,
+password_confirmation: default_password )
+user3 = User.create!(first_name: '3',   middle_name: '3', email: 'dd@d.com',
+password: default_password,
+password_confirmation: default_password )
 
 Article.create(title: 'Ruby',   journal: 'good', users: [user1],
+  year: 1999, volume: 123, number: 321, month: 10, pages: 23,
   research_participants: [participant1], research_methods: [research_method1, research_method2])
-Article.create(title: 'Rails',  journal: 'good', users: [user2],
+Article.create(title: 'Rails',  journal: 'good', users: [user1],
+  year: 1999, volume: 123, number: 321, month: 10, pages: 23,
   research_participants: [participant2], research_methods: [research_method1])
-Article.create(title: 'Java',   journal: 'good', users: [user3],
+Article.create(title: 'Java1',   journal: 'good', users: [user2],
+  year: 1999, volume: 123, number: 321, month: 10, pages: 23,
+  research_participants: [participant3], research_methods: [research_method1])
+Article.create(title: 'Java2',   journal: 'good', users: [user2],
+  year: 1999, volume: 123, number: 321, month: 10, pages: 23,
+  research_participants: [participant3], research_methods: [research_method1])
+Article.create(title: 'Java3',   journal: 'good', users: [user2],
+  year: 1999, volume: 123, number: 321, month: 10, pages: 23,
   research_participants: [participant3], research_methods: [research_method1])
