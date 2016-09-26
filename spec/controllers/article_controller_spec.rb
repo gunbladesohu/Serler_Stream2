@@ -36,17 +36,17 @@ RSpec.describe ArticlesController, type: :controller do
     describe "PUT update/:id" do
         describe "with valid params" do
         let(:attr) do 
-            { :title => 'Cyber Security', :journal => 'Journal123', :year => '2016', :volume =>'4',
+            { :id => "4", :title => 'Cyber Security', :journal => 'Journal123', :year => '2016', :volume =>'4',
         :number => '5', :month => 'January', :research_questions => 'How to deal with cyber security?', :research_metrics => 'Metrics123',  
-                :research_method_ids =>[1, 3, 4, 5]#, "research_participant_ids"=>["3"], "dev_method_ids"=>["2", "6"], "methodology_ids"=>["7", "8", "9", "11"]  
+                :research_method_ids =>[6, 7]#, "research_participant_ids"=>["3"], "dev_method_ids"=>["2", "6"], "methodology_ids"=>["7", "8", "9", "11"]  
                 
             }
         end
             
         before(:each) do
             @article = Article.new(attr)
-                put :update, {:id => @article.id, :article => attr, format: :json}
-                @article.reload
+                put :update, {:id => @article.id, :article => attr}
+                # @article.reload
             end
 
             #it { expect(response).to redirect_to(@article) }
