@@ -68,8 +68,13 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+<<<<<<< HEAD
 test:
   # <<: *default
+=======
+test: &test
+  <<: *default
+>>>>>>> ed2e8f8208f43d8d6b172f750643dc1930203872
   adapter: postgresql
   database: serler_backup
   host: localhost
@@ -103,3 +108,6 @@ production:
   database: SERLER_production
   username: SERLER
   password:
+
+cucumber:
+  <<: *test

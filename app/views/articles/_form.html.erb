@@ -124,6 +124,20 @@
         </label>
       </div>
     <% end %>
+    
+    <legend>Evidence Item</legend>
+    <!--label><%= f.label :benefit %></label-->
+    <p> benefit </p> 
+    <input type="text" name="benefit"><br>
+    <p> context </p> 
+    <input type="text" name="context"><br>
+    <p> confidence rating </p> 
+    <input type="text" name="confidence_rating"><br>
+    <p> method implementation integrity </p> 
+    <input type="text" name="method_integrity"><br>
+  
+  
+  
     <legend>Method</legend>
     <% @dev_methods.each do |dev_method| %>
       <div class="checkbox">
