@@ -14,7 +14,6 @@ require 'rspec/rails'
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-<<<<<<< HEAD
 #
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
@@ -22,9 +21,6 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-=======
-# Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
->>>>>>> 79f1dd41cdac023743aff1090c89a9dbb3c91632
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -54,14 +50,9 @@ config.include AssertDifference
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-<<<<<<< HEAD
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-=======
-  #config.filter_rails_from_backtrace!
-  
->>>>>>> 79f1dd41cdac023743aff1090c89a9dbb3c91632
 end
