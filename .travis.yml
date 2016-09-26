@@ -1,14 +1,14 @@
-notifications: # set notification options
-  email:
-    recipients:
-      - one@example.com
-
-
-    # change is when the repo status goes from pass to fail or vice versa
-    on_success: [always|never|change]
-    on_failure: [always|never|change]
-  # Or we could just disable all email
+language: ruby
+rvm:
+  - 2.3.0
+before_script:
+  - bundle exec rake db:setup
+  - bundle exec rake db:migrate
+#  - RAILS_ENV=test bundle exec rake db:seed
+  - RAILS_ENV=test bundle exec rake db:setup
+  - RAILS_ENV=test bundle exec rake db:migrate
+script:
+  - bundle exec cucumber
+  - bundle exec rspec
+notifications:
   email: false
-
-before_deploy:
-- gem install mime-types -v 2.6.2
