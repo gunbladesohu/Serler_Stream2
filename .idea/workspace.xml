@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2d782f3-bca8-46b6-ba32-82ea091c648c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-    </list>
+    <list default="true" id="e2d782f3-bca8-46b6-ba32-82ea091c648c" name="Default" comment="" />
     <ignored path="SERLER.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -645,7 +642,7 @@
       <workItem from="1474178602896" duration="5988000" />
       <workItem from="1474282228310" duration="11250000" />
       <workItem from="1474498437641" duration="3120000" />
-      <workItem from="1474602112635" duration="5455000" />
+      <workItem from="1474602112635" duration="6245000" />
     </task>
     <servers />
   </component>
@@ -664,7 +661,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87218000" />
+    <option name="totallyTimeSpent" value="88008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="18" y="30" width="1239" height="681" extended-state="0" />
