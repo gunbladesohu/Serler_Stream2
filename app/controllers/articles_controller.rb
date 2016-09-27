@@ -1,5 +1,7 @@
 class ArticlesController < BaseController
+  before_action :logged_in?
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+
 
   # GET /articles
   # GET /articles.json
@@ -18,7 +20,7 @@ class ArticlesController < BaseController
   # GET /articles/new
   def new
     @article = Article.new
-    
+
   end
 
   # GET /articles/1/edit
@@ -51,7 +53,7 @@ class ArticlesController < BaseController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
-    
+
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -77,6 +79,16 @@ class ArticlesController < BaseController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+
+    def logged_in?
+      if current_user.nil?
+        redirect_to login_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
