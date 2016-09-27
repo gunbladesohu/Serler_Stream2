@@ -56,6 +56,15 @@
               <tr>
                 <td width="600" class="mobile" style="font-family:arial; font-size:14px; line-height:12px;" align="left" mc:label="the_copy" mc:edit="the_copy">
                   New article " <%= @article_title %> " is available for moderation. Please login into your SERLER account to moderate it.
+
+                  <% @article_list_today.each do |article| %>
+
+                      <%= article.title %> </br>
+
+                  <% end %>
+
+
+
                 </td>
               </tr>
 
