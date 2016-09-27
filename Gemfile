@@ -9,6 +9,7 @@ gem 'font-awesome-rails', '4.3.0.0'
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'compass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -26,7 +27,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -36,7 +37,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.5.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'byebug'
   gem 'assert_difference'
 end
@@ -45,7 +46,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  
   group :test, :development do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
@@ -58,3 +59,4 @@ end
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 end
+

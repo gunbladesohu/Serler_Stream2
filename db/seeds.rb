@@ -76,9 +76,9 @@ user1 = User.create(first_name: '1',   middle_name: '1')
 user2 = User.create(first_name: '2',   middle_name: '2')
 user3 = User.create(first_name: '3',   middle_name: '3')
 
-Article.create(title: 'Ruby',   journal: 'good', users: [user1],
+Article.create(title: 'Ruby',   journal: 'good', users: [user1], year: '2016',month: 'January', volume: '47', number: '3',
   research_participants: [participant1], research_methods: [research_method1, research_method2])
-Article.create(title: 'Rails',  journal: 'good', users: [user2],
+Article.create(title: 'Rails',  journal: 'good', users: [user2], year: '2015',month: 'April', volume: '47', number: '3',
   research_participants: [participant2], research_methods: [research_method1])
-Article.create(title: 'Java',   journal: 'good', users: [user3],
+Article.create(title: 'Java',   journal: 'good', users: [user3], year: '2000',month: 'June', volume: '47', number: '3',
   research_participants: [participant3], research_methods: [research_method1])

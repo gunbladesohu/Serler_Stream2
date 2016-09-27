@@ -188,8 +188,6 @@ ActiveRecord::Schema.define(version: 20160926101749) do
     t.boolean  "is_active"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "password"
-    t.string   "user_name"
     t.string   "Password"
     t.string   "password_digest"
   end
