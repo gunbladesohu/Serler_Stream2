@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   
   
   get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
-  get    '/login',   to: 'sessions#new'
+  # get    '/login',   to: 'sessions#new'
+  get    '/login',   to: 'home#login'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
@@ -91,4 +92,5 @@ Rails.application.routes.draw do
   get 'admin/update_methodology'
   post 'admin/update_methodology'
   get 'admin/mail_send'
+  get "admin/article_view/Moderator" , as: "article_view_moderator"
 end

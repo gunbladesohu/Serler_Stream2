@@ -12,8 +12,7 @@ class SessionsController < ApplicationController
      
       user = User.where("lower(email) =?", email.downcase).first
       
-      log_in(user)
-      
+      log_in user
       
     else
           user = User.new(
@@ -29,22 +28,26 @@ class SessionsController < ApplicationController
       
           user.save
           
-          log_in(user)
+          log_in user
           
     end
     
+   redirect_to root_url 
 
   end
 
 
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    
+    # user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email].downcase, password_digest: params[:session][:password])
+    # if user && user.authenticate(params[:session][:password])
+    if user
       # Log the user in and redirect to the user's show page.
       log_in user
 
-      redirect_to user
+      redirect_to root_url
 
 
     else

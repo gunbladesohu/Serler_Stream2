@@ -29,11 +29,10 @@
 
   <!-- Navigation -->
   <%= content_for?(:topnavbar) ? yield(:topnavbar) : '' %>
-
+   
   <!-- Page Content -->
   <div class="container">
     <%= content_for?(:login_content) ? yield(:login_content) : yield %>
-
     <!-- Footer -->
     <div class="container">
       <!--<hr />-->

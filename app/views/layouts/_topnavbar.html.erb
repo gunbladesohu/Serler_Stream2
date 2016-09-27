@@ -32,14 +32,24 @@
                 <%= current_user.first_name %> <%= current_user.last_name %>  <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <% if current_user_role.name == "Moderator" %>
+                  <li>
+                    <%= link_to "New articles", article_view_moderator_path, method: "get" %>
+                  </li>
+                  
+                  <li>
+                    <%= link_to "My article list", article_view_moderator_path, method: "get" %>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to "Log out", logout_path, method: "delete" %>
                 </li>
+                
               </ul>
             </li>
         <% else %>
             <li><%= link_to "Log in", login_path %></li>
-            <li><%= link_to "Register", register_path %></li>
+            <li id="registerBtn"><%= link_to "Register", register_path %></li>
             <li id="userNameBlock"><a id="userFullName"></a></li>
             
         <% end %>

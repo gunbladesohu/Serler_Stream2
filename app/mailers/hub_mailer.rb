@@ -24,4 +24,5 @@ class HubMailer < ApplicationMailer
       format.html { render layout: 'moderator_confirmation_email' }
     end
   end
+  
 end

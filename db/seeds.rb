@@ -20,6 +20,7 @@ FieldTable.destroy_all
 Operator.destroy_all
 JoinCondition.destroy_all
 
+
 FieldTable.create(name: 'Method', field: 'id', table: 'dev_methods', join_table: 'articles_dev_methods', model: 'DevMethod' )
 FieldTable.create(name: 'Methodology', field: 'id', table: 'methodologies', join_table: 'articles_methodologies', model: 'Methodology')
 FieldTable.create(name: 'Research Method', field: 'id', table: 'research_methods', join_table: 'articles_research_methods', model: 'ResearchMethod')
@@ -90,15 +91,18 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchmethod5 = ResearchMethod.create(name: 'Survey',            description: '', is_active: true)
 
 @moderated = Status.create(name: 'To be moderated',   description: '', is_active: true)
+@modertorPickedUp = Status.create(name: 'Moderator picked up',   description: '', is_active: true)
 @accepted = Status.create(name: 'Accepted',          description: '', is_active: true)
 @rejected = Status.create(name: 'Rejected',          description: '', is_active: true)
+@toBeAnalysed = Status.create(name: 'To be analysed',   description: '', is_active: true)
+@analystPickedUp = Status.create(name: 'Analyst picked up',   description: '', is_active: true)
 @completed = Status.create(name: 'Analysis complete', description: '', is_active: true)
 
-Role.create(name: 'Admin',                    description: '', is_active: true)
-Role.create(name: 'Moderator',                description: '', is_active: true)
-Role.create(name: 'Analyst',                  description: '', is_active: true)
-Role.create(name: 'User',                     description: '', is_active: true)
-Role.create(name: 'Member of SDM class',      description: '', is_active: true)
+@adminRole = Role.create(name: 'Admin',                    description: '', is_active: true)
+@moderatorRole = Role.create(name: 'Moderator',                description: '', is_active: true)
+@analystRole = Role.create(name: 'Analyst',                  description: '', is_active: true)
+@userRole = Role.create(name: 'User',                     description: '', is_active: true)
+@memberRole = Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 
 @researchparticipant1 = ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
 @researchparticipant2 = ResearchParticipant.create(name: 'Postgraduate students', description: '', is_active: true)
@@ -110,6 +114,7 @@ Role.create(name: 'Member of SDM class',      description: '', is_active: true)
                         affiliation: 'Microsoft', is_active: true, password_digest: '1234')
 @user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '', 
                         affiliation: 'Apple', is_active: true, password_digest: '1234')
+
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)
 @article_type2 = ArticleType.create(name: 'Book article',          description: '', is_active: true)

@@ -4,7 +4,13 @@ class UsersController < BaseController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    # @users = User.all
+    # joins("LEFT JOIN student_enrollments ON courses.id = student_enrollments.course_id")
+    # @users = User.joins(:users_roles,:roles)
+    @users = User.joins("LEFT JOIN users_roles on users.id = users_roles.user_id LEFT JOIN roles on users_roles.role_id = roles.id")
+    .select("users.id, users.first_name, users.last_name, roles.name ")
+    .where("users_roles.is_active = true and roles.is_active = true")
+    
   end
 
   # GET /users/1
@@ -40,8 +46,7 @@ class UsersController < BaseController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to controller: 'users', action: 'new_user_confirmation', id: @user.id}
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -49,7 +54,48 @@ class UsersController < BaseController
     end
   end
 
- 
+  def new_user_confirmation
+      id =  params[:id]
+      
+    host = request.host + "/users/new_user_email_confirmation/" + id
+    
+    @user = User.find(id)
+      
+    @subject = "Serler new user"
+      
+    @message = "<p>Thank you so much for joining Serler</p>
+                  <p>Please click the below link to activate your account</p>
+                  <a href='#{host}'>#{host}</a>
+                   <p>Thank you so much for your time</p>
+                   ".html_safe
+                   
+     HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now  
+     
+     @windowMessage =  "<h3>Thank you for registering with Serler</h3>
+                  <h3>There is an email sent you your email address. Please click the confirmation button in your email to activate your account</h3>".html_safe
+  end
+  
+  
+  def new_user_email_confirmation
+    id =  params[:id]
+      
+    @user = User.find(id)
+    
+    @user.is_active = true
+    
+   respond_to do |format|
+      if @user.save
+        format.html { redirect_to controller: 'sessions', action: 'new', firstName: @user.first_name, lastName: @user.last_name, email: @user.email }
+        # format.html { redirect_to root_url }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+    
+  end
+  
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -77,16 +123,6 @@ class UsersController < BaseController
   end
 
 
-  # POST /users
-  # POST /users.json
-  #def login
-  #   @user = User.find_by_email(params[:session][:email])
-  #   if @user && @user.authenticate(params[:session][:password])
-  #   else
-  #     render 'new'
-  #   end
-  # end
-  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

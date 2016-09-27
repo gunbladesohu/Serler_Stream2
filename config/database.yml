@@ -60,7 +60,8 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   <<: *default
-  database: SERLER_Stream2_test
+  database: d85arbm5rloo9e
+  # database: SERLER_Stream2_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

@@ -1,0 +1,53 @@
+<div class="middle-box text-center loginscreen animated fadeInDown">
+  <%= csrf_meta_tags %>
+  <div>
+    <div>
+
+      <h1 class="logo-name"><img src="<%= asset_path( 'SerlerLogo_Black.png' ) %>" width="200" /></h1>
+
+    </div>
+    <!--<h3>Welcome to SERLER</h3>-->
+    <!--<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.-->
+      <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+    <!--</p>-->
+    <!--<p>Login in. To see it in action.</p>-->
+    <div class="container">
+      <div class="well col-md-6 col-md-offset-3  col-lg-6 col-lg-offset-3">
+         <%= form_for(:session, url: login_path) do |f| %>
+
+          <div style="padding: 10px 0px 5px 0px">
+             <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+          </div>
+          
+          <div style="padding: 5px 0px 10px 0px">
+             <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+          </div>
+          <%= f.submit "Log in", class: "btn btn-primary", id:"SubmitBtn" %>
+      <% end %>
+      
+      <a class="btn btn-sm btn-white btn-block" href="users/new.html">Create an account</a>
+      </div>
+     
+    </div>
+
+
+    <!--<form class="m-t" role="form" action="/login" method="post">-->
+
+    <!--<div class="form-group">-->
+    <!--<input type="email" class="form-control" placeholder="email" required="true">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<input type="password" class="form-control" placeholder="Password" required="true">-->
+    <!--</div>-->
+    <!--<%= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
+    <!--<button type="submit" class="btn btn-primary block full-width m-b">Login</button>-->
+
+
+    <!--<a href="#"><small>Forgot password?</small></a>-->
+    <!--<p class="text-muted text-center"><small>Do not have an account?</small></p>-->
+    
+    <!--</form>-->
+    <!--<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>-->
+  </div>
+
+</div>

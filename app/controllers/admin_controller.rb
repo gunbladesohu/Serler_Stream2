@@ -13,16 +13,40 @@ class AdminController  < BaseController
   end
   
   def article_view
+    
+    type = params[:id]
+      
+    if type == "Moderator"
+      @ArticleList = Article.joins(:article_type,:status)
+      .select("articles.id as article_id, articles.title as article_title, 
+              article_types.name as type_name, articles.updated_at as updated_time, 
+              statuses.name as status_name, articles.journal as journal
+              , articles.year as year, articles.volume as volume
+              , articles.number as number, articles.month as month
+              , articles.pages as pages, articles.isbn as isbn
+              , articles.doi as doi, articles.url as url
+              , articles.keyword as keyword, articles.abstract as abstract")
+      .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
+      
+    else
+      
+    end
+    
+  end
+  
+  def article_view_moderator
+    id = params[:id]
+    
     @ArticleList = Article.joins(:article_type,:status)
-    .select("articles.id as article_id, articles.title as article_title, 
-            article_types.name as type_name, articles.updated_at as updated_time, 
-            statuses.name as status_name, articles.journal as journal
-            , articles.year as year, articles.volume as volume
-            , articles.number as number, articles.month as month
-            , articles.pages as pages, articles.isbn as isbn
-            , articles.doi as doi, articles.url as url
-            , articles.keyword as keyword, articles.abstract as abstract")
-    .where("article_types.is_active = true and articles.is_active = false")
+      .select("articles.id as article_id, articles.title as article_title, 
+              article_types.name as type_name, articles.updated_at as updated_time, 
+              statuses.name as status_name, articles.journal as journal
+              , articles.year as year, articles.volume as volume
+              , articles.number as number, articles.month as month
+              , articles.pages as pages, articles.isbn as isbn
+              , articles.doi as doi, articles.url as url
+              , articles.keyword as keyword, articles.abstract as abstract")
+      .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'Moderator picked up' and articles.admin_id = #{id}")
     
   end
   
@@ -51,7 +75,7 @@ class AdminController  < BaseController
        
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
-    else
+    else0
       
       @statusId = Status.find_by name: "Rejected"
       articleItem.status = @statusId
