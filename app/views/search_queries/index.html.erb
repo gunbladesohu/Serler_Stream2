@@ -65,55 +65,59 @@
         <% end %>
       </p>
       <% if @search_query.allow_save == true %>
-        <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
+        <button type="button" class="btn btn-success toggle-model" data-toggle="modal">
           Save Query
         </button>
-        <div class="modal fade" id="save_query" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Save Query</h4>
-              </div>
-              <div class="modal-body">
-                <%= form_for(@search_query) do |f| %>
-                  <div class="form-group">
-                    <%= f.label :description %><br>
-                    <%= f.text_field :description, class: "form-control" %>
-                    <p class="mandatory1">This field is required</p>
-                  </div>
-                  <%= f.hidden_field :isActive, {value: 'true'} %>
-                  <%= f.submit :'Save', {class: 'btn btn-success'} %>
-                <% end %>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+      <% else %>
+        <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
+          Update Description
+        </button>
       <% end %>
+      <div class="modal fade" id="save_query" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Save Query</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_for(@search_query) do |f| %>
+                <div class="form-group">
+                  <%= f.label :description %><br>
+                  <%= f.text_field :description, class: "form-control" %>
+                  <p class="mandatory1">This field is required</p>
+                </div>
+                <%= f.hidden_field :isActive, {value: 'true'} %>
+                <%= f.submit :'Save', {class: 'btn btn-success'} %>
+              <% end %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
     <% end %>
 
     <div class="table-responsive">
       <table class="table table-striped" id="result-table">
         <thead>
         <tr>
-          <th id="col1" class="title">Title <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col2" class="author">Author <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col3" class="year">Year <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col4" class="journal">Journal <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col5" class="volume">Volume <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col6" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col7" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col8" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col9" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col10" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col11" class="methodology">Methodologies <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col12" class="method">Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col13" class="research_method">Research Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col14" class="participant">Participants <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col0" class="title">Title <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col1" class="author">Author <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col2" class="year">Year <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col3" class="journal">Journal <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col4" class="volume">Volume <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col5" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col6" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col10" class="methodology">Methodologies <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col11" class="method">Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col12" class="research_method">Research Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col13" class="participant">Participants <span class="grey"><i class="fa fa-sort"></i></span></th>
         </tr>
         </thead>
         <tbody>
-        <% @articles.each do |article| %>
+        <% @articles.each do |article| %> 
           <tr>
             <td class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
             <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
