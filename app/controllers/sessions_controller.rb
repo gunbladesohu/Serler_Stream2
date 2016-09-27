@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
     firstName = params[:firstName]
     lastName = params[:lastName]
     email = params[:email]
-    condition = User.exists?(['lower(email) =?', email.downcase])
+    condition = User.exists?(['email =?', email])
     
     if  condition == true
      
-      user = User.where("lower(email) =?", email.downcase).first
+      user = User.where("email =?", email).first
       
       log_in(user)
       

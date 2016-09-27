@@ -1,14 +1,21 @@
 language: ruby
 rvm:
-  - 2.3.0
+- 2.3.0
 before_script:
-  - bundle exec rake db:setup
-  - bundle exec rake db:migrate
-#  - RAILS_ENV=test bundle exec rake db:seed
-  - RAILS_ENV=test bundle exec rake db:setup
-  - RAILS_ENV=test bundle exec rake db:migrate
+- bundle exec rake db:setup
+- bundle exec rake db:migrate
+- RAILS_ENV=test bundle exec rake db:setup
+- RAILS_ENV=test bundle exec rake db:migrate
 script:
-  - bundle exec cucumber
-  - bundle exec rspec
+- bundle exec cucumber
+- bundle exec rspec
 notifications:
   email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: afQ31VPgeuK8AEspYh7rh8jzwmO5TtaeysUkcBgonPYOEZXj033v1zDnC5MZtKQfjU8zjbGHgtCWsMnQCGdIu4oHNMJliihOUaYcKZVYs6j2dJgi98EBPfSvct9OgrU7b52wWxFPUeKSZVv5pnFK93B9WbHPxqKwo+dWY8NNu/25Pc7XLfkzBpxRlyCW9AdHYtVPJJUKqHv8TV49c18ThNDvz5VuP5qFQza7EscRBgJxt83glFxft+tv02PlExZ0ocGfnJtGWUMaF1KNWpDWohbje1YB5nsaJVof46Ed2xfroMh+pFyPZLTeSXA3P4NbftNngE5+ISCKLtWwMKnBVTDnXLxlcUXr6R42xICzas2R5IAUiq4qRMYNjBeNP28nNukEbq7jt6WUN5agg1/jafM49B4qfdQ1It/np29kbXLbIsu43v5MNxS/PVgJLCsH8pbsY6hFDIZU4zqCD8qCOS0QtDEWeSnpjm5iHUGqeBuxAanShSBpfrPSZ+raqZnin/S+jPFwTSGWSxUVBqv2n1favOXXcV182tMAQQPKbgx+FpxIXsNkrRM3QSyOR7P8lTW/p20/o/5+AaOI2IZFYBvusBAvRjmjXnzcowEKYXcwSzUYBAaWvpGeuobg10Zu7H3HmK4NNZNTNkAqt+jNmIWU6R1apHYztnKD+iM8IwQ=
+  app: Serler_Stream2
+  on:
+    repo: tdbt1985/Serler_Stream2
+    branch: CoDoctors
