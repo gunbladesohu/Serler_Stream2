@@ -32,3 +32,16 @@ Feature: Search for articles
     Given I am on the link: "http://localhost:3000/search_queries/new"
     When I click the back button
     Then I return to the home page with title "Search Result"
+
+
+  # Scenario: Browse Repository - Go to browse repository
+  #   Given I have opened "http://localhost:3000/search_queries/"
+  #   When I click on "Browse Repository"
+  #   Then I should be on new page with title "Browse Repository"
+
+  # Scenario: Browse Repository - Show tooltips on Article title
+  #   Given I have opened "http://localhost:3000/search_queries/browse_repository"
+  #   When I hover on "Browse Repository"
+  #   Then Then /^there should( not)? be a(n encoded)? tooltip
+
+

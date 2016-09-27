@@ -67,6 +67,13 @@ class SearchQueriesController < BaseController
     operator_field_value field
   end
 
+  def browse_repository
+    @articles = Article.all
+    # @articles.each do |article|
+    #   puts article.title
+    # end
+  end
+
   # GET /search_queries/1/edit
   def edit
   end

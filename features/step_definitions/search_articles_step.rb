@@ -33,6 +33,10 @@ Then(/^I should be on new query page with title "([^"]*)"$/) do |title|
   page.should have_content(title)
 end
 
+Then(/^I should be on new page with title "([^"]*)"$/) do |title|
+  page.should have_content(title)
+end
+
 # ----------------------Advance search - Start & end date select
 
 # The result - should show start date and end date
@@ -65,3 +69,15 @@ end
 Then(/^I return to the home page with title "([^"]*)"$/) do |title|
   page.should have_content(title)
 end
+
+
+
+
+
+
+#------------- Browse Repository
+
+# Then /^there should( not)? be a(n encoded)? tooltip "([^"]*)"$/ do |negate, encoded, tooltip|
+#   tooltip = HTMLEntities.new.encode(tooltip) if encoded
+#   Then "I should {negate} see \".{tooltip}\" in the HTML"
+# end

@@ -50,6 +50,18 @@ RSpec.describe SearchQueriesController, type: :controller do
     end
   end
 
+  # describe "GET #browse_repository" do
+  #   it "assigns a new articles as @articles" do
+  #     get :browse_repository, params: {}, session: valid_session
+  #     # expect(assigns(:search_query)).to be_a_new(SearchQuery)
+  #     @articles.should have(10).things
+  #     # is_expected.to have(10).items
+  #     # expect(assigns(:join_conditions).size).to be > 0
+  #     # expect(response).to render_template(:new)
+  #   end
+  # end
+
+
   # describe "GET #edit" do
   #   it "assigns the requested search_query as @search_query" do
   #     search_query = SearchQuery.create! valid_attributes
@@ -105,13 +117,13 @@ RSpec.describe SearchQueriesController, type: :controller do
     # end
   end
 
-  describe "GET #update_values" do
-    it "ajax get when update field" do
-      # get :update_values, field_id: 2, session: valid_session
-      xhr :get, :update_values, field_id: 2, :format => "json"
-      expect(response.status).to eq(200)
-    end
-  end
+  # describe "GET #update_values" do
+  #   it "ajax get when update field" do
+  #     # get :update_values, field_id: 2, session: valid_session
+  #     xhr :get, :update_values, field_id: 2, :format => "json"
+  #     expect(response.status).to eq(200)
+  #   end
+  # end
 
   # describe "PUT #update" do
   #   context "with valid params" do
