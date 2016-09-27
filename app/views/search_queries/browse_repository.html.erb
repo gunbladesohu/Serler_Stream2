@@ -8,7 +8,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>Search Result</h1>
+<h1>Browse Repository</h1>
 
 <br>
 <div class="container">
@@ -34,6 +34,11 @@
           <label><input type="checkbox" class="check-head" value="1" name="doi"><span>DOI</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="url"><span>URL</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="keywords"><span>Keywords</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="methodology"><span>Methodology</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="method"><span>Method</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="research_method"><span>Research Method</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="participant"><span>Participant</span></label>
+
         </div>
       </div>
     </div>
@@ -51,6 +56,10 @@
           <th id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col11" class="methodology">Methodologies <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col12" class="method">Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col13" class="research_method">Research Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col14" class="participant">Participants <span class="grey"><i class="fa fa-sort"></i></span></th>
         </tr>
         </thead>
         <tbody>
@@ -66,7 +75,11 @@
               <td class="doi"><%= article.doi %></td>
               <td class="url"><%= article.url %></td>
               <td class="keywords"><%= article.keyword %></td>
-            </tr>
+              <td class="methodology"><%= article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ') %>  </td>
+              <td class="method"><%= article.articles_dev_methods.map { |articles_dev_method| articles_dev_method.dev_method.name}.join(', ') %></td>
+              <td class="research_method"><%= article.articles_research_methods.map { |articles_research_method| articles_research_method.research_method.name}.join(', ') %></td>
+              <td class="participant"><%= article.articles_research_participants.map { |articles_research_participant| articles_research_participant.research_participant.name}.join(', ') %></td>
+          </tr>
         <% end %>
         </tbody>
       </table>
@@ -74,6 +87,8 @@
   </div>
 </div>
 </div>
+
+
 <script type="text/javascript">
   $(document).ready(function(){
 
@@ -118,6 +133,12 @@
   });
 </script>
 
+
+
+
+
+
+
 <script type = "text/javascript">
 
 // $(document).ready( function () {
@@ -139,11 +160,4 @@ function filterGlobal () {
     ).draw();
 }
 // } );
-
-
-
-
-
-
-
 </script>

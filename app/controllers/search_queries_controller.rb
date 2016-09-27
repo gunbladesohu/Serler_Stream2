@@ -30,6 +30,9 @@ class SearchQueriesController < BaseController
 
   def browse_repository
     @articles = Article.all
+    # @articles.each do |article|
+    #   puts article.title
+    # end
   end
 
   # GET /search_queries/1/edit

@@ -163,6 +163,8 @@ GEM
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
+    rspec-collection_matchers (1.1.2)
+      rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -243,6 +245,7 @@ DEPENDENCIES
   rails (= 4.2.7.1)
   rails_12factor
   rspec
+  rspec-collection_matchers
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -254,4 +257,4 @@ DEPENDENCIES
   webrat
 
 BUNDLED WITH
-   1.13.0
+   1.13.1
