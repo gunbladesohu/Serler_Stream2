@@ -1,6 +1,6 @@
 class ArticlesController < BaseController
 
-layout false
+#layout false
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -33,9 +33,10 @@ layout false
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+        @article_id=Article.last.id
 
         # tell the moderator mailer to send an email
-        ModeratorMailer.new_article(@article).deliver_later
+        HubMailer.new_article_email(@article_id).deliver_now
 
       else
         format.html { render :new }

@@ -24,5 +24,19 @@ class HubMailer < ApplicationMailer
       format.html { render layout: 'moderator_confirmation_email' }
     end
   end
+
+  def new_article_email(article_id)
+
+    article_name = Article.find(article_id)
+    @article_title = article_name.title
+
+    @article_list_today = Article.where("created_at >= ?", Time.zone.now.beginning_of_day)
+
+    # Add logo
+    attachments.inline['SerlerLogo_Black.png'] = File.read(Rails.root.join('app/assets/images/SerlerLogo_Black.png'))
+    mail(to: 's.anmoldeep1993@gmail.com', subject: 'New Article Submitted') do |format|
+      format.html { render layout: 'new_article_email' }
+    end
+  end
   
 end

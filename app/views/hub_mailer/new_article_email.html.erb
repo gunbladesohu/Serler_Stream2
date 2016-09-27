@@ -1,0 +1,107 @@
+<html>
+
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" style="background-color:#FFFFFF;  font-family:Arial,serif; margin:0; padding:0; min-width: 100%; -webkit-text-size-adjust:none; -ms-text-size-adjust:none;">
+
+<!-- Start Background -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
+  <tr>
+    <td width="100%" valign="top" align="left">
+
+      <!-- START LOGO  -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
+        <tr>
+          <td height="40" style="font-size:10px; line-height:10px;"> </td>
+        </tr>
+        <tr>
+          <td align="center">
+
+            <!-- Start Container  -->
+            <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+              <tr>
+                <td width="600" class="mobile" align="center" mc:label="the_banner" mc:edit="the_banner">
+
+                  <%= image_tag attachments['SerlerLogo_Black.png'].url -%>
+                </td>
+              </tr>
+            </table>
+            <!-- Start Container  -->
+
+          </td>
+        </tr>
+        <tr>
+          <td height="40" style="font-size:10px; line-height:10px;"> </td>
+        </tr>
+      </table>
+      <!-- END LOGO  -->
+
+
+      <!-- START MESSAGE  -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
+        <tr>
+          <td height="" style="font-size:10px; line-height:10px;"> </td>
+        </tr>
+        <tr>
+          <td align="center">
+
+            <!-- Start Container  -->
+            <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+              <tr>
+                <td width="600" class="mobile" style="font-family:arial; font-size:18px; line-height:24px;" align="left" mc:label="the_title" mc:edit="the_title">
+                  Hi <span style="color:#40a7ff;"><strong>Moderator</strong></span>,
+
+                </td>
+              </tr>
+              <tr>
+                <td height="10" style="font-size:10px; line-height:10px;"></td>
+              </tr>
+              <tr>
+                <td width="600" class="mobile" style="font-family:arial; font-size:14px; line-height:12px;" align="left" mc:label="the_copy" mc:edit="the_copy">
+                  New article " <%= @article_title %> " is available for moderation. Please login into your SERLER account to moderate it.<br><br> The Following Articles were added today:
+                  <table>
+                    <% @article_list_today.each do |article| %>
+                        <tr><td>● <%= article.title %></td></tr>
+
+
+                    <% end %>
+                  </table>
+
+
+                </td>
+              </tr>
+
+              <tr>
+                <td height="10" style="font-size:10px; line-height:10px;"></td>
+              </tr>
+              <tr>
+                <td width="600" class="mobile" style="font-family:arial; font-size:14px; line-height:5px; color:#aeaeae;" align="left" mc:label="the_copy" mc:edit="the_copy">
+
+                  <p><b>Serler Team</b> </p>
+                  <p><b>Phone:</b> +64 9 0252016 ext 1191</p>
+                  <p><b>Email:</b> serlerstream2@gmail.com</p>
+                  <p><b>Physical Address:</b> </p>
+                  <p>Office: WT407</p>
+                  <p>Level 4, WT Building</p>
+                  <p>AUT Tower, corner of Rutland St & Wakefield St</p>
+
+                </td>
+              </tr>
+            </table>
+            <!-- Start Container  -->
+
+          </td>
+        </tr>
+        <tr>
+          <td height="45" style="font-size:10px; line-height:10px;"> </td>
+        </tr>
+      </table>
+      <!-- END MESSAGE  -->
+
+
+
+    </td>
+  </tr>
+</table>
+<!-- End Background -->
+
+</body>
+</html>
