@@ -17,16 +17,16 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: ec2-54-243-52-209.compute-1.amazonaws.com
   pool: 5
   timeout: 5000
-  username: postgres
-  password:
+  username: ghguylfvlizywt
+  password: uuFI-cio8EqC_cNaqfdqVal-Kl
   port: 5432
 
 development:
   <<: *default
-  database: SERLER_Stream2_dev
+  database: d85arbm5rloo9e
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -84,7 +84,7 @@ test: &test
 #
 production:
   <<: *default
-  database: SERLER_Stream2_pro
+  database: d85arbm5rloo9e
 
 cucumber:
   <<: *test

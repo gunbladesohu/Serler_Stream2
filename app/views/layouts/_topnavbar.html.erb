@@ -32,18 +32,28 @@
                 <%= current_user.first_name %> <%= current_user.last_name %>  <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <% if current_user_role.name == "Moderator" %>
-                  <li>
-                    <%= link_to "New articles", article_view_moderator_path, method: "get" %>
-                  </li>
-                  
-                  <li>
-                    <%= link_to "My article list", article_view_moderator_path, method: "get" %>
-                  </li>
+                
+                 <% if current_user_role.nil? %>
+                     <li>
+                      <%= link_to "Log out", logout_path, method: "delete" %>
+                    </li>
+                 <% else %>
+                     <% if current_user_role.name == "Moderator" %>
+                      <li>
+                        <%= link_to "New articles", article_view_moderator_path, method: "get" %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to "My article list", article_moderator_picked_up_path, method: "get" %>
+                      </li>
+                      
+                      <li>
+                      <%= link_to "Log out", logout_path, method: "delete" %>
+                      </li>
+                    <% end %>
                 <% end %>
-                <li>
-                  <%= link_to "Log out", logout_path, method: "delete" %>
-                </li>
+                
+                
                 
               </ul>
             </li>

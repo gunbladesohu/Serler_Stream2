@@ -93,4 +93,5 @@ Rails.application.routes.draw do
   post 'admin/update_methodology'
   get 'admin/mail_send'
   get "admin/article_view/Moderator" , as: "article_view_moderator"
+  get "admin/article_view_moderator" , as: "article_moderator_picked_up"
 end

@@ -8,7 +8,7 @@
           <th class="tableHeader" onclick=" sort_table(mainTableBody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Article title <span class="grey"><i id="columSort0" class="fa fa-sort"></i></span></th>
            <th class="tableHeader" onclick=" sort_table(mainTableBody, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Article type <span class="grey"><i id="columSort1" class="fa fa-sort"></i></span></th>
            <th class="tableHeader" onclick=" sort_table(mainTableBody, 3, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Last modified <span class="grey"><i id="columSort2" class="fa fa-sort"></i></span></th>
-           <th class="tableHeader" ><span class="grey"><input type="checkbox" name="articleCheckboxes"></span> Select All</th>
+           <th class="tableHeader" ><button class="btn btn-primary" id="ConfirmBtn">Confirm</button></th>
         </tr>
       </thead>
     
@@ -19,7 +19,7 @@
             <td><%= article.article_title %></td>
              <td ><%= article.type_name %></td>
              <td><%= article.updated_time %></td>
-             <td><input type="checkbox" name="articleCheckboxes"></td>
+             <td ><input type="checkbox" name="articleCheckboxes" onchange="checkEvent(<%= article.article_id %>,event);"></td>
           </tr>
         <% end %>
       </tbody>
@@ -28,10 +28,10 @@
 
 <script  type="text/javascript">
     
-        var asc1 = 1,
-            asc2 = 1,
-            asc3 = 1;
-    // Get the modal
+        var asc1 = 1, asc2 = 1, asc3 = 1;
+        var selectedArticles = [];
+        
+        // Get the modal
         var modal = document.getElementById('myModal');
         
         var selectedArticleId;
@@ -81,6 +81,7 @@
                     if (j == 0 || j >= 6){
                         
                         if (j == 0){
+                            
                             inner = '<td style="display:none;">' + arr[i][j] + '</td>';
                         }else{
                             inner = inner + '<td style="display:none;">' + arr[i][j] + '</td>';
@@ -88,7 +89,19 @@
                         
                     }else{
                         
-                         inner = inner + '<td>' + arr[i][j] + '</td>';
+                         var stringInner = arr[i][j];
+                         
+                         if(j == 4){
+                             
+                            if ($.inArray(parseInt(arr[i][0], 10), selectedArticles) != -1)
+                            {
+                                  stringInner = stringInner.replace('input type="checkbox" ', 'input type="checkbox" checked ');
+                                  
+                            }
+ 
+                         }
+                         
+                         inner = inner + '<td>' + stringInner + '</td>';
                         
                     }
                     
@@ -119,6 +132,42 @@
             }   
         } 
     }
+    
+    function checkEvent(id,value){
+        
+        if (value.target.checked == true){
+            selectedArticles.push(id);
+        }else{
+            selectedArticles = jQuery.grep(selectedArticles, function(v) {
+              return v != id;
+            });
+        }
+        
+    }
+    
+    $("#ConfirmBtn").click(function(){
+        
+        if(selectedArticles.length == 0){
+            alert("Please pick up at least one article!")
+        }else{
+             $.ajax({
+                        url: '/admin/article_moderator_picked_up',
+                        type: 'get',
+                        data: {id: <%= current_user.id %>, list: selectedArticles.join(", ")},
+                        contentType: 'json'
+                        ,
+                            complete: function (jqXHR, textStatus) {
+                                if(textStatus == "success"){
+                                    window.location.href = "https://serler-stream2-robertle1991.c9users.io/admin/article_view/Moderator";
+                                }else{
+                                    alert("There are something wrong with Serler server. Please try again later!")
+                                }
+                            }
+                      });
+             
+        }
+       
+     });
     
 </script>
 

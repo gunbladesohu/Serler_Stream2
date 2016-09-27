@@ -13,29 +13,32 @@ class AdminController  < BaseController
   end
   
   def article_view
-    
-    type = params[:id]
-      
-    if type == "Moderator"
-      @ArticleList = Article.joins(:article_type,:status)
-      .select("articles.id as article_id, articles.title as article_title, 
-              article_types.name as type_name, articles.updated_at as updated_time, 
-              statuses.name as status_name, articles.journal as journal
-              , articles.year as year, articles.volume as volume
-              , articles.number as number, articles.month as month
-              , articles.pages as pages, articles.isbn as isbn
-              , articles.doi as doi, articles.url as url
-              , articles.keyword as keyword, articles.abstract as abstract")
-      .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
-      
+     type = params[:id]
+     
+    if current_user.nil?
+      redirect_to root_url
     else
-      
+      if type == "Moderator"
+        @ArticleList = Article.joins(:article_type,:status)
+        .select("articles.id as article_id, articles.title as article_title, 
+                article_types.name as type_name, articles.updated_at as updated_time, 
+                statuses.name as status_name, articles.journal as journal
+                , articles.year as year, articles.volume as volume
+                , articles.number as number, articles.month as month
+                , articles.pages as pages, articles.isbn as isbn
+                , articles.doi as doi, articles.url as url
+                , articles.keyword as keyword, articles.abstract as abstract")
+        .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
+        
+      else
+        
+      end
     end
-    
   end
   
   def article_view_moderator
-    id = params[:id]
+    
+    id = current_user.id
     
     @ArticleList = Article.joins(:article_type,:status)
       .select("articles.id as article_id, articles.title as article_title, 
@@ -48,6 +51,23 @@ class AdminController  < BaseController
               , articles.keyword as keyword, articles.abstract as abstract")
       .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'Moderator picked up' and articles.admin_id = #{id}")
     
+  end
+  
+  def article_moderator_picked_up
+    
+    id = params[:id]
+    list = params[:list].split(",").map { |s| s.to_i }
+    
+    status = Status.find_by name: "Moderator picked up"
+    
+    list.each do |l|
+      articleItem = Article.find(l)
+      articleItem.admin_id = id
+      articleItem.status_id = status.id
+      articleItem.save
+    end
+    
+    redirect_to article_view_moderator_path
   end
   
   def article_quality_check
