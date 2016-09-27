@@ -119,7 +119,7 @@
         <tbody>
         <% @articles.each do |article| %> 
           <tr>
-            <td class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
+            <td class="title"><a href="<%= article.url %>" target= "_blank" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
             <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
             <td class="year"><%= article.year %></td>
             <td class="journal"><%= article.journal %></td>
