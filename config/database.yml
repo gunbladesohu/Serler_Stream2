@@ -23,7 +23,6 @@ default: &default
   username: postgres
   port: 5432
 
-
 development:
   <<: *default
   database: SERLER_Stream2_dev
