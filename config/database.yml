@@ -116,13 +116,21 @@ production:
   #timeout: 5000
   #username: trungtang
   
-  database: d85arbm5rloo9e
+  database: localhost
   host: ec2-54-243-52-209.compute-1.amazonaws.com
   pool: 5
   timeout: 5000
-  username: ghguylfvlizywt
-  password: uuFI-cio8EqC_cNaqfdqVal-Kl
+  username: postgres
   port: 5432
+  
+  # database: d85arbm5rloo9e
+  # host: ec2-54-243-52-209.compute-1.amazonaws.com
+  # pool: 5
+  # timeout: 5000
+  # username: ghguylfvlizywt
+  # password: uuFI-cio8EqC_cNaqfdqVal-Kl
+  # port: 5432
+  
   # <<: *default
   # database: SERLER_production
   # username: SERLER
