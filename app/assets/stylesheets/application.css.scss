@@ -44,5 +44,19 @@ footer {
 .table_box{padding: 26px;background: #e4e4e4;}
 .mandatory{color:red;
   display: none;}
+
 .mandatory1{color:red;
   display: none;}
+
+.head-name-table th{padding-left: 10px !important;}
+.JCLRgripDrag {border-left: 0px dotted black !important;}
+.head-row{background: #e4e4e4;}
+#result-table{margin-top: 15px;}
+.table_result_title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 255px;
+}
+
