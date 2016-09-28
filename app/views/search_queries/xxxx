@@ -1,0 +1,23 @@
+ <th style="padding-left: 10px !important;" id="col0" class="title">Title <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col1" class="author">Author <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col2" class="year">Year <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col3" class="journal">Journal <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col4" class="volume">Volume <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col5" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col6" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th style="padding-left: 10px !important;" id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
+
+
+
+        <td style="padding-left: 10px !important;" class="title"><b><%= article.title %></b></td>
+                      <td style="padding-left: 10px !important;" class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
+                      <td style="padding-left: 10px !important;" class="year"><%= article.year %></td>
+                      <td style="padding-left: 10px !important;" class="journal"><%= article.journal %></td>
+                      <td style="padding-left: 10px !important;" class="volume"><%= article.volume %></td>
+                      <td style="padding-left: 10px !important;" class="issues"><%= article.number %></td>
+                      <td style="padding-left: 10px !important;" class="pages"><%= article.pages %></td>
+                      <td style="padding-left: 10px !important;" class="doi"><%= article.doi %></td>
+                      <td style="padding-left: 10px !important;" class="url"><%= article.url %></td>
+                      <td style="padding-left: 10px !important;" class="keywords"><%= article.keyword %></td>
