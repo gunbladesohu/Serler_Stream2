@@ -1,5 +1,5 @@
 class ArticlesController < BaseController
-  before_action :logged_in?
+ # before_action :logged_in?
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
 
@@ -89,6 +89,8 @@ class ArticlesController < BaseController
       if current_user.nil?
         redirect_to login_url
       end
+    else
+      redirect_to articles
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -10,8 +10,8 @@
       </ul>
     </div>
   <% end %>
-  <div class="bib">
-  <table>
+
+  <table class="bib">
     <tr>
       <th><label><%= f.label :title %></label></th>
       <td><%= @article.title %></td>
@@ -48,7 +48,7 @@
     </tr>
     <tr>
       </table>
-  </div>
+
   
 <div class="form-style-5">
 <form>
@@ -146,6 +146,12 @@
     </ul>
 </fieldset>
 </form>
+
+ <div class="actions button">
+    <%= f.submit %>
+  </div>
+  
+<% end %>
 </div>
 
       
@@ -157,7 +163,4 @@
   </div>
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+ 
