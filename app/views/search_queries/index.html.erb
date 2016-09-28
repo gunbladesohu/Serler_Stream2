@@ -54,16 +54,16 @@
         <tbody>
         <% @articles.each do |article| %>
             <tr>
-              <td id="appadd" style="padding-left: 10px !important;" class="title shrink"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
-              <td style="padding-left: 10px !important;" class="author shrink"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
-              <td style="padding-left: 10px !important;" class="year expand"><%= article.year %></td>
-              <td style="padding-left: 10px !important;" class="journal shrink"><%= article.journal %></td>
-              <td style="padding-left: 10px !important;" class="volume shrink"><%= article.volume %></td>
-              <td style="padding-left: 10px !important;" class="issues shrink"><%= article.number %></td>
-              <td style="padding-left: 10px !important;" class="pages shrink"><%= article.pages %></td>
-              <td style="padding-left: 10px !important;" class="doi shrink"><%= article.doi %></td>
-              <td style="padding-left: 10px !important;" class="url shrink"><%= article.url %></td>
-              <td style="padding-left: 10px !important;" class="keywords shrink"><%= article.keyword %></td>
+              <td style="padding-left: 10px !important;" class="title"><a href="<%= article.url %>" class="tooltips" title="<%= article.title %>"><div class="table_result_title"><%= article.title %></div></a></td>
+              <td style="padding-left: 10px !important;" class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
+              <td style="padding-left: 10px !important;" class="year"><%= article.year %></td>
+              <td style="padding-left: 10px !important;" class="journal"><%= article.journal %></td>
+              <td style="padding-left: 10px !important;" class="volume"><%= article.volume %></td>
+              <td style="padding-left: 10px !important;" class="issues"><%= article.number %></td>
+              <td style="padding-left: 10px !important;" class="pages"><%= article.pages %></td>
+              <td style="padding-left: 10px !important;" class="doi"><%= article.doi %></td>
+              <td style="padding-left: 10px !important;" class="url"><%= article.url %></td>
+              <td style="padding-left: 10px !important;" class="keywords"><%= article.keyword %></td>
             </tr>
         <% end %>
         </tbody>

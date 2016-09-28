@@ -27,7 +27,8 @@ end
 When(/^I click on "([^"]*)"$/) do |button|
   click_link button
 end
-
+1
+\
 # The result - should show the new query page
 Then(/^I should be on new query page with title "([^"]*)"$/) do |title|
   page.should have_content(title)
