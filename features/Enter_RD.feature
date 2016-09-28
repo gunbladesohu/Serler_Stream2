@@ -17,4 +17,10 @@ Feature: Enter Research Design
     Given I go to 'articles/28/edit'
     And I click on "Update"
     Then I go to 'articles/28'
-   
+    
+  Scenario: Successful Save
+    Given I go to 'articles/30'
+    And I click on "Edit"
+    And I click on "Back"
+    Then I go to 'articles/30/edit'
+    Then I go to articles
