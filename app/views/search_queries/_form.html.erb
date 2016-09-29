@@ -1,5 +1,5 @@
 
-<%= form_for @search_query, :html => { :id => "search_form", :target=>'_blank' } do |f| %>
+<%= form_for @search_query, :html => { :id => "search_form"} do |f| %>
   <% if @search_query.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
@@ -107,6 +107,7 @@
       var fromYear = $('.input-fromYear').val();
       var toYear = $('.input-toYear').val();
 
+      
       if (fromYear>toYear){
         alert('To Year cannot smaller than From Year');
         $('.input-fromYear').css("background-color", "yellow");
