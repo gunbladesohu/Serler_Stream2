@@ -11,11 +11,3 @@ script:
 - bundle exec rspec
 notifications:
   email: false
-deploy:
-  provider: heroku
-  api_key:
-    secure: PR3qJjbDQ32KYxaOmAgCCpBMEcdIHwNVIoJ6iaufphQI0AWvK/saWa3J3P5ncK63pHjJ7bXWcQCtBUAdyCzm7lklo64MGmi8dMA3cpMhHodznXMMd0rIiMeK1GM4kOqPe3hOlx7kvlT6xeA3VeaQH/Oub40UiEKWSy3dKMf6OYYftieCWH7X0KOKcA46Vs8fd9bPN94gOb4PuiTlyzTPltve2OWzqNC6gFQWz2HJy8IQOPSHux5v3sJC1Sf5FuBedUjQUJ8e+F6ev24NeJIZMGbHI04n8wSHHqqSlLJ7ZPLZitsd34Jt9lanmIJ2vBrh07Y8SCfGF2HtyBbcU3x3P1zJ5+2q29xJpwC9dWiUDDXKy9kGEyxcgYSbA168As2KjIXu5MNxz7VzNTE9FhVeoIvr3KMtkgJqjmRHZceLNBIX2bUUJs5Lqwxmzi+Te+hkH87E3pcIzScQXJ7bhdTOUa0MDJUIhlO9tDSKfDqOg2NjpSZ62UMvOaUl9rPIs5DCyinB5CquFgRZ+GGS1ZQV8eQpaw8zQzIQJFTHcdnkMTzkEfr/kcXtYstebjIn9fJFByvQar2cygCIZ7rwXqAr9JzXeAkHQa5bNSnK5tpzwzNOykkJqUW/HLFdgApc/CZEUAZ1m2mlLoGhnU+TLXumMzQyRqLMlp+Mzl6zeAYUuXM=
-  app: serlercodoctors
-  on:
-    repo: tdbt1985/Serler_Stream2
-    branch: CoDoctors
