@@ -27,7 +27,7 @@
         <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='fromYear'>
             <!--<input type='text' class="form-control" />-->
-            <%= f.text_field :from_date, {class: 'form-control input-fromYear'} %>
+            <%= f.text_field :from_date, {class: 'form-control input-fromYear '}  %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
@@ -83,6 +83,20 @@
       e.preventDefault();
       return false;
     });
+
+    $('#fromYear').mousedown(function(e) {
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       return false;
+    });
+    $('#toYear').mousedown(function(e) {
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       return false;
+    });
+
+    $("#fromYear").disabled = true;
+
     $('#toYear').keydown(function(e) {
       e.preventDefault();
       return false;
