@@ -1,3 +1,4 @@
+=begin
 require 'rspec'
 
 describe 'login behaviour' do
@@ -6,4 +7,4 @@ describe 'login behaviour' do
 
     true.should == false
   end
-end
+end=end

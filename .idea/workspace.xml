@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2d782f3-bca8-46b6-ba32-82ea091c648c" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/user_login_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/user_login_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/user_login_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/user_login_spec.rb" />
     </list>
     <ignored path="SERLER.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,8 +70,8 @@
       <file leaf-file-name="user_login_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/user_login_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -143,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/articles_methodology.rb" />
         <option value="$PROJECT_DIR$/app/models/methodology.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/topnavbar.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/home.html.erb" />
@@ -194,6 +193,7 @@
         <option value="$PROJECT_DIR$/spec/requests/users_logins_spec.rb" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/spec/spec_helper.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/user_login_spec.rb" />
       </list>
     </option>
   </component>
@@ -837,7 +837,7 @@
       <workItem from="1474282228310" duration="11250000" />
       <workItem from="1474498437641" duration="3120000" />
       <workItem from="1474602112635" duration="9896000" />
-      <workItem from="1475108337904" duration="1816000" />
+      <workItem from="1475108337904" duration="1936000" />
     </task>
     <servers />
   </component>
@@ -856,7 +856,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93475000" />
+    <option name="totallyTimeSpent" value="93595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="48" width="1239" height="681" extended-state="0" />
@@ -1250,8 +1250,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/user_login_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
