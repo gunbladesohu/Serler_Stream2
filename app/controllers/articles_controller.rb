@@ -1,5 +1,6 @@
 class ArticlesController < BaseController
- # before_action :logged_in?
+  before_action :logged_in?
+  before_action :current_user
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
 
@@ -8,7 +9,7 @@ class ArticlesController < BaseController
   def index
     #@articles = Article.all
      @articles = Article.includes(:users)
-    #.user_filter(11)
+    .user_filter(@current_user.id)
   end
 
   # GET /articles/1
@@ -89,14 +90,12 @@ class ArticlesController < BaseController
       if current_user.nil?
         redirect_to login_url
       end
-    else
-      redirect_to articles
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :journal, :year, :volume,
-        :number, :month, :research_questions, :research_metrics, 
+        :number, :month, :research_questions, :research_metrics,
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},

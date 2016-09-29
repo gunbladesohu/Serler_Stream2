@@ -74,7 +74,7 @@ participant3 = ResearchParticipant.create(name: 'Practitioners',          descri
 
 default_password = "admin123"
 
-user1 = User.create!(first_name: '1',   middle_name: '1', email: 'aa@a.com',
+user1 = User.create!(first_name: '1',   middle_name: '1', email: 'paul@serler.com',
 password: default_password,
 password_confirmation: default_password )
 user2 = User.create!(first_name: '2',   middle_name: '2', email: 'ss@s.com',
