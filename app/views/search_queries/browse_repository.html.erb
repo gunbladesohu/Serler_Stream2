@@ -25,10 +25,19 @@
       <div class="col-md-6">
         <div class="column-view">
           <label style="font-weight:bold;">Filter: </label>
-          
+          <label><input type="checkbox" class="check-head" value="1" name="author"><span>Author</span></label>
           <label><input type="checkbox" class="check-head" value="1" name="year" checked="checked"><span>Year</span></label>
-          <label><input type="checkbox" class="check-head" value="1" name="methodology"><span>Methodology</span></label>
-          <label><input type="checkbox" class="check-head" value="1" name="method"><span>Method</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="journal"><span>Journal</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="volume"><span>Volume</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="issues"><span>Issues</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="pages"><span>Pages</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="doi"><span>DOI</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="url"><span>URL</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="keywords"><span>Keywords</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="methodology" checked="checked"><span>Methodology</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="method" checked="checked"><span>Method</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="research_method"><span>Research Method</span></label>
+          <label><input type="checkbox" class="check-head" value="1" name="participant"><span>Participant</span></label>
 
         </div>
       </div>
@@ -38,19 +47,38 @@
         <thead>
         <tr>
           <th id="col0" class="title">Title <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col1" class="author">Author <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col2" class="year">Year <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col3" class="journal">Journal <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col4" class="volume">Volume <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col5" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col6" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col11" class="methodology">Methodologies <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col12" class="method">Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
-
+          <th id="col13" class="research_method">Research Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col14" class="participant">Participants <span class="grey"><i class="fa fa-sort"></i></span></th>
         </tr>
         </thead>
         <tbody>
         <% @articles.each do |article| %>
             <tr>
               <td class="title"><a href="<%= article.url %>" target="_blank"class="tooltips" title="<%= article.title %>"><b><%= article.title %></b></a></td>
+              <td class="author"><%= article.articles_authors.map { |articles_author| articles_author.author.full_name}.join(', ') %></td>
               <td class="year"><%= article.year %></td>
+              <td class="journal"><%= article.journal %></td>
+              <td class="volume"><%= article.volume %></td>
+              <td class="issues"><%= article.number %></td>
+              <td class="pages"><%= article.pages %></td>
+              <td class="doi"><%= article.doi %></td>
+              <td class="url"><%= article.url %></td>
+              <td class="keywords"><%= article.keyword %></td>
               <td class="methodology"><%= article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ') %>  </td>
               <td class="method"><%= article.articles_dev_methods.map { |articles_dev_method| articles_dev_method.dev_method.name}.join(', ') %></td>
+              <td class="research_method"><%= article.articles_research_methods.map { |articles_research_method| articles_research_method.research_method.name}.join(', ') %></td>
+              <td class="participant"><%= article.articles_research_participants.map { |articles_research_participant| articles_research_participant.research_participant.name}.join(', ') %></td>
           </tr>
         <% end %>
         </tbody>
