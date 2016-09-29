@@ -107,7 +107,8 @@
     var table = $('#result-table').DataTable({
       paging: false,
       retrieve: true,
-      dom: '<"bottom">p'
+      dom: '<"bottom"rlp><"clear"ip>'
+      // sDom: '<"top"i>rtlp'
     });
 
     $('#result-table').on('order.dt', function () {
@@ -130,21 +131,12 @@
         return false;
       }
     });
-  });
-</script>
+
+  // table.DataTable({
+    
+  // } );
 
 
-
-
-
-
-
-<script type = "text/javascript">
-
-// $(document).ready( function () {
-  $('#result-table').DataTable({
-    "sDom": '<"top"i><"clear"rtlp>'
-  } );
  
     $('input.global_filter').on( 'keyup click', function () {
         filterGlobal();
@@ -154,10 +146,18 @@
     //     filterColumn( $(this).parents('tr').attr('data-column') );
     // } );
 
-function filterGlobal () {
-    $('#result-table').DataTable().search(
-        $('#global_filter').val()
-    ).draw();
-}
-// } );
+    function filterGlobal () {
+        $('#result-table').DataTable().search(
+            $('#global_filter').val()
+        ).draw();
+    }
+  });
 </script>
+
+
+
+
+
+
+
+
