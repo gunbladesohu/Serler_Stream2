@@ -1,5 +1,4 @@
 language: ruby
-#test travis v3
 rvm:
 - 2.3.0
 before_script:
@@ -16,6 +15,9 @@ deploy:
   provider: heroku
   api_key:
     secure: BD9Kxd4fx/S9JaIw3qm6XJ9+Vf/25hcRll/Od3dxbGpk0klQWUOi9BoIgqWEGyPbCIz3QuqLVawtjjvZjV/rN7Ba7m+aR3HORtzvtCrHEWQ6pOZbSkipIDW50b6+nzJgEyayBEXgPOQpQLC0FIFIcdlzu4eocn7KgaACCF17eDiU2d5nPT3GYtQeC8MD88XvLE70moeHpHSdXlWN5cVvl6KK8Li+vcJWTFiVwHYUGf5y7+Pv4/6/DhTbmith5S1Pv+BbKdzxDOW0cTnuzQDEKMFX4/ArqL4JIUPFQrOOmTGWxI7LzbjYmJjLB9kobsrgENaDddUPq/S2VS071t7SXR0pntF8qCIQFGqlud3R9RXIEIQjgtNrJeDGDfSzregkbhiAy8Lp8s2STzfcADsKDKUOEOicazMftJHO5Tmz44Em/pvgmYiPMfMlQvS08iIeKtbnJ7sRYs1tY0Pf6n0TFWDOMd07B1PV+qpa/iQWMtLj5cJXTsjFoatST2dYrenUpiJ0175xM3lQBPxMRxQmzVEASGmoVq3Elbi5hHO/O5PfZm/gtlsrjuQmGdt0ajBmb2+cwkZhcHEBrXTH4Qj431chdqoiQ2hNRgG12eSkJSgevxvSRN9OWh8QfCJr6LT0FSRoagW1tXGoSBiStq/2AhbaPyDylyYpKWMwDuDJikw=
+   run:
+          - "rake db:reset"
+          - restart
   app: sdmserlercodoctors
   on:
     repo: tdbt1985/Serler_Stream2
