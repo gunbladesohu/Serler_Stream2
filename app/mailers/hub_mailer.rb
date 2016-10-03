@@ -1,5 +1,5 @@
 class HubMailer < ApplicationMailer
-  
+  #testing
   layout 'welcome_email'
   def welcome_email(email, name, message)
     
@@ -49,7 +49,7 @@ class HubMailer < ApplicationMailer
 
       @article_list_today = Article.where("created_at >= ?", Time.zone.now.beginning_of_day)
     attachments.inline['SerlerLogo_Black.png'] = File.read(Rails.root.join('app/assets/images/SerlerLogo_Black.png'))
-      mail(to: save2, subject: 'New Article Submitted') do |format|
+    mail(to: save2, subject: 'New Article Submitted') do |format|
         format.html { render layout: 'new_article_email' }
       end
 
