@@ -41,17 +41,22 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'byebug'
   gem 'assert_difference'
+  gem "factory_girl_rails", "~> 4.7.0"
 end
 
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  
-  group :test, :development do
+
+group :test, :development do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+  gem "faker"
+  gem "capybara"
+  gem "launchy"
+  gem "selenium-webdriver"
 end
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -60,4 +65,3 @@ end
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 end
-

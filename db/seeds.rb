@@ -62,7 +62,7 @@ Status.create(name: 'Accepted',          description: '', is_active: true)
 Status.create(name: 'Rejected',          description: '', is_active: true)
 Status.create(name: 'Analysis complete', description: '', is_active: true)
 
-Role.create(name: 'Admin',                    description: '', is_active: true)
+role1 = Role.create(name: 'Admin',                    description: '', is_active: true)
 Role.create(name: 'Moderator',                description: '', is_active: true)
 Role.create(name: 'Analyst',                  description: '', is_active: true)
 Role.create(name: 'User',                     description: '', is_active: true)
@@ -76,7 +76,7 @@ default_password = "admin123"
 
 user1 = User.create!(first_name: '1',   middle_name: '1', email: 'paul@serler.com',
 password: default_password,
-password_confirmation: default_password )
+password_confirmation: default_password, roles: [role1] )
 user2 = User.create!(first_name: '2',   middle_name: '2', email: 'ss@s.com',
 password: default_password,
 password_confirmation: default_password )
