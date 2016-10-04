@@ -108,8 +108,9 @@
          <label>Password</label>
         </div>
         
-        <div id="passwordSection" class="col-lg-5 form-group">
-          <input type="password" class="form-control" id="password" >
+        <div id="passwordSection" class="col-lg-5 form-group" >
+          <input type="password" class="form-control" id="password" placeholder="At least 6 characters and 1 number">
+         
            <span id="password_val_icon" class="validation validationIcon" aria-hidden="true" ></span>
         <span id="password_val_msg" class="validation help-block"></span>
         </div>
@@ -262,6 +263,7 @@
      $("#password_confirmation").change(function() {
        passwordConfirmErrorCheck(); 
     }); 
+    
     
     var firstNameFreeError = true;
     function firstNameErrorCheck(){
@@ -673,6 +675,6 @@
         color: #3c763d;
     }
     
-    
+
 </style>
 

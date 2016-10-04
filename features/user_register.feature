@@ -1,7 +1,4 @@
 Feature: User registration
-  In order to make informed decisions
-  As a registered user of SERLER
-  I want to search for empirical evidence on different methods based on different constraints
 
   Scenario: Access into registration page
     Given I open "http://localhost:3000"
