@@ -72,8 +72,7 @@ class AdminController  < BaseController
   
   def article_quality_check
     
-    articleItem = Article.find(params[:articleId])
-    
+     articleItem = Article.find(params[:articleId])
     
     if params[:isAccepted] 
       @statusId = Status.find_by name: "Accepted"
@@ -91,11 +90,11 @@ class AdminController  < BaseController
                    <p>Thank you so much for using Serler</p>
                    ".html_safe
        
-       HubMailer.new_article_email(@user, @subject, @message).deliver_now
+       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
 
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
-    else0
+    else
       
       @statusId = Status.find_by name: "Rejected"
       articleItem.status = @statusId
