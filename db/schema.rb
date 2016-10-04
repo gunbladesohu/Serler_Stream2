@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.boolean  "relevance"
     t.boolean  "not_duplicate"
     t.integer  "user_id"
+    t.integer  "admin_id"
   end
 
   create_table "articles_authors", force: :cascade do |t|

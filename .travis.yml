@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 language:
   ruby 
 rvm:
@@ -38,3 +39,29 @@ before_deploy:
 #     sprint1
 #     sprint2
 #     sprint3
+=======
+language: ruby
+rvm:
+- 2.3.0
+before_script:
+- bundle exec rake db:setup
+- bundle exec rake db:migrate
+- RAILS_ENV=test bundle exec rake db:setup
+- RAILS_ENV=test bundle exec rake db:migrate
+script:
+- bundle exec cucumber
+- bundle exec rspec
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: Cw9m5ceC+oxu//69ofxq/QRgf4Zd9JVwy4As6amjSLFGN4mc6CgkWv2TvW8lquFilccfeKb88+UcKaAllO9VRviYKFnFvALSgNd8LXP0rLPahHOEIyczMcv/CFRYKSiJql78oCH3VtyHMAdujGctMHDib487zs8ZYO3HBAv4VD6EXazNxAZTTTxH6FuCn85I4M8Z0b5BKcjdj1BjfaKlBfmnNMMAgakx83FErTgSHqBOnwKqVirFvBKG4XcLaRXaekNmj0PUj4ZY0E3c6sJVGnKV2chbehpsQwdP/6L1fAapC/CykTeM2fcQC9Vyn0sbMMeq/czi6xR+LlK0xuXSqvipP+hJkbBEUzJCTjB/XKdOP9bD9rslkVyqhRCsnuS3mtNXzeS9rDGYlGCX28UWk2uAs1K2kmL8VmyJjn9eWoj8xxlQiBHovm4mbA74B3OTehqc3GslldtEERrl9ZD5EWcwCRUyLc02/QhT11lhLyqTreoh84VGWgkUbuDxY8x9n5HSNG1eGyLUu+Xp0YZu9xoVDqLUcs+98UB9skWx2iGfCFLusnCka+YJ9W+5LHHkTimFz7SF29KgVWC50aBztZWrpIXJNMPR6SOUzFJgqaFhHyRA3ScmBd1ou6GogL1RwLVMbGR+P+Gk/DW8xEVExysFQuUKqXW1JM0ivpX3ufA=
+  run:
+         - "rake db:reset"
+         - restart
+  app: sdmserlercodoctors
+  on:
+    repo: tdbt1985/Serler_Stream2
+    branch: CoDoctors
+>>>>>>> CoDoctors

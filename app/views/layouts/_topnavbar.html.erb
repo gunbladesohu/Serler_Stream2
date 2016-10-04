@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style="padding-top:10px;"><img src="<%= asset_path( 'SerlerLogo.png' ) %>" height="35" /></a>
+      <a href="/" class="navbar-brand" style="padding-top:10px;"><img src="<%= asset_path( 'SerlerLogo.png' ) %>" height="35" /></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,6 +23,46 @@
         <li>
           <a href="#">Contact</a>
         </li>
+        
+        <% if logged_in? %>
+        
+            
+            <li class="dropdown" id="menu1">
+              <a href="#menu1" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.first_name %> <%= current_user.last_name %>  <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                
+                 <% if current_user_role.nil? %>
+                     <li>
+                      <%= link_to "Log out", logout_path, method: "delete" %>
+                    </li>
+                 <% else %>
+                     <% if current_user_role.name == "Moderator" %>
+                      <li>
+                        <%= link_to "New articles", article_view_moderator_path, method: "get" %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to "My article list", article_moderator_picked_up_path, method: "get" %>
+                      </li>
+                      
+                      <li>
+                      <%= link_to "Log out", logout_path, method: "delete" %>
+                      </li>
+                    <% end %>
+                <% end %>
+                
+                
+                
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to "Log in", login_path %></li>
+            <li id="registerBtn"><%= link_to "Register", register_path %></li>
+            <li id="userNameBlock"><a id="userFullName"></a></li>
+            
+        <% end %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -30,6 +70,7 @@
   <!-- /.container -->
 </nav>
 <% end %>
+
 <% content_for :login_content do %>
     <%= content_for?(:content) ? yield(:content) : yield %>
 <% end %>

@@ -3,8 +3,8 @@ require "rails_helper"
 RSpec.describe AdminController, type: :routing do
   describe "routing" do
 
-    it "routes to article view page" do
-      expect(:get => "/admin/article_view").to route_to("admin#article_view")
+    it "routes to registration page" do
+      expect(:get => "/users/new").to route_to("users#new")
     end
 
     it "routes to add new development method page" do
