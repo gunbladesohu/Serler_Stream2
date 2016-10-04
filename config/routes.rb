@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+
   get 'sessions/new'
 
   resources :search1_queries
+
   get 'search_queries/update_values' => 'search_queries#update_values'
+
+  get 'search_queries/queries_list' => 'search_queries#queries_list'
+
+  get 'search_queries/browse_repository' => 'search_queries#browse_repository'
+
 
   resources :search_queries
   resources :methodologies
@@ -21,7 +28,7 @@ Rails.application.routes.draw do
   root 'home#index'
   
   
-  get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
+  # get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
   # get    '/login',   to: 'sessions#new'
   get    '/login',   to: 'home#login'
   post   '/login',   to: 'sessions#create'

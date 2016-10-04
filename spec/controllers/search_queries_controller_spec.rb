@@ -6,11 +6,11 @@ RSpec.describe SearchQueriesController, type: :controller do
   # SearchQuery. As you add validations to SearchQuery, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {:description=>"", :from_date=>"1990", :to_date=>"2016", :search_lines_attributes=>{:aaa=>{:join_condition=>"1", :field_id=>"1", :operator=>"5", :value_id=>"1", :value_text=>"a", :value_number=>"1", :_destroy=>"false"}, :bbb=>{:join_condition=>"1", :field_id=>"5", :operator=>"1", :value_id=>"1", :value_text=>"programming", :value_number=>"1", :_destroy=>"false"}}}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {:description=>"", :from_date=>"1990", :to_date=>"2016", :search_lines_attributes=>{:aaa=>{:join_condition=>"1", :field_id=>"1", :operator=>"5", :value_id=>"1", :value_text=>"", :value_number=>"1", :_destroy=>"false"}, :bbb=>{:join_condition=>"2", :field_id=>"6", :operator=>"1", :value_id=>"1", :value_text=>"kh", :value_number=>"1", :_destroy=>"false"}}}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -35,7 +35,7 @@ RSpec.describe SearchQueriesController, type: :controller do
   # describe "GET #show" do
   #   it "assigns the requested search_query as @search_query" do
   #     search_query = SearchQuery.create! valid_attributes
-  #     get :show, params: {id: search_query.to_param}, session: valid_session
+  #     get :show, params: {id: search_query}, session: valid_session
   #     expect(assigns(:search_query)).to eq(search_query)
   #   end
   # end
@@ -50,6 +50,18 @@ RSpec.describe SearchQueriesController, type: :controller do
     end
   end
 
+  # describe "GET #browse_repository" do
+  #   it "assigns a new articles as @articles" do
+  #     get :browse_repository, params: {}, session: valid_session
+  #     # expect(assigns(:search_query)).to be_a_new(SearchQuery)
+  #     @articles.should have(10).things
+  #     # is_expected.to have(10).items
+  #     # expect(assigns(:join_conditions).size).to be > 0
+  #     # expect(response).to render_template(:new)
+  #   end
+  # end
+
+
   # describe "GET #edit" do
   #   it "assigns the requested search_query as @search_query" do
   #     search_query = SearchQuery.create! valid_attributes
@@ -60,13 +72,15 @@ RSpec.describe SearchQueriesController, type: :controller do
 
   describe "POST #create" do
     it "found articles" do
-      post :create, search_query: {:description=>"", :from_date=>"1990", :to_date=>"2016", :search_lines_attributes=>{:aaa=>{:join_condition=>"1", :field_id=>"1", :operator=>"5", :value_id=>"1", :value_text=>"a", :value_number=>"1", :_destroy=>"false"}, :bbb=>{:join_condition=>"1", :field_id=>"5", :operator=>"1", :value_id=>"1", :value_text=>"programming", :value_number=>"1", :_destroy=>"false"}}}, session: valid_session
+      expect {
+        post :create, search_query: valid_attributes, session: valid_session
+      }.to change(SearchQuery, :count).by(1)
       expect(assigns(:articles).size).to be > 0
       expect(response).to render_template(:index)
     end
 
     it "not found articles" do
-      post :create, search_query: {:description=>"", :from_date=>"1990", :to_date=>"2016", :search_lines_attributes=>{:aaa=>{:join_condition=>"1", :field_id=>"1", :operator=>"5", :value_id=>"1", :value_text=>"", :value_number=>"1", :_destroy=>"false"}, :bbb=>{:join_condition=>"2", :field_id=>"6", :operator=>"1", :value_id=>"1", :value_text=>"kh", :value_number=>"1", :_destroy=>"false"}}}, session: valid_session
+      post :create, search_query: invalid_attributes, session: valid_session
       expect(assigns(:articles).size).to eq(0)
       expect(response).to render_template(:index)
     end
@@ -103,13 +117,13 @@ RSpec.describe SearchQueriesController, type: :controller do
     # end
   end
 
-  describe "GET #update_values" do
-    it "ajax get when update field" do
-      # get :update_values, field_id: 2, session: valid_session
-      xhr :get, :update_values, field_id: 2, :format => "json"
-      expect(response.status).to eq(200)
-    end
-  end
+  # describe "GET #update_values" do
+  #   it "ajax get when update field" do
+  #     # get :update_values, field_id: 2, session: valid_session
+  #     xhr :get, :update_values, field_id: 2, :format => "json"
+  #     expect(response.status).to eq(200)
+  #   end
+  # end
 
   # describe "PUT #update" do
   #   context "with valid params" do

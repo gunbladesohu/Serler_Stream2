@@ -1,4 +1,5 @@
-<%= form_for @search_query, :html => { :id => "search_form" } do |f| %>
+
+<%= form_for @search_query, :html => { :id => "search_form"} do |f| %>
   <% if @search_query.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@search_query.errors.count, "error") %> prohibited this search_query from being saved:</h2>
@@ -10,12 +11,12 @@
     </div>
   <% end %>
 
-  <div class="row" style="padding-top: 10px;">
+  <!-- <div class="row" style="padding-top: 10px;">
     <div class="field col-md-12">
       <%= f.label :description %>
       <%= f.text_field :description, {class: 'form-control'} %>
     </div>
-  </div>
+  </div> -->
 
   <div class="row" style="padding-top: 20px; margin-bottom: 20px;">
     <div class="form-inline col-md-12">
@@ -26,7 +27,7 @@
         <!--<div class="col-md-6" style="padding: 0">-->
           <div class='input-group date' id='fromYear'>
             <!--<input type='text' class="form-control" />-->
-            <%= f.text_field :from_date, {class: 'form-control input-fromYear'} %>
+            <%= f.text_field :from_date, {class: 'form-control input-fromYear '}  %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar">
               </span>
@@ -69,12 +70,12 @@
   $(document).ready(function () {
     // Date picker
     $('#fromYear').datetimepicker({
-      defaultDate: "1/1/1990",
+      // defaultDate: "1/1/1990",
       viewMode: 'years',
       format: 'YYYY'
     });
     $('#toYear').datetimepicker({
-      defaultDate: new Date(),
+      // defaultDate: new Date(),
       viewMode: 'years',
       format: 'YYYY'
     });
@@ -82,18 +83,31 @@
       e.preventDefault();
       return false;
     });
+
+    $('#fromYear').mousedown(function(e) {
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       return false;
+    });
+    $('#toYear').mousedown(function(e) {
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       return false;
+    });
+
+    $("#fromYear").disabled = true;
+
     $('#toYear').keydown(function(e) {
       e.preventDefault();
       return false;
     });
-
-    $('#fromYear')
 
     $('.search_button').click(function () {
 
       var fromYear = $('.input-fromYear').val();
       var toYear = $('.input-toYear').val();
 
+      
       if (fromYear>toYear){
         alert('To Year cannot smaller than From Year');
         $('.input-fromYear').css("background-color", "yellow");

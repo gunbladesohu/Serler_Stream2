@@ -12,30 +12,30 @@
 
     <div class="search_line row">
       <div class="field col-md-3">
-        <%= f.label :field %>
+        <%= f.label :search_in %>
         <%= f.select :field_id, options_for_select(@search_fields.collect { |search_field|
           [search_field.name.titleize, search_field.id] }, 0), {}, { class: 'search_field form-control' } %>
       </div>
 
       <div class="field col-md-3">
-        <%= f.label :operator %>
+        <%= f.label :limitation %>
         <%= f.select :operator, options_for_select(@operators.collect { |operator|
           [operator.name.titleize, operator.id] }, 0), {}, { class: 'operator form-control' } %>
       </div>
 
       <div class="field fixed_value col-md-3">
-        <%= f.label :value %>
+        <%= f.label :search_term %>
         <%= f.select :value_id, options_for_select(@field_values.collect { |field_value|
           [field_value.name.titleize, field_value.id] }, 0), {}, {class: 'search_field_value form-control'} %>
       </div>
 
       <div class="field text_value col-md-3">
-        <%= f.label :value %>
+        <%= f.label :search_term %>
         <%= f.text_field :value_text, {class: 'form-control'} %>
       </div>
 
       <div class="field number_value col-md-3">
-        <%= f.label :value %>
+        <%= f.label :search_term %>
         <%= f.number_field :value_number, {value: 1, min: 1, class: 'form-control'} %>
       </div>
 
@@ -53,6 +53,9 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
+    if($(".operator").length == 1){
+      $(".operator")[0].selectedIndex = 0;
+    }
     $(".join_condition").each(function(index) {
       if(index == 0){
         $(this).toggle(false);

@@ -9,6 +9,7 @@
 //= require bootstrap.js
 //= require bootstrap.min.js
 //= require jquery_ujs
+//= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
 //= require dataTables/datatables.min

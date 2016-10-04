@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20160917072029) do
   create_table "search_queries", force: :cascade do |t|
     t.string   "description"
     t.integer  "user_id"
-    t.date     "from_date"
-    t.date     "to_date"
+    t.integer     "from_date"
+    t.integer     "to_date"
     t.text     "sql_string"
     t.boolean  "isActive"
     t.datetime "created_at",  null: false

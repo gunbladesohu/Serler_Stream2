@@ -14,14 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Articles <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to("New Search", new_search_query_path)%>
+            </li>
+            <li>
+              <%= link_to("Saved Queries", "/search_queries/queries_list")%>
+            </li>
+            <li>
+              <%= link_to "Browse Repository", "/search_queries/browse_repository" %>
+            </li>
+          </ul>
         </li>
         
         <% if logged_in? %>
@@ -72,6 +77,13 @@
 <% end %>
 
 <% content_for :login_content do %>
-    <%= content_for?(:content) ? yield(:content) : yield %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
+<% end %>
+<% content_for :javascript do %>
+<script type="text/javascript">
+  $(document).ready(function () {  
+    $('.dropdown-toggle').dropdown();  
+  }); 
+</script>
 <% end %>
 <%= render template: "layouts/application" %>

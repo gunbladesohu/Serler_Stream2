@@ -46,7 +46,9 @@ class Article < ActiveRecord::Base
   # pavan primary search in the search page
   def self.search(search)
     if search
-      where(["title LIKE ?","%#{search}%"])
+      search = search.strip
+      # where(["title LIKE ?","%#{search}%"])
+      where(arel_table[:title].matches "%#{search}%")
     else
       all
     end

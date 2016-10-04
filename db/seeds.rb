@@ -306,6 +306,21 @@ JoinCondition.create(value: 4, name: "OR NOT")
 
 @author26.articles << @article10
 
+@author27 = Author.create(first_name: 'Y.', middle_name: 'L.', last_name: 'Sun', is_active: true)
+@author28 = Author.create(first_name: 'M.', middle_name: 'J.', last_name: 'Er', is_active: true)
+@article11 = Article.create(title: 'A novel approach towards sideslip velocity autopilot for an agile missile using hybrid PID control',
+                            journal: 'Control Conference (ECC)', year: '2001', volume: '', number: '',
+                            month: '', pages: '2109-2114', isbn: '',
+                            doi: '',
+                            url: 'http://ieeexplore.ieee.org.ezproxy.aut.ac.nz/document/7076234/',
+                            keyword: 'fuzzy control;genetic algorithms;missile control;optimal control;three-term control;D controller;agile missile model;controller gains;genetic algorithms;hybrid PID controller;hybrid proportional-integral-derivative control;incremental form;industrial applications;optimal tuning;sideslip velocity autopilot design;two-input normalized linear fuzzy logic controller;DH-HEMTs;Europe;Niobium;Reactive power;Zirconium;PID control;fuzzy control;genetic algorithms;missile autopilot;optimal tuning',
+                            abstract: 'This paper provides a new approach towards sideslip velocity autopilot design for an agile missile using hybrid Proportional-Integral-Derivative (PID) control. The proposed hybrid PID controller is derived by replacing the conventional PI controller by a two-input normalized linear fuzzy logic controller and implementing the conventional D controller in an incremental form. Genetic Algorithms (GA) are used to facilitate optimal tuning of the controller gains. Simulation results on an agile missile model demonstrate that the proposed controller is effective, robust and has great potential in many other industrial applications.',
+                            research_questions: '', research_metrics: '',
+                            type_id: @article_type3.id, status_id: @completed.id, is_active: true,
+                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id)
+@author27.articles << @article11
+@author28.articles << @article11
+
 @methodology1.articles << @article1
 @methodology1.articles << @article3
 @methodology1.articles << @article5
@@ -343,10 +358,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @methodology15.articles << @article4
 @methodology15.articles << @article8
 @methodology16.articles << @article1
-@methodology16.articles << @article3
+@methodology16.articles << @article11
 @methodology17.articles << @article2
 @methodology17.articles << @article5
-@methodology18.articles << @article4
+@methodology18.articles << @article11
 @methodology18.articles << @article8
 
 @devmethod1.articles << @article1
@@ -368,7 +383,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @devmethod13.articles << @article8
 @devmethod12.articles << @article9
 @devmethod11.articles << @article10
-@devmethod10.articles << @article1
+@devmethod10.articles << @article11
 @devmethod9.articles << @article2
 @devmethod8.articles << @article3
 @devmethod7.articles << @article4
@@ -378,7 +393,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @devmethod4.articles << @article8
 @devmethod3.articles << @article9
 @devmethod2.articles << @article10
-@devmethod1.articles << @article9
+@devmethod1.articles << @article11
 
 @researchmethod1.articles << @article1
 @researchmethod1.articles << @article2
@@ -390,7 +405,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchmethod3.articles << @article8
 @researchmethod3.articles << @article9
 @researchmethod4.articles << @article10
-@researchmethod4.articles << @article1
+@researchmethod4.articles << @article11
 @researchmethod4.articles << @article2
 @researchmethod5.articles << @article3
 @researchmethod5.articles << @article4
@@ -405,4 +420,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant3.articles << @article8
 @researchparticipant3.articles << @article9
 @researchparticipant3.articles << @article10
-@researchparticipant3.articles << @article5
+@researchparticipant3.articles << @article11
+
+# SearchQuery.create(description: 'test', user_id: @user1.id, from_date: 0, to_date: 2016,
+#                      sql_string: 'Method Is equal to Test Driven Development', isActive: true)
