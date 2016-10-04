@@ -1,5 +1,5 @@
 class HubMailer < ApplicationMailer
-  
+  #testing
   layout 'welcome_email'
   def welcome_email(email, name, message)
     
@@ -30,13 +30,29 @@ class HubMailer < ApplicationMailer
     article_name = Article.find(article_id)
     @article_title = article_name.title
 
-    @article_list_today = Article.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    # Get Moderator id from the DB
+    mod_id = Role.find_by name: 'Moderator'
+
+    @moderator_email = User.joins(:users_roles).select("users.email as mod_email").where("users_roles.role_id = #{mod_id.id}")
+    #@moderator_email = @moderator_email1.mod_email
 
     # Add logo
-    attachments.inline['SerlerLogo_Black.png'] = File.read(Rails.root.join('app/assets/images/SerlerLogo_Black.png'))
-    mail(to: 's.anmoldeep1993@gmail.com', subject: 'New Article Submitted') do |format|
-      format.html { render layout: 'new_article_email' }
+
+    save2 = "s.anmoldeep1993@gmail.com"
+    @moderator_email.each do |mod|
+
+      save  = mod.mod_email + "," + save2
+      save2 = save
+
     end
+
+
+      @article_list_today = Article.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    attachments.inline['SerlerLogo_Black.png'] = File.read(Rails.root.join('app/assets/images/SerlerLogo_Black.png'))
+    mail(to: save2, subject: 'New Article Submitted') do |format|
+        format.html { render layout: 'new_article_email' }
+      end
+
   end
   
 end

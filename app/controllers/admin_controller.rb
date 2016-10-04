@@ -50,7 +50,7 @@ class AdminController  < BaseController
               , articles.doi as doi, articles.url as url
               , articles.keyword as keyword, articles.abstract as abstract")
       .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'Moderator picked up' and articles.admin_id = #{id}")
-    
+    #
   end
   
   def article_moderator_picked_up
