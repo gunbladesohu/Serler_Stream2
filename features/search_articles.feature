@@ -43,5 +43,3 @@ Feature: Search for articles
   #   Given I have opened "http://localhost:3000/search_queries/browse_repository"
   #   When I hover on "Browse Repository"
   #   Then Then /^there should( not)? be a(n encoded)? tooltip
-
-

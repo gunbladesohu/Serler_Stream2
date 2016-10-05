@@ -13,23 +13,66 @@ class AdminController  < BaseController
   end
   
   def article_view
-    @ArticleList = Article.joins(:article_type,:status)
-    .select("articles.id as article_id, articles.title as article_title, 
-            article_types.name as type_name, articles.updated_at as updated_time, 
-            statuses.name as status_name, articles.journal as journal
-            , articles.year as year, articles.volume as volume
-            , articles.number as number, articles.month as month
-            , articles.pages as pages, articles.isbn as isbn
-            , articles.doi as doi, articles.url as url
-            , articles.keyword as keyword, articles.abstract as abstract")
-    .where("article_types.is_active = true and articles.is_active = false")
+     type = params[:id]
+     
+    if current_user.nil?
+      redirect_to root_url
+    else
+      if type == "Moderator"
+        @ArticleList = Article.joins(:article_type,:status)
+        .select("articles.id as article_id, articles.title as article_title, 
+                article_types.name as type_name, articles.updated_at as updated_time, 
+                statuses.name as status_name, articles.journal as journal
+                , articles.year as year, articles.volume as volume
+                , articles.number as number, articles.month as month
+                , articles.pages as pages, articles.isbn as isbn
+                , articles.doi as doi, articles.url as url
+                , articles.keyword as keyword, articles.abstract as abstract")
+        .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
+        
+      else
+        
+      end
+    end
+  end
+  
+  def article_view_moderator
     
+    id = current_user.id
+    
+    @ArticleList = Article.joins(:article_type,:status)
+      .select("articles.id as article_id, articles.title as article_title, 
+              article_types.name as type_name, articles.updated_at as updated_time, 
+              statuses.name as status_name, articles.journal as journal
+              , articles.year as year, articles.volume as volume
+              , articles.number as number, articles.month as month
+              , articles.pages as pages, articles.isbn as isbn
+              , articles.doi as doi, articles.url as url
+              , articles.keyword as keyword, articles.abstract as abstract")
+      .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'Moderator picked up' and articles.admin_id = #{id}")
+    #
+  end
+  
+  def article_moderator_picked_up
+    
+    id = params[:id]
+    list = params[:list].split(",").map { |s| s.to_i }
+    
+    status = Status.find_by name: "Moderator picked up"
+    
+    list.each do |l|
+      articleItem = Article.find(l)
+      articleItem.admin_id = id
+      articleItem.status_id = status.id
+      articleItem.save
+    end
+    
+    redirect_to article_view_moderator_path
   end
   
   def article_quality_check
     
-    articleItem = Article.find(params[:articleId])
-    
+     articleItem = Article.find(params[:articleId])
     
     if params[:isAccepted] 
       @statusId = Status.find_by name: "Accepted"
@@ -47,8 +90,8 @@ class AdminController  < BaseController
                    <p>Thank you so much for using Serler</p>
                    ".html_safe
        
-       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now 
-       
+       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
+
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
     else
@@ -78,7 +121,9 @@ class AdminController  < BaseController
                   <h3>A rejection email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
     end
     
+    #articleItem.updated_at = DateTime.now
     articleItem.save
+    # redirect_to :action => :article_view
   end
   
   def article_detail
@@ -99,6 +144,11 @@ class AdminController  < BaseController
     articleItem.save
   end
   
+  
+  def article_show
+    #render :action => :article_view
+    redirect_to :action => :article_view
+  end
 
   def add_dev_method
     @ArticleList = Article.joins(:article_type,:status)
@@ -145,4 +195,14 @@ class AdminController  < BaseController
 
   end
 
+   # GET /admin/exsitedEmailCheck
+  def exsitedEmailCheck
+    @user = User.where("lower(email) =?", params[:email].downcase).first
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json  { render :json => @user}
+    end
+  end
+  
+  
   end

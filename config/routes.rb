@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  get 'sessions/new'
+
+  resources :search1_queries
+
   get 'search_queries/update_values' => 'search_queries#update_values'
 
   get 'search_queries/queries_list' => 'search_queries#queries_list'
@@ -21,11 +26,15 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   root 'home#index'
-
-  get    '/login',   to: 'sessions#create'
+  
+  
+  # get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
+  # get    '/login',   to: 'sessions#new'
+  get    '/login',   to: 'home#login'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-
+  
+  get "users/new", as: "register"
   match ':controller(/:action(/:id))', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -81,13 +90,15 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  get 'admin/article_view', as:"article_view"
+  get 'admin/article_view_moderator', as:"article_view"
   get 'admin_controller/article_view'
-  get "admin/article_quality_check", as: "article_quality_check"
+  # get "admin/article_quality_check", as: "article_quality_check"
   get "admin/article_detail", as: "article_detail"
 
   get 'admin/add_dev_method'
   get 'admin/update_methodology'
   post 'admin/update_methodology'
   get 'admin/mail_send'
+  get "admin/article_view/Moderator" , as: "article_view_moderator"
+  get "admin/article_view_moderator" , as: "article_moderator_picked_up"
 end

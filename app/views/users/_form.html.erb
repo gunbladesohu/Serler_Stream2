@@ -1,118 +1,141 @@
-<%= form_for(@user) do |f| %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+<!--<%= form_for(@user) do |f| %>-->
+<!--    <% if @user.errors.any? %>-->
+<!--        <div id="error_explanation">-->
+<!--          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>-->
 
-    <div class="field container col-lg-6 col-lg-offset-3">
+<!--          <ul>-->
+<!--            <% @user.errors.full_messages.each do |message| %>-->
+<!--                <li><%= message %></li>-->
+<!--            <% end %>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--    <% end %>-->
+
+<!--    <div class="field container col-lg-6 col-lg-offset-3">-->
       
-      <div class="row" style="padding: 10px 0px 5px 0px">
-        <div class="col-lg-6" >
-          <%= f.label :first_name %>
-        </div>
+<!--      <div class="row" style="padding: 10px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6" >-->
+<!--          <label>First name</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-          <%= f.text_field :first_name, class: "form-control" %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--          <%= f.text_field :first_name, class: "form-control", id:"firstName" %>-->
+<!--        </div>-->
+<!--      </div>-->
       
-       <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-          <%= f.label :middle_name %>
-        </div>
+<!--       <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--         <label>Middle name</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-          <%= f.text_field :middle_name, class: "form-control"  %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--          <%= f.text_field :middle_name, class: "form-control" , placeholder:"(optional)" , id:"middleName"%>-->
+<!--        </div>-->
+<!--      </div>-->
       
-       <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-         <%= f.label :last_name %>
-        </div>
+<!--       <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--         <label>Last name</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-          <%= f.text_field :last_name, class: "form-control"  %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--          <%= f.text_field :last_name, class: "form-control" , id:"lastName" %>-->
+<!--        </div>-->
+<!--      </div>-->
       
       
-      <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-        <%= f.label :email %>
-        </div>
+<!--      <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--        <label>Email</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-          <%= f.text_field :email, class: "form-control"  %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--          <%= f.text_field :email, class: "form-control", id:"email"  %>-->
+<!--        </div>-->
+<!--      </div>-->
       
       
-      <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-         <%= f.label :gender %>
-        </div>
+<!--      <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--         <label>Gender</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-          <%= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6" >-->
+          <!--<%= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>-->
+<!--            <div class="col-lg-6" >-->
+<!--                 <%= radio_button_tag(:gender, "Male", true) %>-->
+<!--                <%= label_tag("Male") %>-->
+<!--            </div>  -->
+            
+<!--            <div class="col-lg-6" >-->
+<!--                <%= radio_button_tag(:gender, "Female", false) %>-->
+<!--                <%= label_tag("Female") %>-->
+<!--            </div>-->
+           
+<!--        </div>-->
+<!--      </div>-->
      
-        <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-         <%= f.label :dob %>
-        </div>
+<!--        <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--            <label>Date of birth</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-         <%= f.date_select :dob, {start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today}, class: 'datepicker'%>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+             <!--<%= f.date_select :dob, {start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today}, class: 'datepicker'%>-->
+<!--             <div class='input-group date' id='dateOfBrith'>-->
+<!--                <%= f.text_field :dob, {class: 'form-control input-dateOfBrith'} %>-->
+<!--                <span class="input-group-addon">-->
+<!--                  <span class="glyphicon glyphicon-calendar">-->
+<!--                  </span>-->
+<!--                </span>-->
+<!--              </div>-->
+<!--        </div>-->
+<!--      </div>-->
       
-       <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-          <%= f.label :affiliation %>
-        </div>
+<!--       <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--          <label>Affiliation</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-         <%= f.text_field :affiliation, class: 'form-control' %>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--         <%= f.text_field :affiliation, class: 'form-control', id:"affiliation" %>-->
+<!--        </div>-->
+<!--      </div>-->
      
-      <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-          <%= f.label :password %>
-        </div>
+<!--      <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--         <label>Password</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-         <%= f.password_field :password , class: 'form-control'%>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--         <%= f.password_field :password , class: 'form-control', id:"password"%>-->
+<!--        </div>-->
+<!--      </div>-->
       
-      <div class="row" style="padding: 5px 0px 5px 0px">
-        <div class="col-lg-6">
-          <%= f.label :password_confirmation %>
-        </div>
+<!--      <div class="row" style="padding: 5px 0px 5px 0px">-->
+<!--        <div class="fieldLable col-lg-6">-->
+<!--          <label>Password confirmation</label>-->
+<!--        </div>-->
         
-        <div class="col-lg-6">
-         <%= f.password_field :password_confirmation , class: 'form-control'%>
-        </div>
-      </div>
+<!--        <div class="col-lg-6">-->
+<!--         <%= f.password_field :password_confirmation , class: 'form-control', id:"password_confirmation"%>-->
+<!--        </div>-->
+<!--      </div>-->
       
-      <div class="row" style="padding: 5px 0px 5px 0px">
+<!--      <div class="row" style="padding: 5px 0px 5px 0px">-->
         
-       <div class="col-lg-6 col-lg-offset-6">
-        <%= f.submit :class => 'btn btn-primary ' %>
-      </div>
-      </div>
+<!--       <div class="col-lg-6 col-lg-offset-6">-->
+           
+<!--        <%= f.submit  "Register Now" ,:class => 'btn btn-primary ' %>-->
+        
+<!--        <button type="button" class="btn btn-primary" id="CancelBtn">Cancel</button>-->
+        
+<!--      </div>-->
+<!--      </div>-->
       
-       
-    </div>
+<!--      <hr/>-->
+<!--    </div>-->
    
-<% end %>
+<!--<% end %>-->
+

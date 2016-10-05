@@ -1,36 +1,66 @@
-class SessionsController < BaseController
+class SessionsController < ApplicationController
+  include SessionsHelper
+  
   def new
+    
+    firstName = params[:firstName]
+    lastName = params[:lastName]
+    email = params[:email]
+    condition = User.exists?(['email =?', email])
+    
+    if  condition == true
+     
+      user = User.where("email =?", email).first
+      
+      log_in user
+      
+    else
+          user = User.new(
+            :first_name => firstName,
+            :middle_name => "",
+            :last_name => lastName,
+            :email => email,
+            :dob => "",
+            :gender => "",
+            :password_digest => "samplepassword123",
+            :affiliation => "",
+            :is_active => true)
+      
+          user.save
+          
+          log_in user
+          
+    end
+    
+   redirect_to root_url 
+
   end
 
 
-# Logs in the given user.
-  def log_in(user)
-    session[:user_id] = user.id
-  end
-
-# Returns the current logged-in user (if any).
-  def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
-  end
-
-# Returns true if the user is logged in, false otherwise.
-  def logged_in?
-    !current_user.nil?
-  end
 
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
+    
+    # user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email].downcase, password_digest: params[:session][:password])
+    # if user && user.authenticate(params[:session][:password])
+    if user
+      # Log the user in and redirect to the user's show page.
       log_in user
-      redirect_to user
+
+      redirect_to root_url
+
+
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      redirect_to root_path
+      # Create an error message.
+      flash.now[:notice] = 'Invalid email/password combination'
+      render 'new'
     end
+
   end
-
-
-
+  
   def destroy
+    log_out
+    redirect_to root_url
   end
+
 end

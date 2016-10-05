@@ -39,3 +39,6 @@ Rails.application.config.assets.precompile += %w( statuses.js )
 Rails.application.config.assets.precompile += %w( users.js )
 Rails.application.config.assets.precompile += %w( admin.js )
 Rails.application.config.assets.precompile += %w( search_queries.js )
+
+Rails.application.config.assets.precompile += %w( sessions.css )
+Rails.application.config.assets.precompile += %w( sessions.js )
