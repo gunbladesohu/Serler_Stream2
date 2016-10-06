@@ -148,7 +148,9 @@
 </form>
 
  <div class="actions button">
-    <%= f.submit %>
+   <input type="submit" name="commit" value="Update Article" />
+    <a href="<%=articles_path %>" class="button">Back to All Articles</a>
+    
   </div>
   
 <% end %>

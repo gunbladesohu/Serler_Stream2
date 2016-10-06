@@ -1,0 +1,21 @@
+#RubyRed
+
+
+language: ruby
+rvm:
+  - 2.3.0
+  
+# before_install:
+#   - gem update
+# before_script:
+#   - bundle exec rake db:setup
+#   - bundle exec rake db:migrate
+# #  - RAILS_ENV=test bundle exec rake db:seed
+#   - RAILS_ENV=test bundle exec rake db:setup
+#   - RAILS_ENV=test bundle exec rake db:migrate
+# script:
+#   - bundle exec cucumber
+#   - bundle exec rspec
+  
+# notifications:
+#   email: false

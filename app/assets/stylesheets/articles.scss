@@ -142,3 +142,34 @@
     
     color: white;
 }
+
+a.button
+{
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+a.button:hover{
+    background: #109177;
+     text-decoration: none;
+     color: #FFF;
+}
+
+a.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+   text-decoration: none;
+   color: #FFF;
+}
+
