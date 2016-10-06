@@ -18,35 +18,18 @@ RSpec.describe ArticlesController, type: :controller do
   #   end
   # end
 
+    let(:user) { FactoryGirl.create(:user) }
 
-  let(:user) {
-    {:email=>"ss@s.com", :password=>"admin123"}
-  }
-
-  let(:valid_session) { {} }
     describe "handling GET index" do
-        before do
-            FactoryGirl.build(:user)
-            @article = (1..20).map { |i| (Article) }
-            user = User.new(email: "ss@s.com", password: "admin123")
+      before do
+        session[:user_id] = user.id
+      end
 
-            byebug
-            login(user)
-            allow(Article).to receive(:update).and_return(@article)
-            @article_params=double("params")
-            #allow(:controller).to receive(:set_article)
-            #controller.stub(:set_article)
-        end
-
-        def do_get
-            get :index, session: valid_session
-        end
-
-        it "should be successful" do
-            do_get
-            expect(response).to be_success
-        end
-
+      it "should be successful" do
+        get :index, session: session
+        byebug
+        expect(response).to be_success
+      end
         # it "should render index template" do
         #     do_get
         #     expect(response).to render_template(:new)
