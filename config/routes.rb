@@ -35,7 +35,14 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   get "users/new", as: "register"
+
   match ':controller(/:action(/:id))', :via => :get
+
+  get "admin/new_user", as: "admin_new_user"
+
+  #get "/users", as: "users_list"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

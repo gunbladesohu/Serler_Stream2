@@ -51,7 +51,7 @@ development:
  # pool: 5
   #timeout: 5000
   #username: trungtang
-  
+
   database: d85arbm5rloo9e
   host: ec2-54-243-52-209.compute-1.amazonaws.com
   pool: 5

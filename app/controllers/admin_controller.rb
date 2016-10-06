@@ -203,6 +203,9 @@ class AdminController  < BaseController
       format.json  { render :json => @user}
     end
   end
-  
+
+  def new_user
+
+  end
   
   end

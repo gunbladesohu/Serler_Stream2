@@ -9,7 +9,7 @@ class UsersController < BaseController
     # @users = User.joins(:users_roles,:roles)
     @users = User.joins("LEFT JOIN users_roles on users.id = users_roles.user_id LEFT JOIN roles on users_roles.role_id = roles.id")
     .select("users.id, users.first_name, users.last_name, roles.name ")
-    .where("users_roles.is_active = true and roles.is_active = true")
+    .where("users_roles.is_active = true and roles.is_active = true and users.is_active = true")
     
   end
 
@@ -25,6 +25,7 @@ class UsersController < BaseController
     
   end
 
+
   # GET /users/1/edit
   def edit
   end
@@ -32,6 +33,9 @@ class UsersController < BaseController
   # POST /users
   # POST /users.json
   def create
+    if current_user_role.nil?
+
+
     @user = User.new(
       :first_name => params[:firstName],
       :middle_name => params[:middleName],
@@ -44,18 +48,73 @@ class UsersController < BaseController
       :is_active => false)
     
 
+
     respond_to do |format|
       if @user.save
+
+        role = Role.find_by name: "User"
+
+        userRole = UsersRole.new( :user_id => @user.id,
+                                  :role_id => role.id,
+                                  :is_active => true)
+
+        userRole.save
         format.html { redirect_to controller: 'users', action: 'new_user_confirmation', id: @user.id}
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
+    else
+      if current_user_role.name == "Admin"
+
+        @user = User.new(
+            :first_name => params[:firstName],
+            :middle_name => params[:middleName],
+            :last_name => params[:lastName],
+            :email => params[:email],
+            :dob => params[:dob],
+            :gender => params[:gender],
+            :password_digest => params[:password],
+            :affiliation => params[:affiliation],
+            :is_active => true)
+
+# add log : role_id, add
+
+
+        respond_to do |format|
+          if @user.save
+
+
+            role = Role.find_by name: "User"
+
+            userRole = UsersRole.new( :user_id => @user.id,
+                           :role_id => role.id,
+                           :is_active => true)
+
+            userRole.save
+            #@action = Log.new(:userId => current_user.id, :description => 'Add new user called' + @user.id)
+            format.html { redirect_to users_url, notice: 'User was successfully Added.' }
+            #format.html { redirect_to controller: 'admin', action: '', id: @user.id}
+            format.html { redirect_to controller: 'users', action: 'new_user_confirmation', id: @user.id}
+          else
+            format.html { render :new }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+    end
+
   end
 
+
   def new_user_confirmation
-      id =  params[:id]
+
+    if current_user_role.nil?
+
+
+    id =  params[:id]
       
     host = request.host + "/users/new_user_email_confirmation/" + id
     
@@ -73,6 +132,11 @@ class UsersController < BaseController
      
      @windowMessage =  "<h3>Thank you for registering with Serler</h3>
                   <h3>There is an email sent you your email address. Please click the confirmation button in your email to activate your account</h3>".html_safe
+
+    else
+      @windowMessage =  "<h3>User was successfully Added.</h3>".html_safe
+
+    end
   end
   
   
@@ -95,7 +159,11 @@ class UsersController < BaseController
     end
     
   end
-  
+
+
+
+
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -113,7 +181,9 @@ class UsersController < BaseController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    #@user.destroy
+    @user.is_active = false
+    @user.save
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
