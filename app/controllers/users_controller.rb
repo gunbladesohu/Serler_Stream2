@@ -135,5 +135,4 @@ class UsersController < BaseController
      params.require(:user).permit(:first_name, :last_name, :email, :gender, :dob, :password)
   end
   
-  
 end

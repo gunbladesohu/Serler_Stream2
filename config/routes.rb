@@ -13,29 +13,40 @@ Rails.application.routes.draw do
 
 
   resources :search_queries
+
+  get     'login'   => 'sessions#new'
+  post    'login'   => 'sessions#create'
+  # delete  'login'   => 'sessions#destroy'
+
   resources :methodologies
   resources :dev_methods
   resources :research_methods
   resources :statuses
   resources :authors
   resources :articles
+  get 'articles/edit' => 'articles/#/edit'
   resources :article_types
   resources :ratings
   resources :feedbacks
   resources :research_participants
   resources :roles
   resources :users
+
   root 'home#index'
   
   
   # get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
   # get    '/login',   to: 'sessions#new'
-  get    '/login',   to: 'home#login'
-  post   '/login',   to: 'sessions#create'
+  # get    '/login',   to: 'home#login'
+  # post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
   get "users/new", as: "register"
   match ':controller(/:action(/:id))', :via => :get
+
+  # resources :anaylsts, only: [:show, :edit, :update, :destroy]
+  # root 'sessions#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

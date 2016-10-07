@@ -1,9 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<h1>The following was successfully updated</h1>
+<table id="hor-minimalist-a">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Research Questions</th>
+      <th>Research Metrics</th>
+      <th>Research Methods</th>
+      <th>Research Participants</th>
+      <th>Development Method</th>
+      <th>Methodology</th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+  <tbody>
+      <tr>
+      <td><%= @article.title %></td>
+      <td><%= @article.research_questions %></td>
+      <td><%= @article.research_metrics %></td>
+
+      <% @article_research_method = ""%>
+      <% @article.research_methods.each do |research_method| %>
+        <% @article_research_method = @article_research_method + research_method.name + ", "%>
+      <% end %>
+      <td><%= @article_research_method.chop.chop %></td>
+
+      <% @article_research_participant = ""%>
+      <% @article.research_participants.each do |research_participant| %>
+        <% @article_research_participant = @article_research_participant + research_participant.name + ", "%>
+      <% end %>
+      <td><%= @article_research_participant.chop.chop %></td>
+      
+      <% @article_dev_method = ""%>
+      <% @article.dev_methods.each do |dev_method| %>
+        <% @article_dev_method = @article_dev_method + dev_method.name + ", "%>
+      <% end %>
+      <td><%= @article_dev_method.chop.chop %></td>
+      
+      <% @article_methodology = ""%>
+      <% @article.methodologies.each do |methodology| %>
+        <% @article_methodology = @article_methodology + methodology.name + ", "%>
+      <% end %>
+      <td><%= @article_methodology.chop.chop %></td>
+      
+      </tr>
+  </tbody>
+</table>
+
+<div class="form-style-5 actions button">
+    <a href="<%=edit_article_path(@article) %>" class="button">Re-Update</a>
+    <a href="<%=articles_path %>" class="button">Back to All Articles</a>
+    
+  </div>

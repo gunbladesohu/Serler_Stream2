@@ -58,5 +58,41 @@ footer {
   font-weight: bold;
   white-space: nowrap;
   width: 255px;
+
+#head {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+#hor-minimalist-a
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 14px;
+	background: #fff;
+	margin: 45px;
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #1abc9c;
+	text-align: left;
+	
+}
+#hor-minimalist-a th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+	background: #1abc9c;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+#hor-minimalist-a td
+{
+	
+	padding: 9px 8px 8px 8px;
+}
+#hor-minimalist-a tbody tr:hover td
+{
+	color: #009;
+		background: #d1faec;
 }
 

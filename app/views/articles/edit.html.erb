@@ -1,6 +1,28 @@
-<h1>Editing Article</h1>
+<head>
+<style>
+.button123 {
+    text-align: center;
+    font-style: normal;
+   
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    vertical-align: middle
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.button123:hover{
+    background: #109177;
+
+}
+</style>
+</head>
+<h1><%= @article.title %></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', articles_path %>

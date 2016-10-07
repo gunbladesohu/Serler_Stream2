@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   include SessionsHelper
   
   def new
@@ -47,7 +48,7 @@ class SessionsController < ApplicationController
       # Log the user in and redirect to the user's show page.
       log_in user
 
-      redirect_to root_url
+      redirect_to articles_path
 
 
     else

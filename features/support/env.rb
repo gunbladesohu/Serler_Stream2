@@ -71,6 +71,3 @@ end
 # World Webrat::Matchers
 # World Rack::Test::Methods
 
-
-
-

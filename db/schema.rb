@@ -24,12 +24,22 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "article_users", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  # add_index "article_users", ["article_id"], name: "index_article_users_on_article_id", using: :btree
+  # add_index "article_users", ["user_id"], name: "index_article_users_on_user_id", using: :btree
+
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "journal"
     t.integer  "year"
     t.integer  "volume"
-    t.integer  "number"
+    t.integer   "number"
     t.integer  "month"
     t.string   "pages"
     t.string   "isbn"
@@ -49,6 +59,9 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.boolean  "not_duplicate"
     t.integer  "user_id"
     t.integer  "admin_id"
+    t.string   "context"
+    t.string   "benefit"
+    t.string   "result"
   end
 
   create_table "articles_authors", force: :cascade do |t|
@@ -83,6 +96,9 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.datetime "updated_at",         null: false
   end
 
+  # add_index "articles_research_methods", ["article_id"], name: "index_articles_research_methods_on_article_id", using: :btree
+  # add_index "articles_research_methods", ["research_method_id"], name: "index_articles_research_methods_on_research_method_id", using: :btree
+
   create_table "articles_research_participants", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "research_participant_id"
@@ -90,6 +106,9 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  # add_index "articles_research_participants", ["article_id"], name: "index_articles_research_participants_on_article_id", using: :btree
+  # add_index "articles_research_participants", ["research_participant_id"], name: "index_articles_research_participants_on_research_participant_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.string   "first_name"
@@ -231,6 +250,7 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.boolean  "is_active"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    # t.string   "Password"
     t.string   "password_digest"
   end
 
@@ -242,4 +262,10 @@ ActiveRecord::Schema.define(version: 20160917072029) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "article_users", "articles"
+  add_foreign_key "article_users", "users"
+  add_foreign_key "articles_research_methods", "articles"
+  add_foreign_key "articles_research_methods", "research_methods"
+  add_foreign_key "articles_research_participants", "articles"
+  add_foreign_key "articles_research_participants", "research_participants"
 end

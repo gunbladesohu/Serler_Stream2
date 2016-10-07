@@ -5,17 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Article.destroy_all
+ArticlesResearchMethod.destroy_all
+ArticlesResearchParticipant.destroy_all
 DevMethod.destroy_all
 Methodology.destroy_all
 ResearchMethod.destroy_all
 Status.destroy_all
 Role.destroy_all
 ResearchParticipant.destroy_all
+ArticleUser.destroy_all
+Article.destroy_all
+User.destroy_all
+Rating.destroy_all
+
+
+# Article.destroy_all
+# DevMethod.destroy_all
+# Methodology.destroy_all
+ResearchMethod.destroy_all
+Status.destroy_all
+# Role.destroy_all
+# ResearchParticipant.destroy_all
 ArticleType.destroy_all
 Author.destroy_all
-User.destroy_all
+# User.destroy_all
 FieldTable.destroy_all
 Operator.destroy_all
 JoinCondition.destroy_all
@@ -421,6 +434,3 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant3.articles << @article9
 @researchparticipant3.articles << @article10
 @researchparticipant3.articles << @article11
-
-# SearchQuery.create(description: 'test', user_id: @user1.id, from_date: 0, to_date: 2016,
-#                      sql_string: 'Method Is equal to Test Driven Development', isActive: true)
