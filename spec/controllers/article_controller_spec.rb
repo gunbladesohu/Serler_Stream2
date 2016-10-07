@@ -27,7 +27,6 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "should be successful" do
         get :index, session: session
-        byebug
         expect(response).to be_success
       end
         # it "should render index template" do

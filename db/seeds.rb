@@ -121,12 +121,14 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant2 = ResearchParticipant.create(name: 'Postgraduate students', description: '', is_active: true)
 @researchparticipant3 = ResearchParticipant.create(name: 'Practitioners',  description: '', is_active: true)
 
-@user1 = User.create(first_name: 'Robert', middle_name: 'Huy', last_name: 'Le', email: 'robert01011991@gmail.com', gender: 'Male', dob: '', 
+@user1 = User.create(first_name: 'Robert', middle_name: 'Huy', last_name: 'Le', email: 'robert01011991@gmail.com', gender: 'Male', dob: '',
                         affiliation: 'AUT', is_active: true, password_digest: '1234')
-@user2 = User.create(first_name: 'Tony', middle_name: '', last_name: 'Chen', email: 'dsz8022@autuni.ac.nz', gender: 'Male', dob: '', 
+@user2 = User.create(first_name: 'Tony', middle_name: '', last_name: 'Chen', email: 'dsz8022@autuni.ac.nz', gender: 'Male', dob: '',
                         affiliation: 'Microsoft', is_active: true, password_digest: '1234')
-@user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '', 
+@user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '',
                         affiliation: 'Apple', is_active: true, password_digest: '1234')
+
+
 
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)
@@ -253,7 +255,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'Agile software development methods have rapidly spread after their formal introduction in the agile manifesto at the dawn of the millennium. They rapidly gained support in the software industry and can be considered a standard today. Agile methods seem to improve software project success rates and offer developers the needed flexibility to adapt to changing user requirements. However, the use of agile methods in large-scale information systems development projects has been rarely studied. There are even fewer insights in the area of agile healthcare information systems development. In this paper, we present insights into an agile hospital information system development in a European hospital. Agile development has been studied from various stakeholder perspectives. Results show that physicians, nurses and administration have diverse opinions on agile practices and different practices may be appropriate for interacting with each stakeholder.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @completed.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id )
 
 @author19.articles << @article6
 
@@ -434,3 +436,5 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant3.articles << @article9
 @researchparticipant3.articles << @article10
 @researchparticipant3.articles << @article11
+
+ArticleUser.create(article_id: @article1.id, user_id: @user1.id)
