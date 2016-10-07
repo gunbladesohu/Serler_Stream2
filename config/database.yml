@@ -36,8 +36,9 @@ development:
   host: localhost
   pool: 5
   timeout: 5000
-  username: rubyred
-  password: sdm2016
+  port: 5433
+  username: postgres
+  # password: sdm2016
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -75,8 +76,9 @@ test: &test
   host: localhost
   pool: 5
   timeout: 5000
-  username: rubyred
-  password: sdm2016
+  username: postgres
+  port: 5433
+  # password: sdm2016
 
 
 # As with config/secrets.yml, you never want to store sensitive information,
