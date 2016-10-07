@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get 'sessions/new'
+  # get 'sessions/new'
 
   resources :search1_queries
 
@@ -33,14 +33,14 @@ Rails.application.routes.draw do
   resources :users
 
   root 'home#index'
-  
-  
+
+
   # get '/google0c45e730084a93ab.html' ,   to: 'home#google0c45e730084a93ab'
   # get    '/login',   to: 'sessions#new'
   # get    '/login',   to: 'home#login'
   # post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  
+
   get "users/new", as: "register"
   match ':controller(/:action(/:id))', :via => :get
 

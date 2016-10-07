@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# ActiveRecord::Schema.define(version: 20160917072029) do
 ActiveRecord::Schema.define(version: 20161003033519) do
 
   # These are extensions that must be enabled in order to support this database
@@ -32,15 +31,15 @@ ActiveRecord::Schema.define(version: 20161003033519) do
     t.datetime "updated_at", null: false
   end
 
-  # add_index "article_users", ["article_id"], name: "index_article_users_on_article_id", using: :btree
-  # add_index "article_users", ["user_id"], name: "index_article_users_on_user_id", using: :btree
+  add_index "article_users", ["article_id"], name: "index_article_users_on_article_id", using: :btree
+  add_index "article_users", ["user_id"], name: "index_article_users_on_user_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "journal"
     t.integer  "year"
     t.integer  "volume"
-    t.integer   "number"
+    t.integer  "number"
     t.integer  "month"
     t.string   "pages"
     t.string   "isbn"
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 20161003033519) do
     t.boolean  "relevance"
     t.boolean  "not_duplicate"
     t.integer  "user_id"
-    t.integer  "admin_id"
     t.string   "context"
     t.string   "benefit"
     t.string   "result"
@@ -97,8 +95,8 @@ ActiveRecord::Schema.define(version: 20161003033519) do
     t.datetime "updated_at",         null: false
   end
 
-  # add_index "articles_research_methods", ["article_id"], name: "index_articles_research_methods_on_article_id", using: :btree
-  # add_index "articles_research_methods", ["research_method_id"], name: "index_articles_research_methods_on_research_method_id", using: :btree
+  add_index "articles_research_methods", ["article_id"], name: "index_articles_research_methods_on_article_id", using: :btree
+  add_index "articles_research_methods", ["research_method_id"], name: "index_articles_research_methods_on_research_method_id", using: :btree
 
   create_table "articles_research_participants", force: :cascade do |t|
     t.integer  "article_id"
@@ -108,8 +106,8 @@ ActiveRecord::Schema.define(version: 20161003033519) do
     t.datetime "updated_at",              null: false
   end
 
-  # add_index "articles_research_participants", ["article_id"], name: "index_articles_research_participants_on_article_id", using: :btree
-  # add_index "articles_research_participants", ["research_participant_id"], name: "index_articles_research_participants_on_research_participant_id", using: :btree
+  add_index "articles_research_participants", ["article_id"], name: "index_articles_research_participants_on_article_id", using: :btree
+  add_index "articles_research_participants", ["research_participant_id"], name: "index_articles_research_participants_on_research_participant_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.string   "first_name"
@@ -224,8 +222,8 @@ ActiveRecord::Schema.define(version: 20161003033519) do
   create_table "search_queries", force: :cascade do |t|
     t.string   "description"
     t.integer  "user_id"
-    t.integer     "from_date"
-    t.integer     "to_date"
+    t.integer  "from_date"
+    t.integer  "to_date"
     t.text     "sql_string"
     t.boolean  "isActive"
     t.datetime "created_at",  null: false
@@ -251,8 +249,8 @@ ActiveRecord::Schema.define(version: 20161003033519) do
     t.boolean  "is_active"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    # t.string   "Password"
     t.string   "password_digest"
+    t.string   "Password"
   end
 
   create_table "users_roles", force: :cascade do |t|

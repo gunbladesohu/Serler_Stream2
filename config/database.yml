@@ -21,11 +21,11 @@ default: &default
   pool: 5000
   timeout: 5000
   username: postgres
-  port: 5433
+  port: 5432
 
 development:
   <<: *default
-  database: SERLER_Stream2_dev
+  database: serler_stream2_dev
 
 
   # The specified database role being used to connect to postgres.
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   <<: *default
-  database: SERLER_Stream2_test
+  database: serler_stream2_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -83,7 +83,7 @@ test: &test
 #
 production:
   <<: *default
-  database: SERLER_Stream2_pro
+  database: serler_stream2_pro
 
 cucumber:
   <<: *test

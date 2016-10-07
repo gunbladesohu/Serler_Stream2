@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # datetime picker gem
-gem 'momentjs-rails', '>= 2.9.0'
+gem 'momentjs-rails', '~>2.11.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 
@@ -42,7 +42,6 @@ group :development, :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem "webrat"
   gem 'rspec'
   # gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,7 +63,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  
+
   gem 'rails_12factor'
 
 # group :test, :development do

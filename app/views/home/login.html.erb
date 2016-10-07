@@ -1,5 +1,6 @@
 <div class="middle-box text-center loginscreen animated fadeInDown">
   <%= csrf_meta_tags %>
+  <% byebug %>
   <div>
     <div>
 
@@ -18,16 +19,16 @@
           <div style="padding: 10px 0px 5px 0px">
              <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
           </div>
-          
+
           <div style="padding: 5px 0px 10px 0px">
              <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
           </div>
           <%= f.submit "Log in", class: "btn btn-primary", id:"SubmitBtn" %>
       <% end %>
-      
+
       <a class="btn btn-sm btn-white btn-block" href="users/new.html">Create an account</a>
       </div>
-     
+
     </div>
 
 
@@ -45,7 +46,7 @@
 
     <!--<a href="#"><small>Forgot password?</small></a>-->
     <!--<p class="text-muted text-center"><small>Do not have an account?</small></p>-->
-    
+
     <!--</form>-->
     <!--<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>-->
   </div>
