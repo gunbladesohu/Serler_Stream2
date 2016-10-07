@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921150226) do
+ActiveRecord::Schema.define(version: 20161006221716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adminlogs", primary_key: "log_id", force: :cascade do |t|
+    t.integer  "user_id",                 null: false
+    t.datetime "occur_time"
+    t.string   "description", limit: 100
+  end
 
   create_table "article_types", force: :cascade do |t|
     t.string   "name"
@@ -134,6 +140,11 @@ ActiveRecord::Schema.define(version: 20160921150226) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "logs_admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "methodologies", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -242,4 +253,5 @@ ActiveRecord::Schema.define(version: 20160921150226) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "adminlogs", "users", name: "adminlogs_user_id_fkey"
 end

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :research_participants
   resources :roles
   resources :users
+  resources :logs_admin
   root 'home#index'
   
   

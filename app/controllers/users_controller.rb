@@ -10,7 +10,8 @@ class UsersController < BaseController
     @users = User.joins("LEFT JOIN users_roles on users.id = users_roles.user_id LEFT JOIN roles on users_roles.role_id = roles.id")
     .select("users.id, users.first_name, users.last_name, roles.name ")
     .where("users_roles.is_active = true and roles.is_active = true and users.is_active = true")
-    
+
+
   end
 
   # GET /users/1
@@ -52,6 +53,7 @@ class UsersController < BaseController
     respond_to do |format|
       if @user.save
 
+        #save role
         role = Role.find_by name: "User"
 
         userRole = UsersRole.new( :user_id => @user.id,
@@ -59,6 +61,13 @@ class UsersController < BaseController
                                   :is_active => true)
 
         userRole.save
+
+
+        #save logs
+        # logs_admin = LogsAdmin.new(:user_id => @user.id,
+        # :description => 'admin add user: ' + @user.id )
+        # logs_admin.save
+
         format.html { redirect_to controller: 'users', action: 'new_user_confirmation', id: @user.id}
       else
         format.html { render :new }
