@@ -27,18 +27,19 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "should be successful" do
         get :index, session: session
-        byebug
+        # byebug
         expect(response).to be_success
       end
-        # it "should render index template" do
-        #     do_get
-        #     expect(response).to render_template(:new)
-        # end
-        #
-        # it "should parse list_params" do
-        #     #expect(controller).to receive(:article_params).with(Article)
-        #     do_get
-        # end
+
+      it "should render index template" do
+          get :index
+          expect(response).to render_template(:index)
+      end
+
+      # it "should parse list_params" do
+      #   get :index
+      #   expect(controller).to receive(:article_params).with(Article)
+      # end
 
     end
     # describe "PUT update/:id" do

@@ -75,19 +75,16 @@ participant3 = ResearchParticipant.create(name: 'Practitioners',          descri
 default_password = "admin123"
 
 user1 = User.create!(first_name: '1',   middle_name: '1', email: 'paul@serler.com',
-password: default_password,
-password_confirmation: default_password, roles: [role1] )
+password_digest: default_password, roles: [role1] )
 user2 = User.create!(first_name: '2',   middle_name: '2', email: 'ss@s.com',
-password: default_password,
-password_confirmation: default_password )
+password_digest: default_password )
 user3 = User.create!(first_name: '3',   middle_name: '3', email: 'dd@d.com',
-password: default_password,
-password_confirmation: default_password )
+password_digest: default_password )
 
 Article.create(title: 'Future Research Directions of Software Engineering and Knowledge Engineering',   journal: 'International Journal of Software Engineering & Knowledge Engineering', users: [user1],
   year: 2015, volume: 25, number: 2, month: 03, pages: '4-5',
   research_participants: [participant1], research_methods: [research_method1, research_method2])
-Article.create(title: 'Social Exchange Model between Human Resource Management Practices and Innovation in Software Engineering',  
+Article.create(title: 'Social Exchange Model between Human Resource Management Practices and Innovation in Software Engineering',
   journal: 'Seoul Journal of Business', users: [user1],
   year: 2014, volume: 20, number: 2, month: 12, pages: '49-69',
   research_participants: [participant2], research_methods: [research_method1])
@@ -100,8 +97,8 @@ Article.create(title: 'Java2',   journal: 'good', users: [user2],
 Article.create(title: 'Java3',   journal: 'good', users: [user2],
   year: 1999, volume: 123, number: 321, month: 10, pages: 23,
   research_participants: [participant1], research_methods: [research_method1, research_method2])
-Article.create(title: 'Integrating software engineering theory and practice using essence: A case study',   
-  journal: 'Towards general theories of software engineering, Science of Computer Programming', 
+Article.create(title: 'Integrating software engineering theory and practice using essence: A case study',
+  journal: 'Towards general theories of software engineering, Science of Computer Programming',
   users: [user1], year: 2015, month: 4, volume: 101, pages: '66-78',
   research_participants: [participant1], research_methods: [research_method1, research_method2])
 Article.create(title: 'Rails',  journal: 'good', users: [user2], year: '2015',month: 'April', volume: '47', number: '3',
