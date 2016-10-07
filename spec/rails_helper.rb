@@ -35,10 +35,6 @@ RSpec.configure do |config|
 
   config.include AssertDifference
 
-  config.include LoginMacros
-
-  config.include SpecTestHelper#, :type => :controller
-
   config.include Capybara::DSL
 
   config.include FactoryGirl::Syntax::Methods
