@@ -1,11 +1,9 @@
 class ArticlesController < BaseController
-<<<<<<< HEAD
 
 #layout false
-=======
+
   before_action :logged_in?
   before_action :current_user
->>>>>>> RubyRed
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
 
