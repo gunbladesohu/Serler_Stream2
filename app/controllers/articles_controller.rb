@@ -24,7 +24,6 @@ class ArticlesController < BaseController
   # GET /articles/new
   def new
     @article = Article.new
-
   end
 
   # GET /articles/1/edit
@@ -102,7 +101,7 @@ class ArticlesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :journal, :year, :volume,
+      params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
         :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract, 
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]

@@ -21,6 +21,12 @@
 
 <fieldset>
 <legend><span class="number">2</span>Source</legend>
+
+      <div>
+        <label>
+          <%= select("article", "type_id", ArticleType.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Article Type'}) %>
+        </label>
+      </div>
         <%= f.text_field :journal, :placeholder => 'Book/Conference/Journal'%>
         <ul>
             <li>

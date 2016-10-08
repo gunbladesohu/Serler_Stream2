@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-
-  include SessionsHelper
+#layout false
+  # include SessionsHelper
 
   def new
   #
