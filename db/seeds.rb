@@ -128,6 +128,8 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '',
                         affiliation: 'Apple', is_active: true, password_digest: '1234')
 
+UsersRole.create(role_id: @analystRole.id, user_id: @user1.id, is_active: true)
+UsersRole.create(role_id: @moderatorRole.id, user_id: @user2.id, is_active: true)
 
 
 
@@ -438,3 +440,14 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant3.articles << @article11
 
 ArticleUser.create(article_id: @article1.id, user_id: @user1.id)
+ArticleUser.create(article_id: @article2.id, user_id: @user1.id)
+ArticleUser.create(article_id: @article3.id, user_id: @user1.id)
+ArticleUser.create(article_id: @article4.id, user_id: @user2.id)
+ArticleUser.create(article_id: @article5.id, user_id: @user2.id)
+ArticleUser.create(article_id: @article6.id, user_id: @user2.id)
+ArticleUser.create(article_id: @article7.id, user_id: @user2.id)
+ArticleUser.create(article_id: @article8.id, user_id: @user3.id)
+ArticleUser.create(article_id: @article9.id, user_id: @user1.id)
+ArticleUser.create(article_id: @article10.id, user_id: @user1.id)
+ArticleUser.create(article_id: @article11.id, user_id: @user3.id)
+

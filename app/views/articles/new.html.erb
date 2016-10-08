@@ -1,5 +1,77 @@
 <h1>New Article</h1>
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="form-style-5">
+<form>
+<fieldset>
+<legend><span class="number">1</span>Title</legend>
+        <%= f.text_area :title, "cols" => 40, "rows" => 5%>
+</fieldset>
 
-<%= link_to 'Back', articles_path %>
+<fieldset>
+<legend><span class="number">2</span>Source</legend>
+        <%= f.text_field :journal, :placeholder => 'Book/Conference/Journal'%>
+        <ul>
+            <li>
+                <%= f.text_field :volume, :placeholder => 'Volume'%>
+            </li>
+            <li>
+                <%= f.text_field :number, :placeholder => 'Issue Number'%>       
+            </li>
+            <li>
+                <%= f.text_field :pages, :placeholder => 'Pages'%>
+            </li>
+            <li>
+                <%= select_month(Date.today, {}, name: 'article[month]') %>
+            </li>
+            <li><%= select_year(Date.today, {}, name: 'article[year]', start_year: 1950, end_year: 2016) %>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <%= f.text_field :isbn, :placeholder => 'ISBN'%>
+            </li>
+            <li>
+                <%= f.text_field :doi, :placeholder => 'DOI Number'%>       
+            </li>
+            <li>
+                <%= f.text_field :url, :placeholder => 'URL'%>
+            </li>
+        </ul>
+</fieldset>
+<fieldset>
+<legend><span class="number">3</span>Keywords</legend>
+        <%= f.text_area :keyword, "cols" => 40, "rows" => 5, :placeholder => 'Separate using ;'%>
+</fieldset>
+
+<fieldset>
+<legend><span class="number">4</span>Abstract</legend>
+        <%= f.text_area :abstract, "cols" => 40, "rows" => 5%>
+</fieldset>
+
+</form>
+
+ <div class="actions button">
+   <ul>
+            <li>
+           <input type="submit" name="commit" value="Create Article" />
+           </li>
+           <li>
+           <a href="<%=articles_path %>" class="button">Back to All Articles</a>
+    </li>
+  </div>
+  
+<% end %>
+</div>
+  </div>

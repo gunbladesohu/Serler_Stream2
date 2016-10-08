@@ -7,12 +7,23 @@
 .form-style-5{
     max-width: 1000px;
     padding: 10px 20px;
-    background: #f4f7f8;
+    //background: #f4f7f8;
     margin: 10px auto;
     padding: 20px;
-    background: #f4f7f8;
+    //background: #f4f7f8;
     border-radius: 8px;
     font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-style-5 ul {
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+}
+.form-style-5 li {
+    padding: 0;
+    display: inline-block;
+    list-style: none;
 }
 .form-style-5 fieldset{
     border: none;
@@ -48,7 +59,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
     background-color: #e8eeef;
-    color:#8a97a0;
+    //color:#8a97a0;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
@@ -172,4 +183,3 @@ a.button:active {
    text-decoration: none;
    color: #FFF;
 }
-

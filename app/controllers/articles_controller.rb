@@ -45,12 +45,12 @@ class ArticlesController < BaseController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to @article }
         format.json { render :show, status: :created, location: @article }
         @article_id=Article.last.id
 
         # tell the moderator mailer to send an email
-        HubMailer.new_article_email(@article_id).deliver_now
+       # HubMailer.new_article_email(@article_id).deliver_now
 
       else
         format.html { render :new }
@@ -103,7 +103,7 @@ class ArticlesController < BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :journal, :year, :volume,
-        :number, :month, :research_questions, :research_metrics,
+        :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract, 
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},

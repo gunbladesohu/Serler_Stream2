@@ -22,6 +22,7 @@ default: &default
   timeout: 5000
   username: postgres
   port: 5432
+  password: sdm2016
 
 development:
   <<: *default
