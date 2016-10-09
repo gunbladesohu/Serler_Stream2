@@ -47,7 +47,6 @@ class SessionsController < ApplicationController
     if user
       # Log the user in and redirect to the user's show page.
       log_in user
-
       redirect_to articles_path
 
 

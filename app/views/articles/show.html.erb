@@ -16,6 +16,7 @@
 
   <tbody>
       <tr>
+        <!--<% if @article.status_id ="completed" %>-->
       <td><%= @article.title %></td>
       <td><%= @article.research_questions %></td>
       <td><%= @article.research_metrics %></td>
@@ -43,7 +44,7 @@
         <% @article_methodology = @article_methodology + methodology.name + ", "%>
       <% end %>
       <td><%= @article_methodology.chop.chop %></td>
-      
+      <!--<%break%>-->
       </tr>
   </tbody>
 </table>

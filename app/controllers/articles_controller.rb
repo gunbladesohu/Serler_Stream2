@@ -101,14 +101,15 @@ class ArticlesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+      params.require(:article).permit(:title, :journal, :year, :volume, :type_id, 
         :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract, 
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},
         { research_participant_ids: []},
         { dev_method_ids: []},
-        { methodology_ids: []}
+        { methodology_ids: []},
+        { status_ids: []}
         )
     end
   end
