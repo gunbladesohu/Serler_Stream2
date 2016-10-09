@@ -15,17 +15,11 @@
       <th>Number</th>
       <th>Month</th>
       <th>Pages</th>
-      <th>Status</th>
-      <th>Edit</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @statuses.each do |st| %>
-        <% if st.name == 'Accepted' %>
-          <%=st.name %>
-        <% end %>
-      <% end %>
     <% @articles.each do |article| %>
       <tr>
         <td><%= article.title %></td>
@@ -35,9 +29,6 @@
         <td><%= article.number %></td>
         <td><%= article.month %></td>
         <td><%= article.pages %></td>
-        <td>
-          
-        </td>
         <!--td><%= link_to 'Show', article %></td-->
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <!--td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
