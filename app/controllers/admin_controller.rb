@@ -13,13 +13,35 @@ class AdminController  < BaseController
   end
   
   def article_view
+     
      type = params[:id]
      
-    if current_user.nil?
-      redirect_to root_url
-    else
-      if type == "Moderator"
-        @ArticleList = Article.joins(:article_type,:status)
+    # if current_user.nil?
+    #   redirect_to root_url
+    # else
+    #   if type == "Moderator"
+    #     @ArticleList = Article.joins(:article_type,:status)
+    #     .select("articles.id as article_id, articles.title as article_title, 
+    #             article_types.name as type_name, articles.updated_at as updated_time, 
+    #             statuses.name as status_name, articles.journal as journal
+    #             , articles.year as year, articles.volume as volume
+    #             , articles.number as number, articles.month as month
+    #             , articles.pages as pages, articles.isbn as isbn
+    #             , articles.doi as doi, articles.url as url
+    #             , articles.keyword as keyword, articles.abstract as abstract")
+    #     .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
+        
+ 
+    #   else
+        
+    #   end
+    # end
+    
+  end
+  
+  def testKendo
+    
+    @ArticleList = Article.joins(:article_type,:status)
         .select("articles.id as article_id, articles.title as article_title, 
                 article_types.name as type_name, articles.updated_at as updated_time, 
                 statuses.name as status_name, articles.journal as journal
@@ -29,11 +51,9 @@ class AdminController  < BaseController
                 , articles.doi as doi, articles.url as url
                 , articles.keyword as keyword, articles.abstract as abstract")
         .where("article_types.is_active = true and articles.is_active = false and statuses.name = 'To be moderated'")
-        
-      else
-        
-      end
-    end
+    
+    
+    render :json => @ArticleList.to_json
   end
   
   def article_view_moderator
