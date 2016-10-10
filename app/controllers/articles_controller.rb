@@ -5,6 +5,7 @@ class ArticlesController < BaseController
   before_action :logged_in?
   before_action :current_user
   before_action :current_user_role
+  before_action :set_status
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
 
@@ -33,7 +34,8 @@ class ArticlesController < BaseController
 
   # GET /articles/1/edit
   def edit
-    @articles = Article.includes(:research_participants, :research_methods, :dev_methods, :methodologies)
+    @articles = Article.includes(:research_participants, :research_methods,
+      :dev_methods, :methodologies, :status)
     #@research_questions = ResearchQuestion.all
     #@research_metrics = ResearchMetric.all
     @research_participants = ResearchParticipant.all
@@ -113,15 +115,40 @@ class ArticlesController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
-        :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
-        #research_participants_attributes: [:name],
-        #research_methods_attributes: [:name, :id]
-        { research_method_ids: []},
-        { research_participant_ids: []},
-        { dev_method_ids: []},
-        { methodology_ids: []},
-        { status_ids: []}
-        )
+      if params[:commit] == 'Update Article'
+        params[:article][:status_id] = @status_analyst_picked_up_id
+        params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+          :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
+          #research_participants_attributes: [:name],
+          #research_methods_attributes: [:name, :id]
+          { research_method_ids: []},
+          { research_participant_ids: []},
+          { dev_method_ids: []},
+          { methodology_ids: []},
+          :status_id
+          )
+      elsif params[:commit] == 'Submit Article'
+        params[:article][:status_id] = @status_analyst_complete_id
+        params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+          :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
+          #research_participants_attributes: [:name],
+          #research_methods_attributes: [:name, :id]
+          { research_method_ids: []},
+          { research_participant_ids: []},
+          { dev_method_ids: []},
+          { methodology_ids: []},
+          :status_id
+          )
+      end
+    end
+
+    def set_status
+      Status.all.each do |status|
+        if status.name == "Analyst picked up"
+          @status_analyst_picked_up_id = status.id
+        elsif status.name == "Analysis complete"
+          @status_analyst_complete_id = status.id
+        end
+      end
     end
   end
