@@ -3,8 +3,8 @@
   
 <p id="notice"><%= notice %></p>
 
-<h1 id="head">PENDING ARTICLES</h1>
-
+<% if current_user_role.name == "Analyst" %>
+<h1 id="head">To be Analysed</h1>
 <table id="hor-minimalist-a">
   <thead>
     <tr>
@@ -15,12 +15,14 @@
       <th>Number</th>
       <th>Month</th>
       <th>Pages</th>
-      <th></th>
+      <th>Status</th>
+      <th>Function</th>
     </tr>
   </thead>
 
   <tbody>
     <% @articles.each do |article| %>
+      <% if article.status.name == 'To be analysed' %>
       <tr>
         <td><%= article.title %></td>
         <td><%= article.journal %></td>
@@ -29,10 +31,92 @@
         <td><%= article.number %></td>
         <td><%= article.month %></td>
         <td><%= article.pages %></td>
+        <td><%= article.status.name%>
+        </td>
         <!--td><%= link_to 'Show', article %></td-->
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <!--td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
+
+<h1 id="head">Partially Analysed</h1>
+<table id="hor-minimalist-a">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Journal</th>
+      <th>Year</th>
+      <th>Volume</th>
+      <th>Number</th>
+      <th>Month</th>
+      <th>Pages</th>
+      <th>Status</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <% if article.status.name == 'Analyst picked up' %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.journal %></td>
+        <td><%= article.year %></td>
+        <td><%= article.volume %></td>
+        <td><%= article.number %></td>
+        <td><%= article.month %></td>
+        <td><%= article.pages %></td>
+        <td><%= article.status.name%>
+        </td>
+        <!--td><%= link_to 'Show', article %></td-->
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <!--td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h1 id="head">Completed</h1>
+<table id="hor-minimalist-a">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Journal</th>
+      <th>Year</th>
+      <th>Volume</th>
+      <th>Number</th>
+      <th>Month</th>
+      <th>Pages</th>
+      <th>Status</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <% if article.status.name == 'Analysis complete' %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.journal %></td>
+        <td><%= article.year %></td>
+        <td><%= article.volume %></td>
+        <td><%= article.number %></td>
+        <td><%= article.month %></td>
+        <td><%= article.pages %></td>
+        <td><%= article.status.name%>
+        </td>
+        <!--td><%= link_to 'Show', article %></td-->
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <!--td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+
