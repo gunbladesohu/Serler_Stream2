@@ -4,6 +4,7 @@ class ArticlesController < BaseController
 
   before_action :logged_in?
   before_action :current_user
+  before_action :current_user_role
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
 
@@ -11,8 +12,12 @@ class ArticlesController < BaseController
   # GET /articles.json
   def index
     #@articles = Article.all
-     @articles = Article.includes(:users)
-    .user_filter(@current_user.id)
+    if @current_user_role.name == "Admin"
+      @articles = Article.includes(:users).all
+    else
+      @articles = Article.includes(:users)
+      .user_filter(@current_user.id)
+    end
   end
 
   # GET /articles/1
@@ -99,10 +104,17 @@ class ArticlesController < BaseController
       end
     end
 
+    def current_user_role
+       @current_user_role ||= User.joins("LEFT JOIN users_roles on users.id = users_roles.user_id LEFT JOIN roles on users_roles.role_id = roles.id")
+      .select("roles.name ")
+      .where("users_roles.is_active = true and roles.is_active = true and users.id=#{session[:user_id]}").first
+
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :journal, :year, :volume, :type_id, 
-        :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract, 
+      params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+        :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
         #research_participants_attributes: [:name],
         #research_methods_attributes: [:name, :id]
         { research_method_ids: []},
