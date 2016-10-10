@@ -130,7 +130,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 
 UsersRole.create(role_id: @analystRole.id, user_id: @user1.id, is_active: true)
 UsersRole.create(role_id: @moderatorRole.id, user_id: @user2.id, is_active: true)
-
+UsersRole.create(role_id: @adminRole.id, user_id: @user3.id, is_active: true)
 
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)
