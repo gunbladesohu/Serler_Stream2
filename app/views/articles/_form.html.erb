@@ -145,6 +145,17 @@
     <% end %>
     </ul>
 </fieldset>
+
+<fieldset>
+<legend><span class="number">4</span> Evidence Item</legend>
+        <label><%= f.label :benefit %></label>
+        <%= f.text_area :benefit, "cols" => 40, "rows" => 5%><br>
+        <label><%= f.label :context %></label>
+        <%= f.text_field :context, "cols" => 40, "rows" => 5%><br>
+        <label><%= f.label :result %></label>
+        <%= f.text_field :result, "cols" => 40, "rows" => 5%><br>
+          </fieldset>
+
 </form>
 
  <div class="actions button">
