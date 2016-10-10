@@ -450,4 +450,3 @@ ArticleUser.create(article_id: @article8.id, user_id: @user2.id)
 ArticleUser.create(article_id: @article9.id, user_id: @user1.id)
 ArticleUser.create(article_id: @article10.id, user_id: @user2.id)
 ArticleUser.create(article_id: @article11.id, user_id: @user1.id)
-
