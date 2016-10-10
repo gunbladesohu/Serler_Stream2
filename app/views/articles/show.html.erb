@@ -1,54 +1,99 @@
 <p id="notice"><%= notice %></p>
-
+<%= form_for(@article) do |f| %>
 <h1>The following was successfully updated</h1>
-<table id="hor-minimalist-a">
-  <thead>
+<table class="bib">
     <tr>
-      <th>Title</th>
-      <th>Research Questions</th>
-      <th>Research Metrics</th>
-      <th>Research Methods</th>
-      <th>Research Participants</th>
-      <th>Development Method</th>
-      <th>Methodology</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <tr>
-        
+      <th><label><%= f.label :title %></label></th>
       <td><%= @article.title %></td>
+    </tr>
+    <tr>
+      <th><label><%= f.label :journal %></label></th>
+      <td>
+        <%= @article.journal %><br>
+      </td>
+    </tr>
+    <tr>
+      <th><label><%= f.label :Year %></label></th>
+      <td><%= @article.year %><br></td>
+    </tr>
+    <tr>
+      <th><label><%= f.label :month %></label></th>
+      <td><%= @article.month %></td>
+    </tr>
+    <tr>
+      <th><label><%= f.label :Volume %></label></th>
+      <td><%= @article.volume %>
+            <label style="padding-left:5em">Issue&nbsp;<%= f.label :number %></label>
+        <%= @article.number %>
+        <label style="padding-left:5em"><%= f.label :pages %></label>
+        <%= @article.pages %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+          <label>DOI</label>
+      </th>
+      <td>
+        <%= @article.doi %><br>
+      </td>
+    </tr>
+        <tr>
+      <th>
+          <label>Research Questions</label>
+      </th>
       <td><%= @article.research_questions %></td>
+    </tr>
+    <tr>
+      <th>
+          <label>Research Metrics</label>
+      </th>
       <td><%= @article.research_metrics %></td>
-
+    </tr>
+    <tr>
+      <th>
+          <label>Research Methods</label>
+      </th>
       <% @article_research_method = ""%>
       <% @article.research_methods.each do |research_method| %>
         <% @article_research_method = @article_research_method + research_method.name + ", "%>
       <% end %>
       <td><%= @article_research_method.chop.chop %></td>
-
+    </tr>
+    <tr>
+      <th>
+          <label>Research Participants</label>
+      </th>
       <% @article_research_participant = ""%>
       <% @article.research_participants.each do |research_participant| %>
         <% @article_research_participant = @article_research_participant + research_participant.name + ", "%>
       <% end %>
       <td><%= @article_research_participant.chop.chop %></td>
-      
+    </tr>
+    
+    <tr>
+      <th>
+          <label>Development Method</label>
+      </th>
       <% @article_dev_method = ""%>
       <% @article.dev_methods.each do |dev_method| %>
         <% @article_dev_method = @article_dev_method + dev_method.name + ", "%>
       <% end %>
       <td><%= @article_dev_method.chop.chop %></td>
-      
+    </tr>
+    
+    <tr>
+      <th>
+          <label>Methodology</label>
+      </th>
       <% @article_methodology = ""%>
       <% @article.methodologies.each do |methodology| %>
         <% @article_methodology = @article_methodology + methodology.name + ", "%>
       <% end %>
       <td><%= @article_methodology.chop.chop %></td>
-     
-      </tr>
-  </tbody>
+    </tr>
+    
 </table>
-
+<%end%>
 <div class="form-style-5 actions button">
     <!--<a href="<%=edit_article_path(@article) %>" class="button">Re-Update</a>-->
     <a href="<%=articles_path %>" class="button">Back to All Articles</a>

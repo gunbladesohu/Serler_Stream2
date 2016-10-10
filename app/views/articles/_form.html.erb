@@ -15,7 +15,7 @@
     <tr>
       <th><label><%= f.label :title %></label></th>
       <td><%= @article.title %></td>
-      </tr>
+    </tr>
     <tr>
       <th><label><%= f.label :journal %></label></th>
       <td>
@@ -26,19 +26,20 @@
       <th><label><%= f.label :Year %></label></th>
       <td><%= @article.year %><br></td>
     </tr>
-    <tr><th><label><%= f.label :month %></label></th>
-          <td><%= @article.month %></td>
+    <tr>
+      <th><label><%= f.label :month %></label></th>
+      <td><%= @article.month %></td>
     </tr>
     <tr>
       <th><label><%= f.label :Volume %></label></th>
       <td><%= @article.volume %>
-            <label>Issue&nbsp;<%= f.label :number %></label>
+            <label style="padding-left:5em">Issue&nbsp;<%= f.label :number %></label>
         <%= @article.number %>
-        <label><%= f.label :pages %></label>
+        <label style="padding-left:5em"><%= f.label :pages %></label>
         <%= @article.pages %>
-        </td>
+      </td>
     </tr>
-            <tr>
+    <tr>
       <th>
           <label>DOI</label>
       </th>
@@ -46,116 +47,121 @@
         <%= @article.doi %><br>
       </td>
     </tr>
-    <tr>
       </table>
 
 
 <div class="form-style-5">
-<form>
-<fieldset>
-<legend><span class="number">1</span> Research Design</legend>
-        <label><%= f.label :research_questions %></label>
-        <%= f.text_area :research_questions, "cols" => 40, "rows" => 5%><br>
-        <label><%= f.label :research_metrics %></label>
-        <%= f.text_field :research_metrics %><br>
-          <div class="field">
+  <form>
+    <fieldset>
+      <legend><span class="number">1</span> Research Design</legend>
+      <label><%= f.label :research_questions %></label>
+      <%= f.text_area :research_questions, "cols" => 40, "rows" => 5%><br>
+      <label><%= f.label :research_metrics %></label>
+      <%= f.text_field :research_metrics %><br>
+      <div class="field">
 
-  <label>Research Method</label>
-  <ul id = "limheight">
-    <% @research_methods.each do |research_method| %>
-      <div class="checkbox">
-        <label>
-          <% @is_check = false %>
-          <% @article.research_methods.each_slice(3) do | batch | %>
-            <% batch.each do |article_research_method| %>
-              <% if article_research_method.name == research_method.name%>
-                <% @is_check = true%>
-                <% break %>
+      <label>Research Method</label>
+      <ul id = "limheight">
+        <% @research_methods.each do |research_method| %>
+          <div class="checkbox">
+            <label>
+              <% @is_check = false %>
+              <% @article.research_methods.each_slice(3) do | batch | %>
+                <% batch.each do |article_research_method| %>
+                  <% if article_research_method.name == research_method.name%>
+                    <% @is_check = true%>
+                    <% break %>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          <% end %>
-          <%= check_box_tag 'article[research_method_ids][]', research_method.id, @is_check%>
-          <%= research_method.name %></li>
-        </label>
-      </div>
-    <% end %>
+              <%= check_box_tag 'article[research_method_ids][]', research_method.id, @is_check%>
+              <%= research_method.name %></li>
+            </label>
+          </div>
+        <% end %>
+      </ul>
+    
+      <label>Research Participant</label>
+        <ul id = "limheight">
+        <% @research_participants.each do |research_participant| %>
+          <div class="checkbox">
+            <label>
+              <% @is_check = false %>
+              <% @article.research_participants.each do |article_research_participant| %>
+                <% if article_research_participant.name == research_participant.name%>
+                  <% @is_check = true%>
+                  <% break %>
+                <% end %>
+              <% end %>
+              <%= check_box_tag 'article[research_participant_ids][]', research_participant.id, @is_check%>
+              <%= research_participant.name %>
+            </label>
+          </div>
+        <% end %>
+      </ul>
+    </fieldset>
+    
+    <fieldset>
+    <legend><span class="number">2</span>Method</legend>
+      <ul id = "limheight">
+        <% @dev_methods.each do |dev_method| %>
+          <div class="checkbox">
+            <label>
+              <% @is_check = false %>
+              <% @article.dev_methods.each do |article_dev_method| %>
+                <% if article_dev_method.name == dev_method.name%>
+                  <% @is_check = true%>
+                  <% break %>
+                <% end %>
+              <% end %>
+              <%= check_box_tag 'article[dev_method_ids][]', dev_method.id, @is_check%>
+              <%= dev_method.name %>
+            </label>
+          </div>
+        <% end %>
+      </ul>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>
+        <span class="number">3</span>Methodology
+      </legend>
+      <ul id = "limheight">
+        <% @methodologies.each do |methodology| %>
+          <div class="checkbox">
+            <label>
+              <% @is_check = false %>
+              <% @article.methodologies.each do |article_methodology| %>
+                <% if article_methodology.name == methodology.name%>
+                  <% @is_check = true%>
+                  <% break %>
+                <% end %>
+              <% end %>
+              <%= check_box_tag 'article[methodology_ids][]', methodology.id, @is_check%>
+              <%= methodology.name %>
+            </label>
+          </div>
+        <% end %>
+      </ul>
+    </fieldset>
+  </form>
+
+  <% @article.status.name = "Analysis complete" %>
+  <div class="actions button">
+    <ul>
+      <li>
+        <input type="submit" name="commit" value="Update Article" />
+      </li>
+      <li>
+        <input type="submit" name="commit" value="Submit Article" />  
+      </li>
+      <li>
+        <a href="<%=articles_path %>" class="button">Back to All Articles</a>  
+      </li>
     </ul>
-
-    <label>Research Participant</label>
-    <ul id = "limheight">
-    <% @research_participants.each do |research_participant| %>
-      <div class="checkbox">
-        <label>
-          <% @is_check = false %>
-          <% @article.research_participants.each do |article_research_participant| %>
-            <% if article_research_participant.name == research_participant.name%>
-              <% @is_check = true%>
-              <% break %>
-            <% end %>
-          <% end %>
-          <%= check_box_tag 'article[research_participant_ids][]', research_participant.id, @is_check%>
-          <%= research_participant.name %>
-        </label>
-      </div>
-    <% end %>
-    </ul>
-</fieldset>
-
-<fieldset>
-<legend><span class="number">2</span>Method</legend>
-<ul id = "limheight">
-<% @dev_methods.each do |dev_method| %>
-      <div class="checkbox">
-        <label>
-          <% @is_check = false %>
-          <% @article.dev_methods.each do |article_dev_method| %>
-            <% if article_dev_method.name == dev_method.name%>
-              <% @is_check = true%>
-              <% break %>
-            <% end %>
-          <% end %>
-          <%= check_box_tag 'article[dev_method_ids][]', dev_method.id, @is_check%>
-          <%= dev_method.name %>
-        </label>
-      </div>
-    <% end %>
-    </ul>
-</fieldset>
-
-
-<fieldset>
-  <legend>
-    <span class="number">3</span>Methodology
-  </legend>
-  <ul id = "limheight">
-      <% @methodologies.each do |methodology| %>
-      <div class="checkbox">
-        <label>
-          <% @is_check = false %>
-          <% @article.methodologies.each do |article_methodology| %>
-            <% if article_methodology.name == methodology.name%>
-              <% @is_check = true%>
-              <% break %>
-            <% end %>
-          <% end %>
-          <%= check_box_tag 'article[methodology_ids][]', methodology.id, @is_check%>
-          <%= methodology.name %>
-        </label>
-      </div>
-    <% end %>
-    </ul>
-</fieldset>
-</form>
-
-    <% @article.status.name = "Analysis complete" %>
-    <div class="actions button">
-      <input type="submit" name="commit" value="Update Article" />
-      <input type="submit" name="commit" value="Submit Article" />
-      <a href="<%=articles_path %>" class="button">Back to All Articles</a>
-
-    </div>
-
-<% end %>
+  </div>
+  <% end %>
 </div>
 
 
