@@ -118,6 +118,7 @@ class ArticlesController < BaseController
       if params[:commit] == 'Update Article'
         params[:article][:status_id] = @status_analyst_picked_up_id
         params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+          :benefit, :context, :result,
           :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
           #research_participants_attributes: [:name],
           #research_methods_attributes: [:name, :id]
@@ -130,6 +131,7 @@ class ArticlesController < BaseController
       elsif params[:commit] == 'Submit Article'
         params[:article][:status_id] = @status_analyst_complete_id
         params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+          :benefit, :context, :result,
           :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
           #research_participants_attributes: [:name],
           #research_methods_attributes: [:name, :id]
