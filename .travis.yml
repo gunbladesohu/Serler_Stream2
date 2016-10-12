@@ -15,9 +15,9 @@ deploy:
   provider: heroku
   api_key:
     secure: xuih3384cb6IlzPNQSxsrzSz6k68EQrdG4mxFJ+lJKfg8oxrcgrO5Hp8FyZhtc6uCDBQNlMWdktBms3gQ9aTs8h7f6IX6qBt4vqL02vFjWsMP11B4wfCCZ+MNgSTJ7SSvpGwF2of1QwTlI+J2H5+Jrzyg4oNaOHOjT80kaxzac84xiD1x6WLa9zeCcVdWHv36f7Pe+TNYi8shX3NSphjrJfYA9XtT6GZPHEMu3ukQW+4FWcLsSXwWwAwpBpdslEr2EzQNW1Vby5wWeVujGOh+74oCfAdtT3/hjEXOEbPwyWu6ia5wsfp7SIU0Jv9S9FejpeF2KnYEYBBp+chvfmTLela4g5ENDyaPoinqyhzqDm53LGDfTp7Pux/qX9xpWlUj1D17EBUMTdgcS03C9F5H6knzhcX8/nDJqJNznEYOvP6Ts4iPoZzNUdjsdDW28USQk8DUZxoycJdwqDqAd4NpP9pssz9noGgOF9kPUpu0dbpaWngB+yANMYgom6bD3cuVkDJ9MDRE43Hfqo7RN82EcCVD+ORsAdN7nKplxohUwNGfOTysHYcLpevdbxsABUGg9ZAH26ASGR2SQLqtYrlTDEjfElynVrMKpqVNhL2gRCXSQ+AXlendX2XSiTUEM8betQTdVqGOUdnGi6/PfiBXpr1Rl74YWeDiDX+sIO9sJw=
-  run: 
-    - "rake db:reset"
-    - restart
+  # run: 
+  #   - "rake db:reset"
+  #   - restart
   app: asiankiwi-codoctors
   on:
     repo: tdbt1985/Serler_Stream2
