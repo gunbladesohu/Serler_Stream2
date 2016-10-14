@@ -96,6 +96,11 @@ class SearchQueriesController < BaseController
 
     # temporary save search query to database
     @search_query = SearchQuery.new(from_date: from_date, to_date: to_date, isActive: false)
+
+    #This will save results for search to search_result table
+    @search_result = SearchResult.new(description: "" , isActive: false)
+    #=======
+    
     search_lines_attrs.each do |key, array|
       if array[:_destroy] == "false"
         join_condition = array[:join_condition].to_i
@@ -136,6 +141,14 @@ class SearchQueriesController < BaseController
     
     if @search_query.save
       @articles = do_search @search_query
+
+      #Save article URL (create search result)
+      @articles.each do |article|
+        search_result_detail = SearchResultDetail.new(article_url: article.url, article_id: article.id)
+        @search_result.search_result_details << search_result_detail
+      end
+      @search_result.save
+
       @search_query.allow_save = true
       respond_to do |format|
         format.html { render :index }

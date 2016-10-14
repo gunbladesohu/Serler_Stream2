@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917072029) do
+ActiveRecord::Schema.define(version: 20161014095138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,9 +204,27 @@ ActiveRecord::Schema.define(version: 20160917072029) do
   create_table "search_queries", force: :cascade do |t|
     t.string   "description"
     t.integer  "user_id"
-    t.integer     "from_date"
-    t.integer     "to_date"
+    t.integer  "from_date"
+    t.integer  "to_date"
     t.text     "sql_string"
+    t.boolean  "isActive"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "search_result_details", force: :cascade do |t|
+    t.string   "article_url"
+    t.integer  "search_result_id"
+    t.integer  "article_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "search_results", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "from_date"
+    t.integer  "to_date"
     t.boolean  "isActive"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

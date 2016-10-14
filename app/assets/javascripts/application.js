@@ -14,4 +14,4 @@
 //= require bootstrap-datetimepicker
 //= require dataTables/datatables.min
 //= require turbolinks
-//= require_tree .
+// require_tree .
