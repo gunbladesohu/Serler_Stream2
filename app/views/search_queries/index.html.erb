@@ -60,6 +60,9 @@
         <button type="button" class="btn btn-success toggle-model" data-toggle="modal">
           Save Query
         </button>
+        <button type="button" class="btn btn-success toggle-model-result" data-toggle="modal">
+          Save Result
+        </button>
       <% else %>
         <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
           Update Description
@@ -86,6 +89,28 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+        <div class="modal fade" id="save_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Save Result</h4>
+              </div>
+              <div class="modal-body">
+                <%= form_for(@search_query) do |f| %>
+                    <div class="form-group">
+                      <%= f.label :description %><br>
+                      <%= f.text_field :description, class: "form-control" %>
+                      <p class="mandatory1">This field is required</p>
+                    </div>
+                    <%= f.hidden_field :isActive, {value: 'true'} %>
+                    <%= f.submit :'Save', {class: 'btn btn-success'} %>
+                <% end %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     <% end %>
 
     <div class="table-responsive">
@@ -142,6 +167,10 @@
 
     $(".toggle-model").click(function () {
       $('#save_query').modal('toggle');
+    });
+
+    $(".toggle-model-result").click(function () {
+      $('#save_result').modal('toggle');
     });
 
 
