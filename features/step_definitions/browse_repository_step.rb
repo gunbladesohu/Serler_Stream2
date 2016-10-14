@@ -19,4 +19,7 @@ end
 
 Then(/^All the articles are listed in a tabular format\.$/) do
   expect(page).to have_selector("table#result-table")
+  expect(page).to have_selector("th#col0", :text => "Title")
+  expect(page).to have_text("Year")
+  expect(page).to have_content("Methods")
 end
