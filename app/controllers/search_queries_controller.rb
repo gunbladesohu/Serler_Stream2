@@ -54,6 +54,18 @@ class SearchQueriesController < BaseController
     # List all current active queries
     @search_queries = SearchQuery.where isActive: true
   end
+  
+  #get  recently saved results
+  def queries_result
+    # List all current active queries
+    @search_results = SearchResult.where isActive: true
+    # @search_results.each do |search_result|
+    #   result_details = search_result.search_result_details
+    #   result_details.each do |details|
+    #     puts details.article_url + " | " + details.article.title + " | " + details.article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ')
+    #   end
+    # end
+  end
 
   # GET /search_queries/new
   def new
@@ -182,6 +194,18 @@ class SearchQueriesController < BaseController
     end
   end
 
+  #update result from view
+  def update_result
+    search_result = SearchResult.find(params[:id].to_i)
+    search_result.description = params[:description]
+    search_result.isActive = params[:isActive]
+    respond_to do |format|
+      if search_result.save
+        format.html { redirect_to '/search_queries/queries_result', notice: 'Search results was successfully saved.' }
+      end
+    end
+  end
+
   # DELETE /search_queries/1
   # DELETE /search_queries/1.json
   def destroy
@@ -212,6 +236,7 @@ class SearchQueriesController < BaseController
       # params.fetch(:search_query, {})
       params.require(:search_query).permit(:from_date, :to_date, :description, :isActive)
     end
+
 
     # Do search
     def do_search(search_query)

@@ -1,0 +1,31 @@
+<% if notice != nil %>
+  <div class="alert alert-success">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<h1>Search Result</h1>
+
+<div class="container" style="padding-top: 10px;"></div>
+<%= link_to(raw("<span><i class='fa fa-arrow-circle-left' aria-hidden='true'></i> Back</span>"), search_queries_path, class: "btn btn-default")%>
+</div>
+
+<br>
+<div class="container">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-striped" id="result-table">
+        <thead>
+        <tr>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
