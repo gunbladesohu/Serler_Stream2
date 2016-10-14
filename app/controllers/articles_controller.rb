@@ -36,7 +36,7 @@ class ArticlesController < BaseController
         @article_id=Article.last.id
 
         # tell the moderator mailer to send an email
-        HubMailer.new_article_email(@article_id).deliver_now
+       # HubMailer.new_article_email(@article_id).deliver_now
 
       else
         format.html { render :new }
