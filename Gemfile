@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # datetime picker gem
-gem 'momentjs-rails', '~>2.11.1'
+gem 'momentjs-rails', '~>2.15.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 
