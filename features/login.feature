@@ -8,7 +8,7 @@ Feature: Login Feature
     And my password is "1234"
     And I click on Log in
     Then I go to "/articles"
-    # And I see "PENDING ARTICLES"
+    #And I see "PENDING ARTICLES"
     
   # Scenario: Edit
   #   Given I go to "/articles/new"
