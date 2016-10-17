@@ -3,13 +3,19 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  resources :search1_queries
-
   get 'search_queries/update_values' => 'search_queries#update_values'
 
   get 'search_queries/queries_list' => 'search_queries#queries_list'
 
+  get 'search_queries/queries_result' => 'search_queries#queries_result'
+
+
   get 'search_queries/browse_repository' => 'search_queries#browse_repository'
+
+  # post 'search_queries/update_result' => 'search_queries#update_result'
+
+  match '/search_queries/update_result',      to: 'search_queries#update_result',        via: 'post'
+
 
 
   resources :search_queries

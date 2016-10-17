@@ -13,6 +13,7 @@ class Article < ActiveRecord::Base
   has_many :dev_methods, through: :articles_dev_methods
   has_many :articles_methodologies
   has_many :methodologies, through: :articles_methodologies
+  has_many :search_result_details
 
   belongs_to :status, foreign_key: :status_id
   belongs_to :article_type, foreign_key: :type_id

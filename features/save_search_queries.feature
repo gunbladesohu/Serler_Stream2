@@ -17,10 +17,6 @@ Feature: save the search queries
     And I click "Save" on the popup model
     Then it returns a message of "Search query was successfully saved"
     And I can see a saved query "my query for agile" on the saved queries page:"http://localhost:3000/search_queries/queries_list"
-#
-#  Scenario: re_run saved queries
-#    Given I am on the page of saved queries:"http://localhost:3000/search_queries/queries_list"
-#    And I have at least a saved query with description
     When I click the saved query "my query for agile"
     Then it jumped to the search_result page with content:"Search from"
 

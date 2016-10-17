@@ -38,7 +38,7 @@ class SearchQueriesController < BaseController
           search_line.value = ResearchMethod.find(search_line.value_id).name
         when 4
           search_line.value = ResearchParticipant.find(search_line.value_id).name
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           search_line.value = search_line.value_text
         when 10,11
           search_line.value = search_line.value_number
@@ -53,6 +53,26 @@ class SearchQueriesController < BaseController
   def queries_list
     # List all current active queries
     @search_queries = SearchQuery.where isActive: true
+  end
+  
+  #get  recently saved results
+  def queries_result
+    # List all current active queries
+    @search_results = SearchResult.where isActive: true
+    # @search_results.each do |search_result|
+    #   result_details = search_result.search_result_details
+    #   result_details.each do |details|
+    #     puts details.article_url + " | " + details.article.title + " | " + details.article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ')
+    #   end
+    # end
+  end
+
+  def remove_result
+    detail = SearchResultDetail.find(params[:id])
+    detail.destroy
+    respond_to do |format|
+      format.html { redirect_to '/search_queries/queries_result', notice: 'Search results was successfully removed.' }
+    end
   end
 
   # GET /search_queries/new
@@ -96,6 +116,11 @@ class SearchQueriesController < BaseController
 
     # temporary save search query to database
     @search_query = SearchQuery.new(from_date: from_date, to_date: to_date, isActive: false)
+
+    #This will save results for search to search_result table
+    @search_result = SearchResult.new(description: "" , isActive: false)
+    #=======
+    
     search_lines_attrs.each do |key, array|
       if array[:_destroy] == "false"
         join_condition = array[:join_condition].to_i
@@ -124,7 +149,7 @@ class SearchQueriesController < BaseController
             search_line.value = ResearchMethod.find(value_id).name
           when 4
             search_line.value = ResearchParticipant.find(value_id).name
-          when 5,6,7,8,9,12,13,14
+          when 5,6,7,8,9,12,13,14,15,16,17
             search_line.value = array[:value_text].strip
           when 10,11
             search_line.value = array[:value_number]
@@ -136,6 +161,14 @@ class SearchQueriesController < BaseController
     
     if @search_query.save
       @articles = do_search @search_query
+
+      #Save article URL (create search result)
+      @articles.each do |article|
+        search_result_detail = SearchResultDetail.new(article_url: article.url, article_id: article.id)
+        @search_result.search_result_details << search_result_detail
+      end
+      @search_result.save
+
       @search_query.allow_save = true
       respond_to do |format|
         format.html { render :index }
@@ -165,6 +198,18 @@ class SearchQueriesController < BaseController
       else
         format.html { render :edit }
         format.json { render json: @search_query.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  #update result from view
+  def update_result
+    search_result = SearchResult.find(params[:id].to_i)
+    search_result.description = params[:description]
+    search_result.isActive = params[:isActive]
+    respond_to do |format|
+      if search_result.save
+        format.html { redirect_to '/search_queries/queries_result', notice: 'Search results was successfully saved.' }
       end
     end
   end
@@ -199,6 +244,7 @@ class SearchQueriesController < BaseController
       # params.fetch(:search_query, {})
       params.require(:search_query).permit(:from_date, :to_date, :description, :isActive)
     end
+
 
     # Do search
     def do_search(search_query)
@@ -239,7 +285,7 @@ class SearchQueriesController < BaseController
       case field_id.to_i
         when 1,2,3,4
           search_value = search_line.value_id
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           search_value = search_line.value_text.strip
         when 10,11
           search_value = search_line.value_number
@@ -279,7 +325,7 @@ class SearchQueriesController < BaseController
       case field_id
         when 1,2,3,4
           @operators = Operator.where(value: 5)
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           @operators = Operator.where(value: [1,2,3,4])
         when 10,11
           @operators = Operator.where(value: [5,6,7,8,9])

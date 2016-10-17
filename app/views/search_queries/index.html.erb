@@ -57,14 +57,22 @@
         <% end %>
       </p>
       <% if @search_query.allow_save == true %>
+
         <button type="button" class="btn btn-success toggle-model" data-toggle="modal">
           Save Query
         </button>
+
+        <button type="button" class="btn btn-success toggle-model-result" data-toggle="modal">
+          Save Result
+        </button>
+
       <% else %>
         <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
           Update Description
         </button>
       <% end %>
+
+      <!-- Save query modal -->
       <div class="modal fade" id="save_query" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -76,7 +84,7 @@
               <%= form_for(@search_query) do |f| %>
                 <div class="form-group">
                   <%= f.label :description %><br>
-                  <%= f.text_field :description, class: "form-control" %>
+                  <%= f.text_field :description, class: "form-control",id: "search_query_description" %>
                   <p class="mandatory1">This field is required</p>
                 </div>
                 <%= f.hidden_field :isActive, {value: 'true'} %>
@@ -86,6 +94,39 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+
+      <!-- Save result modal -->
+        <div class="modal fade" id="save_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Save Result</h4>
+              </div>
+              <div class="modal-body">
+                  <%= form_tag({controller: "search_queries", action: "update_result"}, method: "post") do %>
+                  <%= label_tag(:description, "Description:") %>
+                  <%= text_field_tag(:description) %>
+                  <%= hidden_field_tag :isActive, true %>
+                  <%= hidden_field_tag :id, @search_result.id %>
+
+                  <%= submit_tag("Save Result") %>
+                  <% end %>
+                <%#= form_for @search_result, :url => {:action => 'update_result'} do |f| %>
+                    <!-- <div class="form-group"> -->
+                      <%#= f.label :description %><!-- <br> -->
+                      <%#= f.text_field :description, class: "form-control" %>
+                      <!-- <p class="mandatory1">This field is required</p> -->
+                    <!-- </div> -->
+                    <%#= f.hidden_field :isActive, {value: 'true'} %>
+                    <%#= f.submit :'Save', {class: 'btn btn-success'} %>
+                <%# end %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+  
     <% end %>
 
     <div class="table-responsive">
@@ -100,7 +141,7 @@
           <th id="col5" class="issues">Issues <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col6" class="pages">Pages <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col7" class="doi">DOI <span class="grey"><i class="fa fa-sort"></i></span></th>
-          <th id="col8" class="url">URL <span class="grey"><i class="fa fa-sort"></i></span></th>
+          <th id="col8" class="url">URL <span class="grey"><i class="fa facd-sort"></i></span></th>
           <th id="col9" class="keywords">Keywords <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col10" class="methodology">Methodologies <span class="grey"><i class="fa fa-sort"></i></span></th>
           <th id="col11" class="method">Methods <span class="grey"><i class="fa fa-sort"></i></span></th>
@@ -142,6 +183,10 @@
 
     $(".toggle-model").click(function () {
       $('#save_query').modal('toggle');
+    });
+
+    $(".toggle-model-result").click(function () {
+      $('#save_result').modal('toggle');
     });
 
 
