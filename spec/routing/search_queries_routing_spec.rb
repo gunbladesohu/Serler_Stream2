@@ -18,6 +18,14 @@ RSpec.describe SearchQueriesController, type: :routing do
     it "routes to #show" do
       expect(:get => "/search_queries/1").to route_to("search_queries#show", :id => "1")
     end
+
+    it "routes to #search_result" do
+      expect(:get => "/search_queries/queries_result").to route_to("search_queries#queries_result")
+    end
+
+    it "routes to #search_queries" do
+      expect(:get => "/search_queries/queries_list").to route_to("search_queries#queries_list")
+    end
     
     # it "routes to #edit" do
     #   expect(:get => "/search_queries/1/edit").to route_to("search_queries#edit", :id => "1")

@@ -59,13 +59,16 @@ end
 # end
 
 # ??????????????????????????????????????????????
-When(/^I click the saved query "([^"]*)"$/) do |des|
-  expect(page).to have_link(des)
-  click_link(des)
-end
 
-Then(/^it jumped to the search_result page with content:"([^"]*)"$/) do |content|
-  expect(page).to have_content(content)
-  expect(page).to have_button("Update Description")
-end
+
+
+# When(/^I click the saved query "([^"]*)"$/) do |des|
+#   expect(page).to have_link(des)
+#   click_link(des)
+# end
+
+# Then(/^it jumped to the search_result page with content:"([^"]*)"$/) do |content|
+#   expect(page).to have_content(content)
+#   expect(page).to have_button("Update Description")
+# end
 

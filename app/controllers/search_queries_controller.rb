@@ -38,7 +38,7 @@ class SearchQueriesController < BaseController
           search_line.value = ResearchMethod.find(search_line.value_id).name
         when 4
           search_line.value = ResearchParticipant.find(search_line.value_id).name
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           search_line.value = search_line.value_text
         when 10,11
           search_line.value = search_line.value_number
@@ -65,6 +65,14 @@ class SearchQueriesController < BaseController
     #     puts details.article_url + " | " + details.article.title + " | " + details.article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ')
     #   end
     # end
+  end
+
+  def remove_result
+    detail = SearchResultDetail.find(params[:id])
+    detail.destroy
+    respond_to do |format|
+      format.html { redirect_to '/search_queries/queries_result', notice: 'Search results was successfully removed.' }
+    end
   end
 
   # GET /search_queries/new
@@ -141,7 +149,7 @@ class SearchQueriesController < BaseController
             search_line.value = ResearchMethod.find(value_id).name
           when 4
             search_line.value = ResearchParticipant.find(value_id).name
-          when 5,6,7,8,9,12,13,14
+          when 5,6,7,8,9,12,13,14,15,16,17
             search_line.value = array[:value_text].strip
           when 10,11
             search_line.value = array[:value_number]
@@ -277,7 +285,7 @@ class SearchQueriesController < BaseController
       case field_id.to_i
         when 1,2,3,4
           search_value = search_line.value_id
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           search_value = search_line.value_text.strip
         when 10,11
           search_value = search_line.value_number
@@ -317,7 +325,7 @@ class SearchQueriesController < BaseController
       case field_id
         when 1,2,3,4
           @operators = Operator.where(value: 5)
-        when 5,6,7,8,9,12,13,14
+        when 5,6,7,8,9,12,13,14,15,16,17
           @operators = Operator.where(value: [1,2,3,4])
         when 10,11
           @operators = Operator.where(value: [5,6,7,8,9])
