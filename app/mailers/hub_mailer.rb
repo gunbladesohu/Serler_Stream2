@@ -25,6 +25,8 @@ class HubMailer < ApplicationMailer
     end
   end
 
+
+  
   def new_article_email(article_id)
 
     article_name = Article.find(article_id)

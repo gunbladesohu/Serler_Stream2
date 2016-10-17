@@ -2,53 +2,196 @@
     
     <h3>Hi <%= current_user.first_name %> <%= current_user.last_name %>, please review the following articles and select some of them for your own review</h3>
     
-    <div id="mainTable" >
-    </div>
+    <table id="mainTable" >
+      <thead >
+        <tr id="mainTableHeader">
+          <th class="tableHeader" onclick=" sort_table(mainTableBody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Article title <span class="grey"><i id="columSort0" class="fa fa-sort"></i></span></th>
+           <th class="tableHeader" onclick=" sort_table(mainTableBody, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Article type <span class="grey"><i id="columSort1" class="fa fa-sort"></i></span></th>
+           <th class="tableHeader" onclick=" sort_table(mainTableBody, 3, asc1); asc1 *= -1; asc2 = 1; asc3 = 1; ">Last modified <span class="grey"><i id="columSort2" class="fa fa-sort"></i></span></th>
+           <th class="tableHeader" ><button class="btn btn-primary" id="ConfirmBtn">Confirm</button></th>
+        </tr>
+      </thead>
+    
+      <tbody id="mainTableBody">
+        <% @ArticleList.each do |article| %>
+          <tr>
+              <td style="display:none;"><%= article.article_id %></td>
+            <td><%= article.article_title %></td>
+             <td ><%= article.type_name %></td>
+             <td><%= article.updated_time %></td>
+             <td ><input type="checkbox" name="articleCheckboxes" onchange="checkEvent(<%= article.article_id %>,event);"></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 
 <script  type="text/javascript">
     
-       $(document).ready(function () {
-           
+        var asc1 = 1, asc2 = 1, asc3 = 1;
+        var selectedArticles = [];
+        
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        
+        var selectedArticleId;
+        // Get the button that opens the modal
+        //var btn = document.getElementById("myBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        
+        // When the user clicks anywhere outside of the modal, close it
+       window.onclick = function(event) {
+           if(event.toElement.className.toLowerCase() == 'modal-backdrop fade in'){
+               $('#myModal').modal('hide');
+           }
+        }
+        
+       
+    function sort_table(tbody, col, asc) {
+        var rows = tbody.rows,
+                rlen = rows.length,
+                arr = new Array(),
+                i, j, cells, clen;
+            // fill the array with values from the table
+            for (i = 0; i < rlen; i++) {
+                cells = rows[i].cells;
+                clen = cells.length;
+                arr[i] = new Array();
+                for (j = 0; j < clen; j++) {
+                    arr[i][j] = cells[j].innerHTML;
+                }
+            }
             
-            
-          
-        });
-        $("#mainTable").kendoGrid({
-                dataSource: {
-                    type: "json",
-                    transport: {
-                        read: "/admin/testKendo"
-                    },
-                    pageSize: 20
-                },
-                height: 550,
-                groupable: true,
-                sortable: true,
-                pageable: {
-                    refresh: true,
-                    pageSizes: true,
-                    buttonCount: 5
-                },
-                columns: [
-                    
-                   {
-                    field: "article_title",
-                    title: "Article title"
-                },
-                 {
-                    field: "type_name ",
-                    title: "Article type"
-                },
-                 {
-                    field: "updated_time ",
-                    title: "Last modified"
-                }, 
-                { title: "Select all", template: "<input type=\"checkbox\" class=\"check_row\" />" ,
-                    headerTemplate: '<label>  <input type="checkbox" id="checkAll"/></label>'
-                  
-                  }
-                ]
+            // sort the array by the specified column number (col) and order (asc)
+            arr.sort(function (a, b) {
+                return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
             });
             
+            // replace existing rows with new rows created from the sorted array
+            for (i = 0; i < rlen; i++) {
+                
+                var inner;
+                
+                for (j = 0; j < clen; j++) {
+                    
+                    if (j == 0 || j >= 6){
+                        
+                        if (j == 0){
+                            
+                            inner = '<td style="display:none;">' + arr[i][j] + '</td>';
+                        }else{
+                            inner = inner + '<td style="display:none;">' + arr[i][j] + '</td>';
+                        }
+                        
+                    }else{
+                        
+                         var stringInner = arr[i][j];
+                         
+                         if(j == 4){
+                             
+                            if ($.inArray(parseInt(arr[i][0], 10), selectedArticles) != -1)
+                            {
+                                  stringInner = stringInner.replace('input type="checkbox" ', 'input type="checkbox" checked ');
+                                  
+                            }
+ 
+                         }
+                         
+                         inner = inner + '<td>' + stringInner + '</td>';
+                        
+                    }
+                    
+                } 
+                rows[i].innerHTML = inner;
+            }
+            
+            table_sort_direction(col, asc);
+        }
+    
+    
+    function table_sort_direction(col, direction) {
+        
+         var headerCount = $('#mainTableHeader')[0].cells.length;
+         var i;
+         
+        for (i = 0; i < headerCount; i++) {
+            
+            
+            if(i == (col - 1) ){
+                if (direction == 1 ){
+                    $('#columSort'+ i.toString()).attr('class', 'fa fa-sort-asc');
+                }else{
+                    $('#columSort'+ i.toString()).attr('class', 'fa fa-sort-desc');
+                }
+            }else{
+                $('#columSort'+ i.toString()).attr('class', 'fa fa-sort');
+            }   
+        } 
+    }
+    
+    function checkEvent(id,value){
+        
+        if (value.target.checked == true){
+            selectedArticles.push(id);
+        }else{
+            selectedArticles = jQuery.grep(selectedArticles, function(v) {
+              return v != id;
+            });
+        }
+        
+    }
+    
+    $("#ConfirmBtn").click(function(){
+        
+        if(selectedArticles.length == 0){
+            alert("Please pick up at least one article!")
+        }else{
+             $.ajax({
+                        url: '/admin/article_moderator_picked_up',
+                        type: 'get',
+                        data: {id: <%= current_user.id %>, list: selectedArticles.join(", ")},
+                        contentType: 'json'
+                        ,
+                            complete: function (jqXHR, textStatus) {
+                                if(textStatus == "success"){
+                                    window.location.href = "http://" + location.host + "/admin/article_view/Moderator";
+                                }else{
+                                    alert("There are something wrong with Serler server. Please try again later!")
+                                }
+                            }
+                      });
+             
+        }
+       
+     });
+    
 </script>
+
+<style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.modalDetailTitle{
+    width: 20%;
+    font-weight: bold;
+}
+.modalDetailTitleText{
+    width: 80%;
+}
+.tableHeader{
+    cursor: pointer;
+}
+</style>
