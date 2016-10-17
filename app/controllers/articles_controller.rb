@@ -56,7 +56,7 @@ class ArticlesController < BaseController
         @article_id=Article.last.id
 
         # tell the moderator mailer to send an email
-       HubMailer.new_article_email(@article_id).deliver_now
+      # HubMailer.new_article_email(@article_id).deliver_now
 
       else
         format.html { render :new }
@@ -130,6 +130,19 @@ class ArticlesController < BaseController
           )
       elsif params[:commit] == 'Submit Article'
         params[:article][:status_id] = @status_analyst_complete_id
+        params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
+          :benefit, :context, :result,
+          :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
+          #research_participants_attributes: [:name],
+          #research_methods_attributes: [:name, :id]
+          { research_method_ids: []},
+          { research_participant_ids: []},
+          { dev_method_ids: []},
+          { methodology_ids: []},
+          :status_id
+          )
+      elsif params[:commit] == 'Create Article'
+        params[:article][:status_id] = @moderated
         params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
           :benefit, :context, :result,
           :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
