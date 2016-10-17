@@ -89,8 +89,15 @@ class AdminController  < BaseController
                   <p><i>#{articleItem.title}</i></p>
                    <p>Thank you so much for using Serler</p>
                    ".html_safe
-       
-       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
+
+      @message2 = "<p><b>Greetings for the day!!</b></p>
+                  <p>We are informed that the following article is available for Analysis on Serler:</p>
+                  <p><i>#{articleItem.title}</i></p>
+                   ".html_safe
+      @subject2 = "New Article available for Analysis"
+
+      HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
+      HubMailer.article_av_for_analysis_email(@subject2, @message2).deliver_now
 
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
