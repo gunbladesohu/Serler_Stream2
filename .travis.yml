@@ -1,16 +1,16 @@
 language: ruby
 rvm:
   - 2.3.0
-before_script:
-  - bundle exec rake db:reset
-  - bundle exec rake db:migrate
-  - RAILS_ENV=test bundle exec rake db:setup
-  - RAILS_ENV=test bundle exec rake db:migrate
+# before_script:
+#   - bundle exec rake db:reset
+#   - bundle exec rake db:migrate
+#   - RAILS_ENV=test bundle exec rake db:setup
+#   - RAILS_ENV=test bundle exec rake db:migrate
 script:
 - bundle exec cucumber
 - bundle exec rspec
-notifications:
-  email: false
+# notifications:
+#   email: false
 
 # deploy:
 #   provider: heroku
