@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   username: postgres
-  password:
+  password: sdm2016
   pool: 5
   timeout: 5000
 #  port: 5432
@@ -12,15 +12,15 @@ default: &default
 
 development:
   <<: *default
-  database: SERLER_Stream2_dev
+  database: serler_stream2_dev
 
 test:
   <<: *default
-  database: SERLER_Stream2_test
+  database: serler_stream2_test
 
 production:
   <<: *default
-  database: SERLER_Stream2_pro
+  database: serler_stream2_pro
 
 cucumber:
   <<: *test
