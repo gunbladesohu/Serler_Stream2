@@ -1,60 +1,25 @@
-#Codoctor TravisCI ======================================
-
-# language: ruby
-# rvm:
-# - 2.3.0
-# before_script:
-# - bundle exec rake db:setup
-# - bundle exec rake db:migrate
-# - RAILS_ENV=test bundle exec rake db:setup
-# - RAILS_ENV=test bundle exec rake db:migrate
-# script:
-# - bundle exec cucumber
-# - bundle exec rspec
-# notifications:
-#   email: false
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: Cw9m5ceC+oxu//69ofxq/QRgf4Zd9JVwy4As6amjSLFGN4mc6CgkWv2TvW8lquFilccfeKb88+UcKaAllO9VRviYKFnFvALSgNd8LXP0rLPahHOEIyczMcv/CFRYKSiJql78oCH3VtyHMAdujGctMHDib487zs8ZYO3HBAv4VD6EXazNxAZTTTxH6FuCn85I4M8Z0b5BKcjdj1BjfaKlBfmnNMMAgakx83FErTgSHqBOnwKqVirFvBKG4XcLaRXaekNmj0PUj4ZY0E3c6sJVGnKV2chbehpsQwdP/6L1fAapC/CykTeM2fcQC9Vyn0sbMMeq/czi6xR+LlK0xuXSqvipP+hJkbBEUzJCTjB/XKdOP9bD9rslkVyqhRCsnuS3mtNXzeS9rDGYlGCX28UWk2uAs1K2kmL8VmyJjn9eWoj8xxlQiBHovm4mbA74B3OTehqc3GslldtEERrl9ZD5EWcwCRUyLc02/QhT11lhLyqTreoh84VGWgkUbuDxY8x9n5HSNG1eGyLUu+Xp0YZu9xoVDqLUcs+98UB9skWx2iGfCFLusnCka+YJ9W+5LHHkTimFz7SF29KgVWC50aBztZWrpIXJNMPR6SOUzFJgqaFhHyRA3ScmBd1ou6GogL1RwLVMbGR+P+Gk/DW8xEVExysFQuUKqXW1JM0ivpX3ufA=
-#   run:
-#          - "rake db:reset"
-#          - restart
-#   app: sdmserlercodoctors
-#   on:
-#     repo: tdbt1985/Serler_Stream2
-#     branch: CoDoctors
-
-#======================================================
-
-
-#AsianKiwi TravisCI ======================================
-
 language: ruby
 rvm:
   - 2.3.0
 before_script:
   - bundle exec rake db:setup
   - bundle exec rake db:migrate
-#  - RAILS_ENV=test bundle exec rake db:seed
   - RAILS_ENV=test bundle exec rake db:setup
   - RAILS_ENV=test bundle exec rake db:migrate
 script:
-  - bundle exec cucumber
-  - bundle exec rspec
+- bundle exec cucumber
+- bundle exec rspec
 notifications:
   email: false
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: 2smnOt2dH0EfPOsvr1If8XyhvxKWep6ECU/SephFUxCaGadoSstW0vxF4hNQFoAICPcCcGfXwzb2nof1E2mqtR6guGe0rbb/LrVzv+86vKTbcZu0Kt+DXLDVoD382CwOj46v7ZxDzC6O71GeIOnZyFUQTp11L2PT+MxY805VlD77xLCA3x/dAoa0yGo2cz2mb3NA3uv79lTeKtxyAgehCk0UkywQsFltTdmr8lyIC+UKH3bk9ZaS8EXNPmCa+J4vjYS/jArV9g704br052beFZxBSZLAwsfirFGcwznhQC7uIHrwcxE5gawZTxTLgz+V5ZJDLlqZX0FHtYrbXFslt9GelRecOve07sD3gQ7sBqmDiPpcKe4lv7e090yYQFEgH18uao2RyXi3e+xe9lzHIyC7RebIQHsAVhS6Lp8IJDBxVVnrbEVzlzoQbqZewV7gIU4rAZGGY8Zo3ds568PuQRHuUSotCNXOfShAYCq2E1+Q4f7scFOPmKhBDmrokMscwulw5Ggc0W2x2f5hiOlA58KdMibyIejcOnf+oQzbipi/zxJeE2mqeXCaokDxTtQ/Hha79pZmG2tBRq2oC5w8wIO7sOzLbjFFvvu2uommSC7XQJ+5wj3dcpY5MN4s/Y91erEtItmRKesy7k3KlShI41F3mkIl23FDvF6FPpoMlOM=
-  run:
-    - "rake db:reset"
-    - restart
-  app: serlerofasiankiwi
-  on:
-    repo: tdbt1985/Serler_Stream2
-    branch: AsianKiwi
-
-#======================================================
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: 2smnOt2dH0EfPOsvr1If8XyhvxKWep6ECU/SephFUxCaGadoSstW0vxF4hNQFoAICPcCcGfXwzb2nof1E2mqtR6guGe0rbb/LrVzv+86vKTbcZu0Kt+DXLDVoD382CwOj46v7ZxDzC6O71GeIOnZyFUQTp11L2PT+MxY805VlD77xLCA3x/dAoa0yGo2cz2mb3NA3uv79lTeKtxyAgehCk0UkywQsFltTdmr8lyIC+UKH3bk9ZaS8EXNPmCa+J4vjYS/jArV9g704br052beFZxBSZLAwsfirFGcwznhQC7uIHrwcxE5gawZTxTLgz+V5ZJDLlqZX0FHtYrbXFslt9GelRecOve07sD3gQ7sBqmDiPpcKe4lv7e090yYQFEgH18uao2RyXi3e+xe9lzHIyC7RebIQHsAVhS6Lp8IJDBxVVnrbEVzlzoQbqZewV7gIU4rAZGGY8Zo3ds568PuQRHuUSotCNXOfShAYCq2E1+Q4f7scFOPmKhBDmrokMscwulw5Ggc0W2x2f5hiOlA58KdMibyIejcOnf+oQzbipi/zxJeE2mqeXCaokDxTtQ/Hha79pZmG2tBRq2oC5w8wIO7sOzLbjFFvvu2uommSC7XQJ+5wj3dcpY5MN4s/Y91erEtItmRKesy7k3KlShI41F3mkIl23FDvF6FPpoMlOM=
+#   run:
+#     - "rake db:reset"
+#     - restart
+#   app: serlerofasiankiwi
+#   on:
+#     repo: tdbt1985/Serler_Stream2
+#     branch: AsianKiwi
