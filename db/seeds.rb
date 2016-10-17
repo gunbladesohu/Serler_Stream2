@@ -35,6 +35,9 @@ FieldTable.create(name: 'Number', field: 'number', table: 'articles', join_table
 FieldTable.create(name: 'Journal', field: 'journal', table: 'articles', join_table: '', model: 'Article')
 FieldTable.create(name: 'ISBN', field: 'isbn', table: 'articles', join_table: '', model: 'Article')
 FieldTable.create(name: 'DOI', field: 'doi', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Context', field: 'context', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Benefit', field: 'benefit', table: 'articles', join_table: '', model: 'Article')
+FieldTable.create(name: 'Result', field: 'result', table: 'articles', join_table: '', model: 'Article')
 
 Operator.create(value: 1, name: "Contains")
 Operator.create(value: 2, name: "Does not contain")

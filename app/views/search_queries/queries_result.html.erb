@@ -1,0 +1,55 @@
+<% if notice != nil %>
+  <div class="alert alert-success">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<h1>Search Result</h1>
+
+<div class="container" style="padding-top: 10px;"></div>
+<%= link_to(raw("<span><i class='fa fa-arrow-circle-left' aria-hidden='true'></i> Back</span>"), search_queries_path, class: "btn btn-default")%>
+</div>
+
+<br>
+<div class="container">
+<% @search_results.each do |search_result| %>
+<% if search_result.search_result_details.length > 0 %>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2><%= search_result.description %></h2>
+      <div class="table-responsive">
+        <table class="table table-striped" id="result-table">
+        <thead>
+        <tr>
+          <th>Title </th>
+          <th>Year </th>
+          <th>Methodologies</th>
+          <th>Methods </th>
+          <th>Research Methods</th>
+          <th>Participants </th>
+          <th> </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <% search_result.search_result_details.each do |detail| %> 
+          <tr>
+            <td class="title"><a href="<%= detail.article.url %>" target= "_blank" class="tooltips" title="<%= detail.article.title %>"><div class="table_result_title"><%= detail.article.title %></div></a></td>
+            <td class="year"><%= detail.article.year %></td>
+           
+            <td class="methodology"><%= detail.article.articles_methodologies.map { |articles_methodology| articles_methodology.methodology.name}.join(', ') %>  </td>
+            <td class="method"><%= detail.article.articles_dev_methods.map { |articles_dev_method| articles_dev_method.dev_method.name}.join(', ') %></td>
+            <td class="research_method"><%= detail.article.articles_research_methods.map { |articles_research_method| articles_research_method.research_method.name}.join(', ') %></td>
+            <td class="participant"><%= detail.article.articles_research_participants.map { |articles_research_participant| articles_research_participant.research_participant.name}.join(', ') %></td>
+            <td class="participant"><%= link_to("Remove", "/search_queries/remove_result/" + detail.id.to_s, class: "btn btn-danger")%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+<% end %>
+</div>
