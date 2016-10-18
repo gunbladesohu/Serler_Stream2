@@ -78,7 +78,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button type="button" id="qr_close_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">Save Query</h4>
             </div>
             <div class="modal-body">
@@ -102,7 +102,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" id="rs_close_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Save Results</h4>
               </div>
               <div class="modal-body">
@@ -112,7 +112,7 @@
                   <%= hidden_field_tag :isActive, true %>
                   <%= hidden_field_tag :id, @search_result.id %>
 
-                  <%= submit_tag("Save Result") %>
+                  <%= submit_tag 'Save Results'  %>
                   <% end %>
                 <%#= form_for @search_result, :url => {:action => 'update_result'} do |f| %>
                     <!-- <div class="form-group"> -->
