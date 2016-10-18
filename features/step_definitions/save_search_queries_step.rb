@@ -15,7 +15,9 @@ Then(/^It returns search condition "([^"]*)"$/) do |content|
 end
 
 When(/^I click the "([^"]*)" button on the search result page$/) do |button|
-  click_button  button
+  # click_button  button
+  first(:button, button).click # new
+
 end
 
 # ????????????????????????????????
@@ -29,14 +31,20 @@ Given(/^I have click "([^"]*)" button$/) do |button|
   click_button "Start Search"
   # expect(page).to redirect_to(search_query_path)
   click_button button
+  # first(:button, button).click # new
+
 end
 
-When(/^I write "([^"]*)" in the description$/) do |des|
-  fill_in('search_query_description', :with => des)
+
+When(/^I write "([^"]*)" in the "([^"]*)"$/) do |des, field|
+  fill_in(field, :with => des)
 end
+
 
 When(/^I click "([^"]*)" on the popup model$/) do |button|
   click_button button
+  # first(:button, button).click # new
+
 end
 
 Then(/^it returns a message of "([^"]*)"$/) do |mes|
@@ -53,22 +61,32 @@ end
 #   visit url
 # end
 #
-# Given(/^I have at least a saved query with description$/) do
+# Given(/^I have at least a saved query with descriptsion$/) do
 #   expect(page).to have_selector("table#result-table")
 #   expect(page).to have_content("Description")
 # end
 
 # ??????????????????????????????????????????????
+When(/^I click the saved query "([^"]*)"$/) do |des|
+  expect(page).to have_link(des)
+  click_link(des)
+end
 
+Then(/^it jumped to the search_result page with content:"([^"]*)"$/) do |content|
+  expect(page).to have_content(content)
+  expect(page).to have_button("Update Description")
+end
 
-
-# When(/^I click the saved query "([^"]*)"$/) do |des|
-#   expect(page).to have_link(des)
-#   click_link(des)
+# When(/^I write "([^"]*)" in the description$/) do |arg1|
+#   pending # Write code here that turns the phrase above into concrete actions
 # end
 
-# Then(/^it jumped to the search_result page with content:"([^"]*)"$/) do |content|
-#   expect(page).to have_content(content)
-#   expect(page).to have_button("Update Description")
+# Then(/^I can see a saved results "([^"]*)" on the saved reults page:"([^"]*)"$/) do |arg1, arg2|
+#   pending # Write code here that turns the phrase above into concrete actions
 # end
+
+# Then(/^I click Save Result on the popup model$/) do 
+#   click_button "Save Result"
+# end
+
 

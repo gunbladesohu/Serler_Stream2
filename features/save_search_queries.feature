@@ -13,10 +13,19 @@ Feature: save the search queries
 
   Scenario: save search queries popup
     Given I have click "Save Query" button
-    When I write "my query for agile" in the description
+    When I write "my query for agile" in the "search_query_description"
     And I click "Save" on the popup model
     Then it returns a message of "Search query was successfully saved"
     And I can see a saved query "my query for agile" on the saved queries page:"http://localhost:3000/search_queries/queries_list"
     When I click the saved query "my query for agile"
     Then it jumped to the search_result page with content:"Search from"
+
+
+
+
+
+
+
+
+
 

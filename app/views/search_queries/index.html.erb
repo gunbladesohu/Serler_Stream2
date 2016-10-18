@@ -58,13 +58,14 @@
       </p>
       <% if @search_query.allow_save == true %>
 
-        <button type="button" class="btn btn-success toggle-model" data-toggle="modal">
+        <button type="button" class="btn btn-success toggle-model" id="sv_qr" data-toggle="modal">
           Save Query
         </button>
-
-        <button type="button" class="btn btn-success toggle-model-result" data-toggle="modal">
-          Save Result
-        </button>
+        <% if @search_result != nil %>
+          <button type="button" class="btn btn-success toggle-model-result" id="sv_rs" data-toggle="modal">
+            Save Result
+          </button>
+        <% end %>
 
       <% else %>
         <button type="button" class="btn btn-primary toggle-model" data-toggle="modal">
@@ -77,14 +78,14 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button type="button" id="qr_close_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">Save Query</h4>
             </div>
             <div class="modal-body">
               <%= form_for(@search_query) do |f| %>
                 <div class="form-group">
                   <%= f.label :description %><br>
-                  <%= f.text_field :description, class: "form-control",id: "search_query_description" %>
+                  <%= f.text_field :description, class: "form-control" %>
                   <p class="mandatory1">This field is required</p>
                 </div>
                 <%= f.hidden_field :isActive, {value: 'true'} %>
@@ -95,23 +96,24 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
 
-
+      <% if @search_result != nil %>
       <!-- Save result modal -->
         <div class="modal fade" id="save_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Save Result</h4>
+                <button type="button" id="rs_close_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Save Results</h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body search-result-div">
                   <%= form_tag({controller: "search_queries", action: "update_result"}, method: "post") do %>
                   <%= label_tag(:description, "Description:") %>
-                  <%= text_field_tag(:description) %>
+                  <%= text_field_tag 'description' %>
+                    <p class="mandatory2">This field is required</p>
                   <%= hidden_field_tag :isActive, true %>
                   <%= hidden_field_tag :id, @search_result.id %>
 
-                  <%= submit_tag("Save Result") %>
+                  <%= submit_tag 'Save Results'  %>
                   <% end %>
                 <%#= form_for @search_result, :url => {:action => 'update_result'} do |f| %>
                     <!-- <div class="form-group"> -->
@@ -126,8 +128,9 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-  
-    <% end %>
+        <% end %> 
+    <% end %> 
+
 
     <div class="table-responsive">
       <table class="table table-striped" id="result-table">
@@ -179,14 +182,22 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
+    $(".search-result-div input[type=text]").addClass( "form-control" );
+    $(".search-result-div input[type=submit]").addClass( "form-control btn-success" );
+    $(".search-result-div input[type=text]").attr("required", true);
+
     $(".tooltips").tooltip({placement: 'top'});
 
     $(".toggle-model").click(function () {
       $('#save_query').modal('toggle');
+      $("#search_query_description").css("border", "2px solid #ccc");
+      $(".mandatory1").css("display", "none");
     });
 
     $(".toggle-model-result").click(function () {
       $('#save_result').modal('toggle');
+      $(".search-result-div input[type=text]").css("border", "2px solid #ccc");
+      $(".mandatory2").css("display", "none");
     });
 
 
@@ -232,6 +243,16 @@
       if($.trim($('#search_query_description').val()) == ''){
         $("#search_query_description").css("border", "2px solid red");
         $(".mandatory1").css("display", "block");
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    $(".search-result-div form").submit(function(e) {
+
+      if($.trim($('.search-result-div input[type=text]').val()) == ''){
+        $(".search-result-div input[type=text]").css("border", "2px solid red");
+        $(".mandatory2").css("display", "block");
         e.preventDefault();
         return false;
       }

@@ -148,7 +148,8 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'The growing interest in Agile and Lean software development is reflected in the increasing number of secondary studies on the benefits and limitations of Agile and Lean processes and practices',
                            research_questions: ' ', research_metrics: ' ',
                            type_id: @article_type3.id, status_id: @moderated.id, is_active: false,
-                           peer_reviewed: true, relevance: false, not_duplicate: true, user_id: @user1.id)
+                           peer_reviewed: true, relevance: false, not_duplicate: true, user_id: @user1.id,
+                           )
 @author1.articles << @article1
 @author2.articles << @article1
 @author3.articles << @article1
@@ -199,7 +200,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            year: '2015', volume: '', number: '',
                            month: '', pages: '306-311', isbn: '',
                            doi: '10.1109/MERCon.2015.7112364',
-                           url: '',
+                           url: 'http://ieeexplore.ieee.org.ezproxy.aut.ac.nz/document/7112364/',
                            keyword: 'DP industry;Internet;cultural aspects;organisational aspects;OSD;Scrum effectiveness;Sri Lanka;Web based survey;communication factor;comprehensive literature survey;cultural distance;geographical distance;offshore software development;organizational factor;people factor;process factor;requirement volatility management;software development industry;Collaboration;Companies;Context;Contracts;Cultural differences;Scrum (Software development);Software;Agile;Global teams;Off-shoring;Offshore software development;Scrum;XP',
                            abstract: 'This paper presents the results of a comprehensive literature survey and a web based survey on the use of Scrum in offshore software development (OSD) in Sri Lankan context. The trend in the recent software development industry is to move towards OSD. Issues and challenges related to OSD have to be solved to gain success. Scrum has gained a significant attention due to its flexible approach to managing requirement volatility and emphasis on extensive collaboration between customer and development team. However, the geographical and cultural distance of offshore teams create challenges for use Scrum with OSD. Hence objectives of the research was to identify issues and challenges related to OSD in Sri Lankan context and how those issues and challenges can be overcome by using Scrum. Results of the study reveal that key factors of Scrum such as communication, people, process, and organizational factors are having positive contribution towards OSD success in Sri Lankan context. This study further reveals the importance of combining engineering practices with Scrum to achieve the success in OSD in Sri Lankan context.',
                            research_questions: '', research_metrics: '',

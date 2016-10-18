@@ -13,5 +13,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require dataTables/datatables.min
-//= require turbolinks
+// require turbolinks
 // require_tree .
