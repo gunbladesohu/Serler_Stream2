@@ -62,7 +62,7 @@
           Save Query
         </button>
         <% if @search_result != nil %>
-          <button type="button" class="btn btn-primary toggle-model-result" id="sv_rs" data-toggle="modal">
+          <button type="button" class="btn btn-success toggle-model-result" id="sv_rs" data-toggle="modal">
             Save Result
           </button>
         <% end %>
@@ -105,10 +105,11 @@
                 <button type="button" id="rs_close_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Save Results</h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body search-result-div">
                   <%= form_tag({controller: "search_queries", action: "update_result"}, method: "post") do %>
                   <%= label_tag(:description, "Description:") %>
                   <%= text_field_tag 'description' %>
+                    <p class="mandatory2">This field is required</p>
                   <%= hidden_field_tag :isActive, true %>
                   <%= hidden_field_tag :id, @search_result.id %>
 
@@ -181,14 +182,22 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
+    $(".search-result-div input[type=text]").addClass( "form-control" );
+    $(".search-result-div input[type=submit]").addClass( "form-control btn-success" );
+    $(".search-result-div input[type=text]").attr("required", true);
+
     $(".tooltips").tooltip({placement: 'top'});
 
     $(".toggle-model").click(function () {
       $('#save_query').modal('toggle');
+      $("#search_query_description").css("border", "2px solid #ccc");
+      $(".mandatory1").css("display", "none");
     });
 
     $(".toggle-model-result").click(function () {
       $('#save_result').modal('toggle');
+      $(".search-result-div input[type=text]").css("border", "2px solid #ccc");
+      $(".mandatory2").css("display", "none");
     });
 
 
@@ -234,6 +243,16 @@
       if($.trim($('#search_query_description').val()) == ''){
         $("#search_query_description").css("border", "2px solid red");
         $(".mandatory1").css("display", "block");
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    $(".search-result-div form").submit(function(e) {
+
+      if($.trim($('.search-result-div input[type=text]').val()) == ''){
+        $(".search-result-div input[type=text]").css("border", "2px solid red");
+        $(".mandatory2").css("display", "block");
         e.preventDefault();
         return false;
       }

@@ -45,7 +45,7 @@ footer {
 .mandatory{color:red;
   display: none;}
 
-.mandatory1{color:red;
+.mandatory1, .mandatory2{color:red;
   display: none;}
 
 .head-name-table th{padding-left: 10px !important;}
@@ -60,3 +60,5 @@ footer {
   width: 255px;
 }
 
+.search-result-div input[type=submit]{    width: 110px;
+  margin-top: 10px;}
