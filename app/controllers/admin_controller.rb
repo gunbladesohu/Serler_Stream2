@@ -89,8 +89,15 @@ class AdminController  < BaseController
                   <p><i>#{articleItem.title}</i></p>
                    <p>Thank you so much for using Serler</p>
                    ".html_safe
-       
-       HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
+
+      @message2 = "<p><b>Greetings for the day!!</b></p>
+                  <p>We are informed that the following article is available for Analysis on Serler:</p>
+                  <p><i>#{articleItem.title}</i></p>
+                   ".html_safe
+      @subject2 = "New Article available for Analysis"
+
+      HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now
+      HubMailer.article_av_for_analysis_email(@subject2, @message2).deliver_now
 
        @windowMessage =  "<h1>Acceptance email sent</h1>
                   <h3>An acceptance email has sent to #{@user.first_name} #{@user.last_name} at #{@user.email}</h3>".html_safe
@@ -203,6 +210,180 @@ class AdminController  < BaseController
       format.json  { render :json => @user}
     end
   end
-  
-  
+
+  def new_user
+
   end
+  
+  def user_management
+    
+   if current_user.nil?
+      redirect_to root_url
+   else
+     if current_user_role.nil?
+       redirect_to root_url
+     else
+       if current_user_role.name.include? "Admin"
+         
+       else
+         redirect_to root_url
+       end
+     end
+   end
+   
+  end
+  
+  def getUserList
+    @UserList = User.joins("LEFT JOIN users_roles on users.id = users_roles.user_id LEFT JOIN roles on users_roles.role_id = roles.id")
+    .select("users.id, users.first_name,users.middle_name, users.last_name, users.email, users.gender, users.dob, users.affiliation, users.password_digest,
+    string_agg(distinct(roles.name), ', ' order by roles.name) as role_name ")
+    .where("users_roles.is_active = true and roles.is_active = true and users.is_active = true")
+    .group("users.id, users.first_name,users.middle_name, users.last_name, users.email, users.gender, users.dob, users.affiliation, users.password_digest")
+     
+     render :json => @UserList                  
+  end
+  
+  def addNewUser
+    
+    selectedRolesId = params[:selectedRolesId].split(",").map { |s| s.to_i }
+    first_name = params[:first_name]
+    middle_name = params[:middle_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    password_digest = params[:password_digest]
+    affiliation = params[:affiliation]
+    gender = params[:gender]
+    dob = params[:dob]
+    
+    
+    userItem = User.new(
+      :first_name => first_name,
+      :middle_name => middle_name,
+      :last_name => last_name,
+      :email => email,
+      :dob => dob,
+      :gender => gender,
+      :password_digest => password_digest,
+      :affiliation => affiliation,
+      :is_active => true)
+    
+    respond_to do |format|
+      if userItem.save
+
+        #save role
+        role = Role.find_by name: "User"
+
+        userRole = UsersRole.new( :user_id => userItem.id,
+                                  :role_id => role.id,
+                                  :is_active => true)
+
+        userRole.save
+        
+        if selectedRolesId.size > 0
+          selectedRolesId.each do |id|
+        
+            @newItem = UsersRole.create(:user_id => userItem.id, :role_id => id, :is_active => true)
+            @newItem.save
+            
+          end
+        end
+        
+      end
+      
+      render :json => true
+    end
+    
+  end
+  
+  def updateUser
+    
+    selectedRolesId = params[:selectedRolesId].split(",").map { |s| s.to_i }
+    userId = params[:userId]
+    first_name = params[:first_name]
+    middle_name = params[:middle_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    gender = params[:gender]
+    password_digest = params[:password_digest]
+    affiliation = params[:affiliation]
+    dob = params[:dob]
+    
+    userItem = User.find(userId)
+    
+    userItem.first_name = first_name
+    userItem.middle_name = middle_name
+    userItem.last_name = last_name
+    userItem.email = email
+    userItem.password_digest = password_digest
+    userItem.affiliation = affiliation
+    userItem.dob = dob
+    userItem.gender = gender
+    userItem.save
+    
+    userRole = Role.find_by name: "User"
+    user_role_list = UsersRole.all.where("users_roles.user_id=#{userId} and users_roles.role_id != #{userRole.id}")
+    
+    user_role_list.each do |variable|
+        variable.is_active = false
+        variable.save 
+    end
+      
+   
+    
+   if selectedRolesId.size > 0
+     
+      selectedRolesId.each do |id|
+        
+        item = UsersRole.all.where("users_roles.user_id = #{userId} and users_roles.role_id = #{id}").first
+        
+        if item.nil?
+          
+          @newItem = UsersRole.create(:user_id => userId, :role_id => id, :is_active => true)
+          @newItem.save
+        else
+          
+          
+          item.is_active = true
+          item.save
+        end
+      end
+   end
+    
+  
+    render :json => true 
+  end
+  
+  def getRoles
+    @roles = Role.all.where("roles.is_active = true and roles.name != 'User'")
+    
+    render :json => @roles  
+  end
+  
+  
+  def feedback
+     
+  end
+  
+  def add_feedback
+     message = params[:message]
+    
+    @newItem = Feedback.create(
+      :user_id => current_user.id, 
+      # :article_id => 0, 
+      :description => message, 
+      :is_active => true)
+      
+    respond_to do |format|
+      if @newItem.save
+        format.html { redirect_to admin_add_feedback_confirmation_path}
+        # format.json { render :show, status: :created, location: @feedback }
+      end
+    end
+    
+  end
+  
+  def add_feedback_confirmation
+    
+  end
+  
+end
