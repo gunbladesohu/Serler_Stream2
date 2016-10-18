@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'search_queries/browse_repository' => 'search_queries#browse_repository'
 
-  # post 'search_queries/update_result' => 'search_queries#update_result'
+  post 'search_queries/update_result' => 'search_queries#update_result'
 
   match '/search_queries/update_result',      to: 'search_queries#update_result',        via: 'post'
 

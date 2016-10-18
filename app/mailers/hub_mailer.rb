@@ -79,7 +79,7 @@ class HubMailer < ApplicationMailer
     @article_list_today = Article.where("created_at >= ?", Time.zone.now.beginning_of_day)
     attachments.inline['SerlerLogo_Black.png'] = File.read(Rails.root.join('app/assets/images/SerlerLogo_Black.png'))
     mail(to: save2, subject: subject2) do |format|
-      format.html { render layout: 'article_av_for_analysis_email' }
+      format.html { render layout: 'article_av_for_analysis' }
     end
 
   end

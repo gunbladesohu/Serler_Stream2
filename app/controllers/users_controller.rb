@@ -120,6 +120,8 @@ class UsersController < BaseController
 
   def new_user_confirmation
 
+    puts "Goooooo!!!!"
+
     if current_user.nil?
 
 

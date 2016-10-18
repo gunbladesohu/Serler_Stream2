@@ -105,7 +105,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @moderatorRole = Role.create(name: 'Moderator',                description: '', is_active: true)
 @analystRole = Role.create(name: 'Analyst',                  description: '', is_active: true)
 @userRole = Role.create(name: 'User',                     description: '', is_active: true)
-@memberRole = Role.create(name: 'Member of SDM class',      description: '', is_active: true)
+# @memberRole = Role.create(name: 'Member of SDM class',      description: '', is_active: true)
 
 @researchparticipant1 = ResearchParticipant.create(name: 'Undergraduate students', description: '', is_active: true)
 @researchparticipant2 = ResearchParticipant.create(name: 'Postgraduate students', description: '', is_active: true)
