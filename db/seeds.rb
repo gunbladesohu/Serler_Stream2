@@ -149,6 +149,7 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            research_questions: ' ', research_metrics: ' ',
                            type_id: @article_type3.id, status_id: @moderated.id, is_active: false,
                            peer_reviewed: true, relevance: false, not_duplicate: true, user_id: @user1.id,
+                           context: "Agile software development", benefit: "systematic review for agile", result: "important"
                            )
 @author1.articles << @article1
 @author2.articles << @article1
@@ -166,7 +167,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'Agile methodologies were introduced in 2001. Since this time, practitioners have applied Agile methodologies to many delivery disciplines. This article explores the application of Agile methodologies and principles to business intelligence delivery and how Agile has changed with the evolution of business intelligence. Business intelligence has evolved because the amount of data generated through the internet and smart devices has grown exponentially altering how organizations and individuals use information. The practice of business intelligence delivery with an Agile methodology has matured; however, business intelligence has evolved altering the use of Agile principles and practices. The Big Data phenomenon, the volume, variety, and velocity of data, has impacted business intelligence and the use of information. New trends such as fast analytics and data science have emerged as part of business intelligence. This paper addresses how Agile principles and practices have evolved with business intelligence, as well as its challenges and future directions.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @completed.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id,
+                           context: "Agile software development and big data",
+                           benefit: "agile review", result: "a guideness for the future"
+                           )
 @author4.articles << @article2
 @author5.articles << @article2
 
@@ -185,7 +189,9 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'There continues to be concern that research is not addressing the challenges that practice faces. For the benefit of academia and industry, researchers need to be aware of practitioners’ challenges and their context so that relevant and applicable research is undertaken.ObjectiveThis paper investigates two research questions: what challenges do agile practitioners face? and, how do practitioner challenges manifest themselves in an organisational setting? It aims to map the practitioner challenge landscape, explore challenge characteristics, compare findings with previous literature and identify implications for research that is relevant to practice.Method A combination of methods was used: elicitation of practitioner challenges collected using a Challenge Wall at a series of practitioner events; organisational case study using interviews, document analysis and observation; and online survey. Findings were then compared to previous publications.Results Challenges collected from the Challenge Wall were grouped under 27 subthemes and seven themes: claims and limitations, organisation, sustainability, culture, teams, scale, and value. Investigating one challenge in the case study uncovered a set of new challenges, which were inter-related. Over 50% of survey respondents experienced challenges highlighted in the case study.Conclusion The landscape of agile practitioner challenges is complex and intertwined. Some challenges, such as doing agile in a non-agile environment, are multi-dimensional, affect many aspects of practice, and may be experienced simultaneously as business, organisational, social and adaptation problems. Some challenges, such as understanding cultural change or measuring agile value, persist and are hard to address, while others, such as adoption, change focus over time. Some challenges, such as governance and contracts, are under-researched, while others, such as business and IT transformation, have been researched but findings have not had the expected impact. Researchers wishing to address practitioner challenges need to treat them in context rather than in isolation and improve knowledge transfer.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @accepted.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id,
+                           context: "Agile engineering and DSDM", benefit: "agile practitioners, guideline", result: "continue to concern"
+                           )
 
 @author6.articles << @article3
 @author7.articles << @article3
@@ -205,7 +211,9 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'This paper presents the results of a comprehensive literature survey and a web based survey on the use of Scrum in offshore software development (OSD) in Sri Lankan context. The trend in the recent software development industry is to move towards OSD. Issues and challenges related to OSD have to be solved to gain success. Scrum has gained a significant attention due to its flexible approach to managing requirement volatility and emphasis on extensive collaboration between customer and development team. However, the geographical and cultural distance of offshore teams create challenges for use Scrum with OSD. Hence objectives of the research was to identify issues and challenges related to OSD in Sri Lankan context and how those issues and challenges can be overcome by using Scrum. Results of the study reveal that key factors of Scrum such as communication, people, process, and organizational factors are having positive contribution towards OSD success in Sri Lankan context. This study further reveals the importance of combining engineering practices with Scrum to achieve the success in OSD in Sri Lankan context.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @moderated.id, is_active: false,
-                           peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user3.id)
+                           peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user3.id,
+                           context: "DP industry and a web based survey", benefit: "systematic review; good for future research", result: "guideline for related research"
+                           )
 
 @author11.articles << @article4
 @author12.articles << @article4
@@ -225,7 +233,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'SCRUM methodology is increasing software development speed. So far SCRUM has seen little application in automotive industry where V-model',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type3.id, status_id: @rejected.id, is_active: false,
-                           peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user1.id)
+                           peer_reviewed: false, relevance: false, not_duplicate: true, user_id: @user1.id,
+                           context: "scrum methodology, v-model", benefit: "full understand of scrum and its application",
+                           result: "guideline for related research and practical experience"
+                           )
 
 @author13.articles << @article5
 @author14.articles << @article5
@@ -244,7 +255,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'Agile software development methods have rapidly spread after their formal introduction in the agile manifesto at the dawn of the millennium. They rapidly gained support in the software industry and can be considered a standard today. Agile methods seem to improve software project success rates and offer developers the needed flexibility to adapt to changing user requirements. However, the use of agile methods in large-scale information systems development projects has been rarely studied. There are even fewer insights in the area of agile healthcare information systems development. In this paper, we present insights into an agile hospital information system development in a European hospital. Agile development has been studied from various stakeholder perspectives. Results show that physicians, nurses and administration have diverse opinions on agile practices and different practices may be appropriate for interacting with each stakeholder.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @completed.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id,
+                           context: "Agile development and health care",
+                           benefit: "useful methods", result: "guideline for agile process"
+                           )
 
 @author19.articles << @article6
 
@@ -257,7 +271,11 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'This paper reports lessons from implementation of a financial information system in the Indonesian public sector. Such the system is complex, as it should adhere various rigid government regulations and involves various levels of government units. In developing the system, we adopted an extreme programming approach, with an ultimate goal to meet requirements defined by all levels of government units. The evaluation indicated that there were no significant problems experienced at both the upper and the middle levels. But this was not the case at the lower (sub-organization) level. Although we found that 98% of the involved users agreed that their requirements has been met, and 100% of them were satisfied with the use of the extreme programming approach, we found that the users at the lower level in general had a high level of resistance against changes, which demanded a better strategy to cope with such problem. A recommended solution includes involving them more intensively throughout the development of the system, aimed at eliciting system requirements and cultivating a better awareness among them.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @completed.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id,
+                           context: "financial data processing",
+                           benefit: "the wide apply of extreme programming approach",
+                           result: "guideline for extreme programming approach in financial system"
+                           )
 
 @author20.articles << @article7
 
@@ -273,7 +291,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'This paper presents an 11-step “myAgile” method that integrates the extreme programming (XP) with existing university courses, attempting to build a modern software engineering education. Compared with XP, “myAgile” covers more phases, such as requirement engineering, detailed design, and reverse engineering. There were 288 students in 4 universities in Taiwan who participated in this effort. The students rigorously applied the method to develop, and to maintain, an object-oriented Grade System project in Java. The results showed that, objectively, the students produced maintainable software, which was clearly shown in another maintenance project by a different team at a distant time after the development. And, subjectively, students reported high job satisfaction that is so desperately needed in this profession.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @accepted.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id,
+                           context: "extreme programming, computer science",
+                           benefit: "the wide apply of extreme programming approach",
+                           result: "guideline for extreme programming approach on education" )
 
 @author21.articles << @article8
 @author22.articles << @article8
@@ -290,7 +311,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                            abstract: 'In software development, the waterfall model is commonly used, especially for large-scale software systems. For smaller-scale software development, agile software development approaches such as extreme programming or scrum are used. Traditional software development methodologies are mainly targeted toward customer-centric development, and therefore, new software methodologies are often not well received in the industry. In this study, we propose a new software development methodology that is aimed at developing innovative software using artificial intelligence (AI), idea creation, value engineering, and systems design. The name of our method is named as EPISODE (Extreme Programming method for Innovative Software based on systems DEsign). EPISODE supports the efficient and creative development of open source software (OSS) by small groups.',
                            research_questions: '', research_metrics: '',
                            type_id: @article_type5.id, status_id: @rejected.id, is_active: false,
-                           peer_reviewed: true, relevance: false, not_duplicate: false, user_id: @user1.id)
+                           peer_reviewed: true, relevance: false, not_duplicate: false, user_id: @user1.id,
+                           context: "extreme programming, computer science",
+                           benefit: "extreme programming approach;software prototype",
+                           result: "guideline for extreme programming and artificial intelligence" )
 
 @author23.articles << @article9
 @author24.articles << @article9
@@ -306,7 +330,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                             abstract: 'Extreme Programming (XP) is a lightweight methodology that is gaining industry acceptance and momentum. XP promises to reduce project risk, improve responsiveness to changing/vague requirements, and allow a system to grow naturally while at the same time facilitating an enjoyable development environment. XP consists of four values and twelve practices. This letter explores how well these values and practices can be applied in the telecommunications domain.',
                             research_questions: '', research_metrics: '',
                             type_id: @article_type3.id, status_id: @completed.id, is_active: true,
-                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id)
+                           peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user2.id,
+                            context: "extreme programming, telecommunications domain",
+                            benefit: "extreme programming approach in industry",
+                            result: "lightweight extreme programming")
 
 @author26.articles << @article10
 
@@ -321,7 +348,10 @@ JoinCondition.create(value: 4, name: "OR NOT")
                             abstract: 'This paper provides a new approach towards sideslip velocity autopilot design for an agile missile using hybrid Proportional-Integral-Derivative (PID) control. The proposed hybrid PID controller is derived by replacing the conventional PI controller by a two-input normalized linear fuzzy logic controller and implementing the conventional D controller in an incremental form. Genetic Algorithms (GA) are used to facilitate optimal tuning of the controller gains. Simulation results on an agile missile model demonstrate that the proposed controller is effective, robust and has great potential in many other industrial applications.',
                             research_questions: '', research_metrics: '',
                             type_id: @article_type3.id, status_id: @completed.id, is_active: true,
-                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id)
+                            peer_reviewed: true, relevance: true, not_duplicate: true, user_id: @user1.id,
+                            context: "agile approach",
+                            benefit: "agile and genetic algorithms",
+                            result: "guide for agile development" )
 @author27.articles << @article11
 @author28.articles << @article11
 
