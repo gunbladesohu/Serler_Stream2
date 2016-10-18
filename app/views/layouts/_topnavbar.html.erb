@@ -45,7 +45,7 @@
                  <% else %>
                      <% if current_user_role.name.include? "Admin" %>
                         <li>
-                        <%= link_to "User Role Management", user_management_path, method: "get" %>
+                        <%= link_to "User Management", user_management_path, method: "get" %>
                       </li>
                     <% end %>
                     

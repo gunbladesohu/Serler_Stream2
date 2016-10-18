@@ -243,12 +243,83 @@ class AdminController  < BaseController
      render :json => @UserList                  
   end
   
-  
+  def addNewUser
+    
+    selectedRolesId = params[:selectedRolesId].split(",").map { |s| s.to_i }
+    first_name = params[:first_name]
+    middle_name = params[:middle_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    password_digest = params[:password_digest]
+    affiliation = params[:affiliation]
+    gender = params[:gender]
+    dob = params[:dob]
+    
+    
+    userItem = User.new(
+      :first_name => first_name,
+      :middle_name => middle_name,
+      :last_name => last_name,
+      :email => email,
+      :dob => dob,
+      :gender => gender,
+      :password_digest => password_digest,
+      :affiliation => affiliation,
+      :is_active => true)
+    
+    respond_to do |format|
+      if userItem.save
+
+        #save role
+        role = Role.find_by name: "User"
+
+        userRole = UsersRole.new( :user_id => userItem.id,
+                                  :role_id => role.id,
+                                  :is_active => true)
+
+        userRole.save
+        
+        if selectedRolesId.size > 0
+          selectedRolesId.each do |id|
+        
+            @newItem = UsersRole.create(:user_id => userItem.id, :role_id => id, :is_active => true)
+            @newItem.save
+            
+          end
+        end
+        
+      end
+      
+      render :json => true
+    end
+    
+  end
   
   def updateUser
+    
     selectedRolesId = params[:selectedRolesId].split(",").map { |s| s.to_i }
     userId = params[:userId]
-   
+    first_name = params[:first_name]
+    middle_name = params[:middle_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    gender = params[:gender]
+    password_digest = params[:password_digest]
+    affiliation = params[:affiliation]
+    dob = params[:dob]
+    
+    userItem = User.find(userId)
+    
+    userItem.first_name = first_name
+    userItem.middle_name = middle_name
+    userItem.last_name = last_name
+    userItem.email = email
+    userItem.password_digest = password_digest
+    userItem.affiliation = affiliation
+    userItem.dob = dob
+    userItem.gender = gender
+    userItem.save
+    
     userRole = Role.find_by name: "User"
     user_role_list = UsersRole.all.where("users_roles.user_id=#{userId} and users_roles.role_id != #{userRole.id}")
     
@@ -279,8 +350,7 @@ class AdminController  < BaseController
    end
     
   
-    render :json => true  
-    
+    render :json => true 
   end
   
   def getRoles

@@ -33,5 +33,6 @@ module SessionsHelper
     @current_user = nil
     @current_user_role = nil
   end
+  
 end
 
