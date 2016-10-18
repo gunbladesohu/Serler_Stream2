@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'search_queries/browse_repository' => 'search_queries#browse_repository'
 
-  # post 'search_queries/update_result' => 'search_queries#update_result'
+  post 'search_queries/update_result' => 'search_queries#update_result'
 
   match '/search_queries/update_result',      to: 'search_queries#update_result',        via: 'post'
 
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :research_participants
   resources :roles
   resources :users
+  resources :logs_admin
   root 'home#index'
   
   
@@ -41,7 +42,14 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   get "users/new", as: "register"
+
   match ':controller(/:action(/:id))', :via => :get
+
+  get "admin/new_user", as: "admin_new_user"
+
+  #get "/users", as: "users_list"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -107,4 +115,10 @@ Rails.application.routes.draw do
   get 'admin/mail_send'
   get "admin/article_view/Moderator" , as: "article_view_moderator"
   get "admin/article_view_moderator" , as: "article_moderator_picked_up"
+  get "admin/user_management" , as: "user_management"
+  post "admin/addNewUser" => "admin#addNewUser", :as => :addNewUser
+  post "admin/updateUser" => "admin#updateUser", :as => :updateUser
+  get "admin/feedback" , as: "admin_feedback"
+  post "admin/add_feedback" , as: "admin_add_feedback"
+  get "admin/add_feedback_confirmation" , as: "admin_add_feedback_confirmation"
 end
