@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       
       log_in user
       
+      
     else
           user = User.new(
             :first_name => firstName,
@@ -28,11 +29,17 @@ class SessionsController < ApplicationController
       
           user.save
           
+          userRole = Role.find_by name: "User"
+          
+          new_user_role = UsersRole.create(:user_id => user.id, :role_id => userRole.id, :is_active => true)
+          
+          new_user_role.save
+          
           log_in user
           
     end
     
-   redirect_to root_url 
+    redirect_to root_url 
 
   end
 

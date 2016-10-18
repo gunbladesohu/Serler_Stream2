@@ -1,0 +1,45 @@
+<div class="container col-lg-8 col-lg-offset-2">
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+          
+        <div id="pageTitle" class="fieldLable col-lg-5" >
+           <h3 >Send us your feedback</h3>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+        <div class="fieldLable required col-lg-5" >
+          <label>Message</label>
+        </div>
+      </div>
+      
+      <div class="row" style="padding: 10px 0px 5px 0px">
+        
+        <div id="firstNameSection" class="col-lg-10 form-group">
+             <textarea class="form-control" rows="5" id="feedback" style="resize: vertical" ></textarea>
+        </div>
+      </div>
+      
+       <div class="row" style="padding: 5px 0px 5px 0px">
+        
+       <div class="col-lg-4">
+           
+        <button type="button" class="btn btn-primary btn-block" id="SubmitBtn">Submit</button>
+        
+      </div>
+      </div>
+      
+</div>
+
+<script  type="text/javascript">
+     $('#SubmitBtn').click(function(e){
+        $.ajax({
+            url: '/admin/add_feedback' ,
+            type: 'POST',
+            data: {
+                    message: $("#feedback").val()
+                  }
+            });
+                   
+     });
+</script>

@@ -109,4 +109,10 @@ Rails.application.routes.draw do
   get 'admin/mail_send'
   get "admin/article_view/Moderator" , as: "article_view_moderator"
   get "admin/article_view_moderator" , as: "article_moderator_picked_up"
+  get "admin/user_management" , as: "user_management"
+  post "admin/addNewUser" => "admin#addNewUser", :as => :addNewUser
+  post "admin/updateUser" => "admin#updateUser", :as => :updateUser
+  get "admin/feedback" , as: "admin_feedback"
+  post "admin/add_feedback" , as: "admin_add_feedback"
+  get "admin/add_feedback_confirmation" , as: "admin_add_feedback_confirmation"
 end

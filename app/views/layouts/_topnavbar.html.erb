@@ -43,19 +43,27 @@
                       <%= link_to "Log out", logout_path, method: "delete" %>
                     </li>
                  <% else %>
-                     <% if current_user_role.name == "Moderator" %>
-                      <li>
+                     <% if current_user_role.name.include? "Admin" %>
+                        <li>
+                        <%= link_to "User Management", user_management_path, method: "get" %>
+                      </li>
+                    <% end %>
+                    
+                    <% if  current_user_role.name.include? "Moderator"%>
+                       <li>
                         <%= link_to "New articles", article_view_moderator_path, method: "get" %>
                       </li>
                       
                       <li>
                         <%= link_to "My article list", article_moderator_picked_up_path, method: "get" %>
                       </li>
-                      
-                      <li>
-                      <%= link_to "Log out", logout_path, method: "delete" %>
-                      </li>
                     <% end %>
+                      <li>
+                        <%= link_to "Feedback", admin_feedback_path, method: "get" %>
+                      </li>
+                      <li>
+                        <%= link_to "Log out", logout_path, method: "delete" %>
+                      </li>
                 <% end %>
                 
                 

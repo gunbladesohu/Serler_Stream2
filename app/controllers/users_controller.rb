@@ -34,7 +34,7 @@ class UsersController < BaseController
   # POST /users
   # POST /users.json
   def create
-    if current_user_role.nil?
+    if current_user.nil?
 
 
     @user = User.new(
@@ -120,22 +120,25 @@ class UsersController < BaseController
 
   def new_user_confirmation
 
-    if current_user_role.nil?
+    if current_user.nil?
 
 
     id =  params[:id]
       
     host = request.host + "/users/new_user_email_confirmation/" + id
     
+    
     @user = User.find(id)
       
     @subject = "Serler new user"
-      
+    
     @message = "<p>Thank you so much for joining Serler</p>
                   <p>Please click the below link to activate your account</p>
                   <a href='#{host}'>#{host}</a>
-                   <p>Thank you so much for your time</p>
-                   ".html_safe
+                  <p>Thank you so much for your time</p>
+                  ".html_safe
+     
+     
                    
      HubMailer.moderator_confirmation_email(@user, @subject, @message).deliver_now  
      
@@ -158,6 +161,11 @@ class UsersController < BaseController
     
    respond_to do |format|
       if @user.save
+        
+        userRole = Role.find_by name: "User"
+        new_user_role = UsersRole.create(:user_id => @user.id, :role_id => userRole.id, :is_active => true)
+        new_user_role.save
+          
         format.html { redirect_to controller: 'sessions', action: 'new', firstName: @user.first_name, lastName: @user.last_name, email: @user.email }
         # format.html { redirect_to root_url }
         format.json { render :show, status: :ok, location: @user }

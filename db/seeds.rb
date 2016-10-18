@@ -108,13 +108,18 @@ JoinCondition.create(value: 4, name: "OR NOT")
 @researchparticipant2 = ResearchParticipant.create(name: 'Postgraduate students', description: '', is_active: true)
 @researchparticipant3 = ResearchParticipant.create(name: 'Practitioners',  description: '', is_active: true)
 
-@user1 = User.create(first_name: 'Robert', middle_name: 'Huy', last_name: 'Le', email: 'robert01011991@gmail.com', gender: 'Male', dob: '', 
-                        affiliation: 'AUT', is_active: true, password_digest: '1234')
-@user2 = User.create(first_name: 'Tony', middle_name: '', last_name: 'Chen', email: 'dsz8022@autuni.ac.nz', gender: 'Male', dob: '', 
+@user1 = User.create(first_name: 'Jim', middle_name: '', last_name: 'Buchan', email: 'jim.buchan@aut.ac.nz', gender: 'Male', dob: '', 
+                        affiliation: 'AUT', is_active: true, password_digest: '123456')
+@user2 = User.create(first_name: 'Robert', middle_name: '', last_name: 'Le', email: 'dsz8022@autuni.ac.nz', gender: 'Male', dob: '', 
                         affiliation: 'Microsoft', is_active: true, password_digest: '1234')
 @user3 = User.create(first_name: 'Jessica', middle_name: 'Song', last_name: 'Park', email: 'graftoncf@gmail.com', gender: 'Female', dob: '', 
                         affiliation: 'Apple', is_active: true, password_digest: '1234')
 
+UsersRole.create(user_id: @user1.id, role_id: @adminRole.id, is_active: true)
+UsersRole.create(user_id: @user1.id, role_id: @userRole.id, is_active: true)
+UsersRole.create(user_id: @user2.id, role_id: @moderatorRole.id, is_active: true)
+UsersRole.create(user_id: @user2.id, role_id: @userRole.id, is_active: true)
+UsersRole.create(user_id: @user3.id, role_id: @userRole.id, is_active: true)
 
 @article_type1 = ArticleType.create(name: 'Book',          description: '', is_active: true)
 @article_type2 = ArticleType.create(name: 'Book article',          description: '', is_active: true)

@@ -1,6 +1,6 @@
 <%= @windowMessage %>
 
-<% if current_user_role.nil? %>
+<% if current_user.nil? %>
     <%= link_to "Home page", root_url, :class => "btn btn-primary" %>
     <%= link_to "Resend", url_for(params), :class => "btn btn-primary" %>
 <% else %>
