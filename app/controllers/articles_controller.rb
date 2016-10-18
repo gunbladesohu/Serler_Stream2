@@ -142,7 +142,7 @@ class ArticlesController < BaseController
           :status_id
           )
       elsif params[:commit] == 'Create Article'
-        params[:article][:status_id] = @moderated
+        params[:article][:status_id] = @status_article_submit_id
         params.require(:article).permit(:title, :journal, :year, :volume, :type_id,
           :benefit, :context, :result,
           :number, :month, :research_questions, :research_metrics, :pages, :isbn, :doi, :url, :keyword, :abstract,
@@ -163,6 +163,8 @@ class ArticlesController < BaseController
           @status_analyst_picked_up_id = status.id
         elsif status.name == "Analysis complete"
           @status_analyst_complete_id = status.id
+        elsif status.name == "To be moderated"
+          @status_article_submit_id = status.id
         end
       end
     end
