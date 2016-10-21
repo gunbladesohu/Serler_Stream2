@@ -1,40 +1,11 @@
 language: ruby
 rvm:
-  - 2.3.0
-# env:
-#   - DB=postgresql
-#
-# before_script:
-# - psql -c 'create database postgres with password "sdm2016"' -U postgres
-# - bundle exec rake db:setup
-# - bundle exec rake db:migrate
-# - RAILS_ENV=test bundle exec rake db:setup
-# - RAILS_ENV=test bundle exec rake db:migrate
-# script:
-# - bundle exec cucumber
-# - bundle exec rspec
-# notifications:
-#   email: false
-# - 2.3.0
-# before_script:
-#   - bundle exec rake db:reset
-#   - bundle exec rake db:migrate
-#   - RAILS_ENV=test bundle exec rake db:setup
-#   - RAILS_ENV=test bundle exec rake db:migrate
-# script:
-# - bundle exec cucumber
-# - bundle exec rspec
-# notifications:
-#   email: false
-
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: 2smnOt2dH0EfPOsvr1If8XyhvxKWep6ECU/SephFUxCaGadoSstW0vxF4hNQFoAICPcCcGfXwzb2nof1E2mqtR6guGe0rbb/LrVzv+86vKTbcZu0Kt+DXLDVoD382CwOj46v7ZxDzC6O71GeIOnZyFUQTp11L2PT+MxY805VlD77xLCA3x/dAoa0yGo2cz2mb3NA3uv79lTeKtxyAgehCk0UkywQsFltTdmr8lyIC+UKH3bk9ZaS8EXNPmCa+J4vjYS/jArV9g704br052beFZxBSZLAwsfirFGcwznhQC7uIHrwcxE5gawZTxTLgz+V5ZJDLlqZX0FHtYrbXFslt9GelRecOve07sD3gQ7sBqmDiPpcKe4lv7e090yYQFEgH18uao2RyXi3e+xe9lzHIyC7RebIQHsAVhS6Lp8IJDBxVVnrbEVzlzoQbqZewV7gIU4rAZGGY8Zo3ds568PuQRHuUSotCNXOfShAYCq2E1+Q4f7scFOPmKhBDmrokMscwulw5Ggc0W2x2f5hiOlA58KdMibyIejcOnf+oQzbipi/zxJeE2mqeXCaokDxTtQ/Hha79pZmG2tBRq2oC5w8wIO7sOzLbjFFvvu2uommSC7XQJ+5wj3dcpY5MN4s/Y91erEtItmRKesy7k3KlShI41F3mkIl23FDvF6FPpoMlOM=
-#   run:
-#     - "rake db:reset"
-#     - restart
-#   app: serlerofasiankiwi
-#   on:
-#     repo: tdbt1985/Serler_Stream2
-#     branch: AsianKiwi
+- 2.3.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: fCzQKONUP2LPjFbizQMbownI/GH49QhFisZV1Ar2RA/KS7x1fnBjsehfozFi8Q38XQRQvP5DFABqZfSRDko9yg11hTItqxR0StUsi9Lqz3u9Va9pQbSEc5LP4BCQ09zsgPzhY4JeXKx8zLnJADq3QsBkHcqC5sJp12a052E7+Iio/UGv/dnfduaLNFOFWTYgSmQGgFDQAf3RdaYqr+7bkzRD59yfEywvHn2OgVYGWe11xtg5VoscxlXrjaDJ4DHgxIE7UJ9eQKRkwWjUrNvPk3fof5KuPFek0tQvzFSHuivfDUzAjGglRTWDmCRAVuWZHO8OSMq4UBBlCt+H8lX+ToJqf2OK2Rjgh7s4DOdiSRwZ7xiOfJOEcK/B6TErDU6i6WTnIFdZK/PZnny7fJhRdtDknnG0SINz00kZor29ayx8d9LMSJWXw7gg0kMg95Bq8f5hj9x2jc7S28tKZIqxS2DElTFHOUolC+Fzpx4WFgyw/pMG5FEzl9H2WD2AcS6FPKOaNHOmijkDHnWkD/7SF2f/QykF4+M5E2/YsaFXupnWOAsrUM4hSS9gynpaBL4U7riQDRP8pWXsfE6jezlvGOb4PBrZA0i02AqMjTtlpcJIDcs4c7ULwASKKRcI+uE+PKl6RBdPyusYXSQa+e4ucrxNwWhP8Cr7Yz0tKRldrl4=
+  app: afternoon-garden-36020
+  on:
+    repo: tdbt1985/Serler_Stream2
+    branch: Developed_Test
