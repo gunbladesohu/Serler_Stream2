@@ -1,6 +1,9 @@
 language: ruby
 rvm:
 - 2.3.0
+before_script:
+  - gem update --system
+  - gem install bundle
 deploy:
   provider: heroku
   api_key:
