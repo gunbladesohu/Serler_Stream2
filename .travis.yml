@@ -4,6 +4,7 @@ rvm:
 before_script:
   - gem update --system
   - gem install bundle
+  - bundle update
 deploy:
   provider: heroku
   api_key:
